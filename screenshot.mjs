@@ -9,6 +9,8 @@ if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
 const url = process.argv[2] || 'http://localhost:3000';
 const label = process.argv[3] ? `-${process.argv[3]}` : '';
+const vpWidth = parseInt(process.argv[4]) || 1440;
+const vpHeight = parseInt(process.argv[5]) || 900;
 
 const existing = fs.readdirSync(outDir).filter(f => f.endsWith('.png'));
 const nums = existing.map(f => parseInt(f.match(/^screenshot-(\d+)/)?.[1] || '0')).filter(Boolean);
@@ -16,9 +18,14 @@ const next = nums.length ? Math.max(...nums) + 1 : 1;
 const filename = `screenshot-${next}${label}.png`;
 const outPath = path.join(outDir, filename);
 
-const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
+const chromeExec = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const browser = await puppeteer.launch({
+  headless: true,
+  executablePath: fs.existsSync(chromeExec) ? chromeExec : undefined,
+  args: ['--no-sandbox', '--disable-dev-shm-usage']
+});
 const page = await browser.newPage();
-await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
+await page.setViewport({ width: vpWidth, height: vpHeight, deviceScaleFactor: 2 });
 await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
 // Force all fade-up elements visible before screenshot
 await page.evaluate(() => {
