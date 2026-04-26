@@ -1029,12 +1029,9 @@
     background: rgba(0, 0, 0, 0.65);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.4s;
   }
-  .sidebar-backdrop.open {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .sidebar-backdrop.open { opacity: 1; pointer-events: all; }
 
   /* ── MOBILE SIDEBAR DRAWER ── */
   .mobile-sidebar {
@@ -1043,26 +1040,27 @@
     right: 0;
     bottom: 0;
     z-index: 98;
-    width: min(320px, 88vw);
+    width: min(300px, 85vw);
     background: var(--mid);
     border-left: 1px solid rgba(255,255,255,0.08);
+    /* overflow: hidden keeps the sidebar a strict fixed-height column so
+       flex children size correctly on iOS Safari */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     transform: translateX(100%);
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .mobile-sidebar.open {
     transform: translateX(0);
-    box-shadow: -24px 0 80px rgba(0, 0, 0, 0.55);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
   }
 
   .sidebar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 24px;
+    padding: 18px 20px;
     border-bottom: 1px solid rgba(255,255,255,0.06);
     flex-shrink: 0;
   }
@@ -1079,20 +1077,19 @@
     cursor: pointer;
     color: var(--muted);
     font-size: 16px;
-    line-height: 1;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition: background 0.2s, color 0.2s;
     flex-shrink: 0;
   }
-  .sidebar-close:hover {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-    border-color: rgba(255,255,255,0.2);
-  }
+  .sidebar-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
   .sidebar-close:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
 
+  /* flex: 1 + min-height: 0 is the iOS Safari fix that prevents the nav
+     from collapsing and pushing the footer into the wrong position */
   .sidebar-nav {
     flex: 1;
-    padding: 8px 0;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
   }
@@ -1100,19 +1097,17 @@
   .sidebar-link {
     display: flex;
     align-items: center;
-    gap: 0;
-    padding: 0;
+    padding: 18px 20px;
     text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     transition: background 0.2s;
-    position: relative;
-    overflow: hidden;
+    flex-shrink: 0;
   }
   .sidebar-link:last-child { border-bottom: none; }
-  .sidebar-link:hover { background: rgba(255,255,255,0.03); }
-  .sidebar-link:hover .sidebar-link-arrow { color: var(--lime); transform: translateX(4px); }
-  .sidebar-link:hover .sidebar-link-num { color: var(--lime); }
-  .sidebar-link:focus-visible { outline: 2px solid var(--lime); outline-offset: -2px; }
+  .sidebar-link:hover,
+  .sidebar-link:active { background: rgba(255,255,255,0.04); }
+  .sidebar-link:hover .sidebar-link-arrow { color: var(--lime); transform: translateX(3px); }
+  .sidebar-link:hover .sidebar-link-num { color: rgba(197,232,138,0.8); }
 
   .sidebar-link-num {
     font-family: 'Syne', sans-serif;
@@ -1120,22 +1115,18 @@
     font-weight: 700;
     letter-spacing: 2px;
     color: rgba(197,232,138,0.35);
-    width: 56px;
-    padding: 20px 0 20px 24px;
+    width: 30px;
     flex-shrink: 0;
     transition: color 0.2s;
-    align-self: stretch;
-    display: flex;
-    align-items: center;
   }
 
   .sidebar-link-body {
     flex: 1;
-    padding: 20px 0;
+    min-width: 0;
   }
   .sidebar-link-name {
     font-family: 'Syne', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: #fff;
     letter-spacing: -0.02em;
@@ -1147,47 +1138,52 @@
     color: var(--muted);
     margin-top: 3px;
     display: block;
-    line-height: 1.4;
   }
 
   .sidebar-link-arrow {
     color: rgba(255,255,255,0.2);
-    font-size: 16px;
-    padding: 20px 24px 20px 16px;
-    transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 14px;
     flex-shrink: 0;
-    align-self: stretch;
-    display: flex;
-    align-items: center;
+    margin-left: 10px;
+    transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .sidebar-footer {
-    padding: 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
     flex-shrink: 0;
-    background: rgba(0,0,0,0.15);
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: rgba(0,0,0,0.18);
   }
 
   .sidebar-cta {
-    width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 20px;
+    margin-bottom: 14px;
+    background: var(--lime);
+    color: var(--dark);
+    font-family: 'Syne', sans-serif;
     font-size: 14px;
-    padding: 14px 24px;
-    margin-bottom: 16px;
+    font-weight: 700;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: opacity 0.2s;
   }
+  .sidebar-cta:active { opacity: 0.85; }
 
   .sidebar-contact-info {
     text-align: center;
     font-size: 12px;
     color: var(--muted);
-    line-height: 1.6;
   }
   .sidebar-contact-info a {
     color: var(--teal);
     text-decoration: none;
-    transition: color 0.2s;
   }
-  .sidebar-contact-info a:hover { color: var(--lime); }
 
   /* ── TABLET (≤ 1024px) ── */
   @media (max-width: 1024px) {
@@ -1368,9 +1364,8 @@
   </nav>
 
   <div class="sidebar-footer">
-    <a href="#contact" class="btn-primary sidebar-cta">
-      Start a Project
-      <span class="btn-arrow">→</span>
+    <a href="#contact" class="sidebar-cta">
+      Start a Project →
     </a>
     <div class="sidebar-contact-info">
       WhatsApp: <a href="https://wa.me/96592274600">+965 9227 4600</a>
