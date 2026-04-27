@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinetix CMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --lime: #C5E88A;
+  --lime-dim: rgba(197,232,138,0.12);
+  --lime-border: rgba(197,232,138,0.25);
+  --bg: #07090E;
+  --sidebar: #0C0E15;
+  --panel: #111520;
+  --panel2: #161B28;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.1);
+  --muted: #4A5568;
+  --muted2: #6B7894;
+  --white: #F0F2F8;
+  --red: #FF5A5A;
+  --amber: #F5A623;
+  --green: #5FD88A;
+  --font-mono: 'DM Mono', monospace;
+  --font-ui: 'Inter', sans-serif;
+  --font-display: 'Syne', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:var(--font-ui);background:var(--bg);color:var(--white);display:flex;align-items:stretch;}
+
+/* ── Auth screens ── */
+.auth-screen {
+  position:fixed;inset:0;z-index:1000;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:0;
+}
+.auth-screen.hidden{display:none;}
+.auth-card {
+  width:100%;max-width:420px;padding:48px;
+  background:var(--panel);
+  border:1px solid var(--border2);
+  border-radius:20px;
+  box-shadow:0 32px 80px rgba(0,0,0,0.5);
+}
+.auth-logo {
+  display:flex;align-items:center;gap:10px;margin-bottom:40px;
+}
+.auth-logo svg { flex-shrink:0; }
+.auth-logo-word {
+  font-family:var(--font-display);font-size:22px;font-weight:800;
+  letter-spacing:-0.5px;color:#fff;
+}
+.auth-logo-word span{color:var(--lime);}
+.auth-eyebrow {
+  font-family:var(--font-mono);font-size:10px;font-weight:500;
+  letter-spacing:2.5px;text-transform:uppercase;color:var(--lime);
+  margin-bottom:12px;
+}
+.auth-title {
+  font-family:var(--font-display);font-size:28px;font-weight:800;
+  color:#fff;margin-bottom:8px;letter-spacing:-0.02em;
+}
+.auth-sub{font-size:14px;color:var(--muted2);line-height:1.6;margin-bottom:32px;}
+.auth-field{margin-bottom:20px;}
+.auth-label{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-bottom:8px;display:block;}
+.auth-input {
+  width:100%;padding:13px 16px;
+  background:#0A0D14;border:1px solid var(--border2);border-radius:10px;
+  color:#fff;font-family:var(--font-mono);font-size:14px;
+  outline:none;transition:border-color 0.2s;
+}
+.auth-input:focus{border-color:var(--lime);}
+.auth-input::placeholder{color:var(--muted);}
+.auth-hint {
+  font-size:12px;color:var(--muted);line-height:1.6;margin-top:8px;
+}
+.auth-hint a{color:var(--lime);text-decoration:none;}
+.auth-hint a:hover{text-decoration:underline;}
+.auth-btn {
+  width:100%;padding:14px;margin-top:8px;
+  background:var(--lime);color:#0A0D14;
+  font-family:var(--font-display);font-size:15px;font-weight:700;
+  border:none;border-radius:10px;cursor:pointer;
+  transition:opacity 0.2s,transform 0.15s;
+}
+.auth-btn:hover{opacity:0.9;transform:translateY(-1px);}
+.auth-btn:active{transform:translateY(0);}
+.auth-error {
+  font-size:13px;color:var(--red);margin-top:12px;
+  padding:10px 14px;background:rgba(255,90,90,0.08);
+  border:1px solid rgba(255,90,90,0.2);border-radius:8px;
+  display:none;
+}
+.auth-error.show{display:block;}
+.setup-note {
+  font-size:12px;color:var(--muted);margin-top:24px;text-align:center;
+  padding-top:24px;border-top:1px solid var(--border);
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width:240px;flex-shrink:0;
+  background:var(--sidebar);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  height:100%;overflow:hidden;
+}
+.sidebar-logo {
+  display:flex;align-items:center;gap:9px;
+  padding:24px 20px 20px;
+  border-bottom:1px solid var(--border);
+}
+.sidebar-wordmark{font-family:var(--font-display);font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.3px;}
+.sidebar-wordmark span{color:var(--lime);}
+.sidebar-badge {
+  margin-left:auto;font-family:var(--font-mono);font-size:9px;font-weight:500;
+  letter-spacing:1px;text-transform:uppercase;
+  background:var(--lime-dim);border:1px solid var(--lime-border);
+  color:var(--lime);padding:3px 8px;border-radius:100px;
+}
+.sidebar-nav{flex:1;overflow-y:auto;padding:12px 10px;}
+.nav-section-label{
+  font-family:var(--font-mono);font-size:9px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  padding:8px 10px 4px;margin-top:8px;
+}
+.sidebar-link {
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:8px;
+  font-size:13px;font-weight:500;color:var(--muted2);
+  cursor:pointer;transition:all 0.15s;
+  border:none;background:none;width:100%;text-align:left;
+}
+.sidebar-link:hover{background:rgba(255,255,255,0.04);color:var(--white);}
+.sidebar-link.active{background:var(--lime-dim);color:var(--lime);border:1px solid var(--lime-border);}
+.sidebar-link svg{width:15px;height:15px;flex-shrink:0;opacity:0.7;}
+.sidebar-link.active svg{opacity:1;}
+.sidebar-footer{
+  padding:16px;border-top:1px solid var(--border);
+  display:flex;flex-direction:column;gap:8px;
+}
+.sidebar-status {
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:11px;color:var(--muted2);
+}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.status-dot.unsaved{background:var(--amber);}
+.sidebar-signout {
+  display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;
+  font-size:12px;color:var(--muted);cursor:pointer;
+  border:none;background:none;width:100%;text-align:left;
+  transition:all 0.15s;
+}
+.sidebar-signout:hover{background:rgba(255,90,90,0.08);color:var(--red);}
+.sidebar-signout svg{width:14px;height:14px;flex-shrink:0;}
+
+/* ── Main area ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;height:100%;}
+.topbar {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:60px;
+  border-bottom:1px solid var(--border);flex-shrink:0;
+  background:var(--bg);
+}
+.topbar-title{font-family:var(--font-display);font-size:16px;font-weight:700;color:#fff;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.save-status{font-family:var(--font-mono);font-size:11px;color:var(--muted2);}
+.save-status.saving{color:var(--amber);}
+.save-status.saved{color:var(--green);}
+.save-status.error{color:var(--red);}
+.preview-btn {
+  display:flex;align-items:center;gap:6px;
+  padding:7px 16px;border-radius:8px;font-size:13px;font-weight:500;
+  background:transparent;border:1px solid var(--border2);color:var(--muted2);
+  cursor:pointer;text-decoration:none;transition:all 0.2s;
+}
+.preview-btn:hover{border-color:var(--border);color:#fff;}
+.save-btn {
+  display:flex;align-items:center;gap:6px;
+  padding:8px 20px;border-radius:8px;font-size:13px;font-weight:700;
+  background:var(--lime);border:none;color:#0A0D14;
+  cursor:pointer;font-family:var(--font-display);
+  transition:opacity 0.2s,transform 0.15s;
+}
+.save-btn:hover{opacity:0.9;transform:translateY(-1px);}
+.save-btn:active{transform:translateY(0);}
+.save-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.content-area{flex:1;overflow-y:auto;padding:32px;}
+
+/* ── Section panels ── */
+.section-panel{display:none;}
+.section-panel.active{display:block;}
+
+/* ── Cards / groups ── */
+.editor-card {
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  padding:28px;margin-bottom:20px;
+}
+.editor-card-title {
+  font-family:var(--font-display);font-size:15px;font-weight:700;color:#fff;
+  margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.editor-card-title .badge {
+  font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:1px;
+  text-transform:uppercase;background:var(--lime-dim);border:1px solid var(--lime-border);
+  color:var(--lime);padding:2px 8px;border-radius:100px;
+}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.field-row.full{grid-template-columns:1fr;}
+.field{margin-bottom:16px;}
+.field:last-child{margin-bottom:0;}
+.field label {
+  display:block;font-family:var(--font-mono);font-size:10px;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-bottom:7px;
+}
+.field input,.field textarea,.field select {
+  width:100%;padding:10px 13px;
+  background:#0A0D14;border:1px solid var(--border2);border-radius:8px;
+  color:var(--white);font-family:var(--font-ui);font-size:13px;
+  outline:none;transition:border-color 0.2s;resize:vertical;
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--lime);}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted);}
+.field textarea{min-height:80px;line-height:1.6;}
+.field textarea.tall{min-height:140px;}
+.field select option{background:#0A0D14;}
+
+/* ── Array editors ── */
+.array-editor{display:flex;flex-direction:column;gap:14px;}
+.array-item {
+  background:var(--panel2);border:1px solid var(--border);border-radius:10px;
+  padding:18px;position:relative;
+}
+.array-item-header {
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;
+}
+.array-item-num {
+  font-family:var(--font-mono);font-size:10px;font-weight:500;
+  color:var(--lime);letter-spacing:1px;flex:1;
+}
+.array-item-remove {
+  padding:4px 10px;font-size:11px;color:var(--red);background:rgba(255,90,90,0.08);
+  border:1px solid rgba(255,90,90,0.2);border-radius:6px;cursor:pointer;
+  font-family:var(--font-mono);transition:all 0.2s;
+}
+.array-item-remove:hover{background:rgba(255,90,90,0.15);}
+.add-item-btn {
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px;border:1px dashed var(--border2);border-radius:10px;
+  background:transparent;color:var(--muted2);font-size:13px;font-weight:500;
+  cursor:pointer;transition:all 0.2s;width:100%;
+}
+.add-item-btn:hover{border-color:var(--lime);color:var(--lime);background:var(--lime-dim);}
+
+/* ── Tags editor ── */
+.tags-editor{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.tag-pill {
+  display:flex;align-items:center;gap:5px;
+  padding:4px 10px;background:rgba(255,255,255,0.05);
+  border:1px solid var(--border2);border-radius:100px;
+  font-family:var(--font-mono);font-size:11px;color:var(--muted2);
+}
+.tag-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;line-height:1;padding:0;transition:color 0.15s;}
+.tag-remove:hover{color:var(--red);}
+.tag-add-input {
+  background:none;border:none;outline:none;color:var(--white);
+  font-family:var(--font-mono);font-size:11px;min-width:80px;
+  padding:4px 6px;
+}
+.tag-add-input::placeholder{color:var(--muted);}
+
+/* ── Articles ── */
+.articles-list{display:flex;flex-direction:column;gap:12px;}
+.article-row {
+  display:flex;align-items:center;gap:16px;
+  background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;
+}
+.article-row-cat {
+  font-family:var(--font-mono);font-size:9px;font-weight:500;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--lime);background:var(--lime-dim);
+  border:1px solid var(--lime-border);padding:3px 10px;border-radius:100px;white-space:nowrap;
+}
+.article-row-title{flex:1;font-size:13px;font-weight:500;color:var(--white);}
+.article-row-date{font-family:var(--font-mono);font-size:11px;color:var(--muted2);white-space:nowrap;}
+.article-row-actions{display:flex;gap:8px;}
+.btn-sm {
+  padding:5px 13px;border-radius:6px;font-size:12px;font-weight:500;
+  cursor:pointer;border:1px solid var(--border2);background:transparent;
+  color:var(--muted2);transition:all 0.15s;font-family:var(--font-ui);
+}
+.btn-sm:hover{border-color:var(--border);color:#fff;}
+.btn-sm.danger:hover{border-color:rgba(255,90,90,0.4);color:var(--red);background:rgba(255,90,90,0.06);}
+.btn-sm.primary{background:var(--lime-dim);border-color:var(--lime-border);color:var(--lime);}
+.btn-sm.primary:hover{background:rgba(197,232,138,0.2);}
+.featured-badge{font-family:var(--font-mono);font-size:9px;color:var(--amber);background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);border-radius:100px;padding:2px 8px;}
+
+/* ── Article editor modal ── */
+.modal-overlay {
+  position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.2s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal {
+  width:100%;max-width:780px;max-height:90vh;
+  background:var(--panel);border:1px solid var(--border2);
+  border-radius:20px;overflow:hidden;display:flex;flex-direction:column;
+  transform:scale(0.97);transition:transform 0.2s;
+}
+.modal-overlay.open .modal{transform:scale(1);}
+.modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.modal-title{font-family:var(--font-display);font-size:16px;font-weight:700;color:#fff;}
+.modal-close{background:none;border:none;color:var(--muted2);cursor:pointer;font-size:20px;padding:4px;transition:color 0.2s;}
+.modal-close:hover{color:#fff;}
+.modal-body{flex:1;overflow-y:auto;padding:28px;}
+.modal-footer{
+  display:flex;align-items:center;justify-content:flex-end;gap:12px;
+  padding:16px 28px;border-top:1px solid var(--border);flex-shrink:0;
+}
+.modal-cancel{padding:9px 20px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid var(--border2);background:transparent;color:var(--muted2);cursor:pointer;transition:all 0.15s;}
+.modal-cancel:hover{color:#fff;border-color:var(--border);}
+.modal-save{padding:9px 24px;border-radius:8px;font-size:13px;font-weight:700;background:var(--lime);border:none;color:#0A0D14;cursor:pointer;font-family:var(--font-display);transition:opacity 0.2s;}
+.modal-save:hover{opacity:0.9;}
+
+/* ── Overview ── */
+.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+.overview-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.overview-num{font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--lime);line-height:1;}
+.overview-label{font-size:12px;color:var(--muted2);margin-top:6px;}
+.quick-links{display:flex;flex-direction:column;gap:10px;}
+.quick-link {
+  display:flex;align-items:center;gap:12px;padding:14px 16px;
+  background:var(--panel);border:1px solid var(--border);border-radius:10px;
+  color:var(--white);font-size:13px;font-weight:500;cursor:pointer;
+  border:none;background:var(--panel);width:100%;text-align:left;
+  transition:background 0.15s;
+}
+.quick-link:hover{background:var(--panel2);}
+.quick-link-icon{width:32px;height:32px;background:var(--lime-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.quick-link-icon svg{width:16px;height:16px;color:var(--lime);}
+.quick-link-label{flex:1;}
+.quick-link-arrow{color:var(--muted);font-size:16px;}
+.setup-card{background:var(--lime-dim);border:1px solid var(--lime-border);border-radius:12px;padding:24px;margin-bottom:20px;}
+.setup-card h3{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--lime);margin-bottom:8px;}
+.setup-card p{font-size:13px;color:var(--white);opacity:0.8;line-height:1.6;}
+.repo-badge{font-family:var(--font-mono);font-size:11px;margin-top:10px;color:var(--lime);background:rgba(197,232,138,0.1);padding:4px 12px;border-radius:6px;display:inline-block;}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.15);}
+
+/* ── Divider ── */
+.section-divider{border:none;border-top:1px solid var(--border);margin:24px 0;}
+
+/* ── Toggle ── */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;}
+.toggle-label{font-size:13px;color:var(--muted2);}
+.toggle{position:relative;width:36px;height:20px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;position:absolute;}
+.toggle-track{
+  position:absolute;inset:0;background:var(--panel2);border:1px solid var(--border2);
+  border-radius:100px;cursor:pointer;transition:all 0.2s;
+}
+.toggle input:checked + .toggle-track{background:var(--lime);border-color:var(--lime);}
+.toggle-thumb{
+  position:absolute;top:2px;left:2px;width:14px;height:14px;
+  background:#fff;border-radius:50%;transition:transform 0.2s;pointer-events:none;
+}
+.toggle input:checked ~ .toggle-thumb{transform:translateX(16px);}
+
+</style>
+</head>
+<body>
+
+<!-- ── Auth: Setup Password ── -->
+<div class="auth-screen" id="auth-setup">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="18" fill="#131318"/>
+        <rect x="18" y="14" width="18" height="72" rx="3" fill="#FFF"/>
+        <path d="M36 50 L70 14 L82 14 Q72 32 55 50 Q72 68 82 86 L70 86 L36 50Z" fill="#FFF"/>
+      </svg>
+      <div class="auth-logo-word">K<span>INETIX</span></div>
+    </div>
+    <div class="auth-eyebrow">First Time Setup</div>
+    <div class="auth-title">Create your password</div>
+    <p class="auth-sub">This password protects your CMS dashboard. Choose something strong — you'll need it every time you log in.</p>
+    <div class="auth-field">
+      <label class="auth-label">Password</label>
+      <input type="password" class="auth-input" id="setup-pw1" placeholder="Enter a strong password" autocomplete="new-password">
+    </div>
+    <div class="auth-field">
+      <label class="auth-label">Confirm Password</label>
+      <input type="password" class="auth-input" id="setup-pw2" placeholder="Confirm password" autocomplete="new-password">
+    </div>
+    <div class="auth-error" id="setup-error"></div>
+    <button class="auth-btn" id="setup-btn">Set Password & Continue →</button>
+    <div class="setup-note">This dashboard controls your live website at kinetixkw.com</div>
+  </div>
+</div>
+
+<!-- ── Auth: Login ── -->
+<div class="auth-screen hidden" id="auth-login">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="18" fill="#131318"/>
+        <rect x="18" y="14" width="18" height="72" rx="3" fill="#FFF"/>
+        <path d="M36 50 L70 14 L82 14 Q72 32 55 50 Q72 68 82 86 L70 86 L36 50Z" fill="#FFF"/>
+      </svg>
+      <div class="auth-logo-word">K<span>INETIX</span></div>
+    </div>
+    <div class="auth-eyebrow">CMS Dashboard</div>
+    <div class="auth-title">Welcome back</div>
+    <p class="auth-sub">Enter your master password to access the content editor.</p>
+    <div class="auth-field">
+      <label class="auth-label">Password</label>
+      <input type="password" class="auth-input" id="login-pw" placeholder="Enter your password" autocomplete="current-password">
+    </div>
+    <div class="auth-error" id="login-error"></div>
+    <button class="auth-btn" id="login-btn">Sign In →</button>
+  </div>
+</div>
+
+<!-- ── Auth: GitHub Token ── -->
+<div class="auth-screen hidden" id="auth-token">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="18" fill="#131318"/>
+        <rect x="18" y="14" width="18" height="72" rx="3" fill="#FFF"/>
+        <path d="M36 50 L70 14 L82 14 Q72 32 55 50 Q72 68 82 86 L70 86 L36 50Z" fill="#FFF"/>
+      </svg>
+      <div class="auth-logo-word">K<span>INETIX</span></div>
+    </div>
+    <div class="auth-eyebrow">GitHub Connection</div>
+    <div class="auth-title">Connect to GitHub</div>
+    <p class="auth-sub">Your GitHub token lets the dashboard save changes to your live website. It's only stored for this session and cleared when you close the tab.</p>
+    <div class="auth-field">
+      <label class="auth-label">GitHub Personal Access Token</label>
+      <input type="password" class="auth-input" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+      <div class="auth-hint">
+        Generate one at <a href="https://github.com/settings/tokens/new?scopes=repo&description=Kinetix+CMS" target="_blank">github.com/settings/tokens</a> — select <strong>repo</strong> scope, no expiry.
+      </div>
+    </div>
+    <div class="auth-field">
+      <label class="auth-label">Repository</label>
+      <input type="text" class="auth-input" id="repo-input" value="abbashm9/Kinetix-Website" placeholder="owner/repo-name">
+    </div>
+    <div class="auth-error" id="token-error"></div>
+    <button class="auth-btn" id="token-btn">Connect & Open Dashboard →</button>
+    <div class="setup-note">
+      Changes are committed to your GitHub repo and go live in ~30 seconds via GitHub Pages.
+    </div>
+  </div>
+</div>
+
+<!-- ── Dashboard ── -->
+<aside class="sidebar" id="sidebar" style="display:none;">
+  <div class="sidebar-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 100 100">
+      <rect width="100" height="100" rx="18" fill="#131318"/>
+      <rect x="18" y="14" width="18" height="72" rx="3" fill="#FFF"/>
+      <path d="M36 50 L70 14 L82 14 Q72 32 55 50 Q72 68 82 86 L70 86 L36 50Z" fill="#FFF"/>
+    </svg>
+    <div class="sidebar-wordmark">K<span>INETIX</span></div>
+    <div class="sidebar-badge">CMS</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Overview</div>
+    <button class="sidebar-link active" data-section="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Overview
+    </button>
+
+    <div class="nav-section-label">Homepage</div>
+    <button class="sidebar-link" data-section="hero">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Hero
+    </button>
+    <button class="sidebar-link" data-section="about">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      About
+    </button>
+    <button class="sidebar-link" data-section="services">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Services
+    </button>
+    <button class="sidebar-link" data-section="stats">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Stats
+    </button>
+    <button class="sidebar-link" data-section="process">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      Process
+    </button>
+    <button class="sidebar-link" data-section="contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 0117 1.27a2 2 0 012 1.72 12.84 12.84 0 01.7 2.81 2 2 0 01-.45 1.6L17.9 8.91a16 16 0 006.29 6.29l1.31-1.35a2 2 0 011.6-.45z"/></svg>
+      Contact
+    </button>
+    <button class="sidebar-link" data-section="footer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Footer
+    </button>
+
+    <div class="nav-section-label">Content</div>
+    <button class="sidebar-link" data-section="articles">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Articles
+    </button>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-status">
+      <div class="status-dot" id="status-dot"></div>
+      <span id="status-text">All changes saved</span>
+    </div>
+    <button class="sidebar-signout" id="signout-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Sign out
+    </button>
+  </div>
+</aside>
+
+<div class="main" id="main-area" style="display:none;">
+  <header class="topbar">
+    <div class="topbar-title" id="topbar-title">Overview</div>
+    <div class="topbar-right">
+      <span class="save-status" id="save-status"></span>
+      <a href="/" target="_blank" class="preview-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Preview Site
+      </a>
+      <button class="save-btn" id="save-btn" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Save Changes
+      </button>
+    </div>
+  </header>
+
+  <div class="content-area">
+
+    <!-- ── OVERVIEW ── -->
+    <div class="section-panel active" id="panel-overview">
+      <div class="setup-card">
+        <h3>✓ Dashboard Connected</h3>
+        <p>You're editing the live Kinetix website. Changes are committed to GitHub and go live in about 30 seconds after saving.</p>
+        <div class="repo-badge" id="overview-repo">abbashm9/Kinetix-Website</div>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="overview-num" id="ov-services-count">9</div>
+          <div class="overview-label">Services listed</div>
+        </div>
+        <div class="overview-card">
+          <div class="overview-num" id="ov-articles-count">5</div>
+          <div class="overview-label">Articles published</div>
+        </div>
+        <div class="overview-card">
+          <div class="overview-num" id="ov-steps-count">4</div>
+          <div class="overview-label">Process steps</div>
+        </div>
+      </div>
+      <div class="quick-links">
+        <button class="quick-link" data-section="hero">
+          <div class="quick-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+          <span class="quick-link-label">Edit Hero section</span>
+          <span class="quick-link-arrow">→</span>
+        </button>
+        <button class="quick-link" data-section="contact">
+          <div class="quick-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/><path d="M1 1l22 22"/></svg></div>
+          <span class="quick-link-label">Update contact info</span>
+          <span class="quick-link-arrow">→</span>
+        </button>
+        <button class="quick-link" data-section="articles">
+          <div class="quick-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16"/><path d="M20 8V6a2 2 0 00-2-2"/></svg></div>
+          <span class="quick-link-label">Manage articles</span>
+          <span class="quick-link-arrow">→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── HERO ── -->
+    <div class="section-panel" id="panel-hero">
+      <div class="editor-card">
+        <div class="editor-card-title">Hero Section <span class="badge">Homepage Top</span></div>
+        <div class="field">
+          <label>Eyebrow Text</label>
+          <input type="text" id="f-hero-eyebrow" placeholder="Kuwait's Forward-Moving Agency">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Headline Line 1</label>
+            <input type="text" id="f-hero-hl1" placeholder="We Set">
+          </div>
+          <div class="field">
+            <label>Headline Line 2</label>
+            <input type="text" id="f-hero-hl2" placeholder="Brands">
+          </div>
+        </div>
+        <div class="field">
+          <label>Headline Accent (3rd line, lime colored)</label>
+          <input type="text" id="f-hero-accent" placeholder="In Motion.">
+        </div>
+        <div class="field">
+          <label>Subtext</label>
+          <textarea id="f-hero-subtext" placeholder="Kinetix is a precision-led digital agency..."></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Primary Button Text</label>
+            <input type="text" id="f-hero-cta1-text" placeholder="Explore Services">
+          </div>
+          <div class="field">
+            <label>Primary Button Link</label>
+            <input type="text" id="f-hero-cta1-href" placeholder="#services">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Secondary Button Text</label>
+            <input type="text" id="f-hero-cta2-text" placeholder="Get in Touch">
+          </div>
+          <div class="field">
+            <label>Secondary Button Link</label>
+            <input type="text" id="f-hero-cta2-href" placeholder="#contact">
+          </div>
+        </div>
+      </div>
+      <div class="editor-card">
+        <div class="editor-card-title">Stats Card</div>
+        <div class="field-row">
+          <div class="field">
+            <label>ROI Number</label>
+            <input type="text" id="f-hero-roi" placeholder="+312%">
+          </div>
+          <div class="field">
+            <label>ROI Label</label>
+            <input type="text" id="f-hero-roi-label" placeholder="Average ROI across client campaigns">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Brands Badge Number</label>
+            <input type="text" id="f-hero-brands" placeholder="50+">
+          </div>
+          <div class="field">
+            <label>Brands Badge Label</label>
+            <input type="text" id="f-hero-brands-label" placeholder="Brands Launched">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Satisfaction Label</label>
+            <input type="text" id="f-hero-satisfaction" placeholder="Client Satisfaction">
+          </div>
+          <div class="field">
+            <label>Rating Text</label>
+            <input type="text" id="f-hero-rating" placeholder="⭐⭐⭐⭐⭐ 5.0 Rating">
+          </div>
+        </div>
+        <hr class="section-divider">
+        <div class="editor-card-title" style="margin-bottom:12px;font-size:13px;">Performance Bars</div>
+        <div id="hero-bars-editor" class="array-editor"></div>
+      </div>
+    </div>
+
+    <!-- ── ABOUT ── -->
+    <div class="section-panel" id="panel-about">
+      <div class="editor-card">
+        <div class="editor-card-title">About / Philosophy Section</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Section Label</label>
+            <input type="text" id="f-about-label" placeholder="Our Philosophy">
+          </div>
+          <div class="field">
+            <label>Headline</label>
+            <input type="text" id="f-about-headline" placeholder="Forward energy.">
+          </div>
+        </div>
+        <div class="field">
+          <label>Headline Italic Part</label>
+          <input type="text" id="f-about-headline-em" placeholder="In every decision.">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="f-about-desc"></textarea>
+        </div>
+      </div>
+      <div class="editor-card">
+        <div class="editor-card-title">Pillars</div>
+        <div id="pillars-editor" class="array-editor"></div>
+        <button class="add-item-btn" id="add-pillar-btn" style="margin-top:12px;">+ Add Pillar</button>
+      </div>
+    </div>
+
+    <!-- ── SERVICES ── -->
+    <div class="section-panel" id="panel-services">
+      <div class="editor-card">
+        <div class="editor-card-title">Services Section Header</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Section Label</label>
+            <input type="text" id="f-services-label" placeholder="What We Do">
+          </div>
+          <div class="field">
+            <label>Headline</label>
+            <input type="text" id="f-services-headline" placeholder="Full-spectrum">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Headline Italic Part</label>
+            <input type="text" id="f-services-headline-em" placeholder="digital services.">
+          </div>
+          <div class="field">
+            <label>Description</label>
+            <input type="text" id="f-services-desc">
+          </div>
+        </div>
+      </div>
+      <div class="editor-card">
+        <div class="editor-card-title">Service Cards</div>
+        <div id="services-editor" class="array-editor"></div>
+        <button class="add-item-btn" id="add-service-btn" style="margin-top:12px;">+ Add Service</button>
+      </div>
+    </div>
+
+    <!-- ── STATS ── -->
+    <div class="section-panel" id="panel-stats">
+      <div class="editor-card">
+        <div class="editor-card-title">Stats Numbers</div>
+        <div id="stats-editor" class="array-editor"></div>
+        <button class="add-item-btn" id="add-stat-btn" style="margin-top:12px;">+ Add Stat</button>
+      </div>
+    </div>
+
+    <!-- ── PROCESS ── -->
+    <div class="section-panel" id="panel-process">
+      <div class="editor-card">
+        <div class="editor-card-title">Process Section Header</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Section Label</label>
+            <input type="text" id="f-process-label" placeholder="How We Work">
+          </div>
+          <div class="field">
+            <label>Headline</label>
+            <input type="text" id="f-process-headline" placeholder="Precision from">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Headline Italic Part</label>
+            <input type="text" id="f-process-headline-em" placeholder="day one.">
+          </div>
+          <div class="field">
+            <label>Timeline Value</label>
+            <input type="text" id="f-process-timeline" placeholder="2–4 Weeks">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Description</label>
+            <textarea id="f-process-desc" style="min-height:60px;"></textarea>
+          </div>
+          <div class="field">
+            <label>Timeline Subtitle</label>
+            <input type="text" id="f-process-timeline-sub" placeholder="From briefing to launch-ready">
+          </div>
+        </div>
+      </div>
+      <div class="editor-card">
+        <div class="editor-card-title">Process Steps</div>
+        <div id="process-editor" class="array-editor"></div>
+        <button class="add-item-btn" id="add-step-btn" style="margin-top:12px;">+ Add Step</button>
+      </div>
+    </div>
+
+    <!-- ── CONTACT ── -->
+    <div class="section-panel" id="panel-contact">
+      <div class="editor-card">
+        <div class="editor-card-title">Contact Section</div>
+        <div class="field">
+          <label>Accepting Label (green badge text)</label>
+          <input type="text" id="f-contact-accepting" placeholder="Now Accepting New Clients">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Headline</label>
+            <input type="text" id="f-contact-headline" placeholder="Ready to put your brand">
+          </div>
+          <div class="field">
+            <label>Headline Italic Part</label>
+            <input type="text" id="f-contact-headline-em" placeholder="in motion?">
+          </div>
+        </div>
+        <div class="field">
+          <label>Subtext</label>
+          <textarea id="f-contact-sub" style="min-height:60px;"></textarea>
+        </div>
+        <hr class="section-divider">
+        <div class="field-row">
+          <div class="field">
+            <label>WhatsApp Link</label>
+            <input type="text" id="f-contact-whatsapp" placeholder="https://wa.me/96592274600">
+          </div>
+          <div class="field">
+            <label>Instagram Link</label>
+            <input type="text" id="f-contact-instagram" placeholder="https://instagram.com/kinetixkw">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Phone Number (display)</label>
+            <input type="text" id="f-contact-phone" placeholder="+965 9227 4600">
+          </div>
+          <div class="field">
+            <label>Instagram Handle (display)</label>
+            <input type="text" id="f-contact-handle" placeholder="@kinetixkw">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="section-panel" id="panel-footer">
+      <div class="editor-card">
+        <div class="editor-card-title">Footer</div>
+        <div class="field">
+          <label>Tagline</label>
+          <input type="text" id="f-footer-tagline" placeholder="We don't follow trends. We set them in motion.">
+        </div>
+        <div class="field">
+          <label>Copyright</label>
+          <input type="text" id="f-footer-copyright" placeholder="© 2026 Kinetix. All rights reserved.">
+        </div>
+        <hr class="section-divider">
+        <div class="editor-card-title" style="margin-bottom:12px;font-size:13px;">Social Links</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Instagram URL</label>
+            <input type="text" id="f-footer-instagram" placeholder="https://instagram.com/kinetixkw">
+          </div>
+          <div class="field">
+            <label>TikTok URL</label>
+            <input type="text" id="f-footer-tiktok" placeholder="https://tiktok.com/@kinetixkw">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>LinkedIn URL</label>
+            <input type="text" id="f-footer-linkedin" placeholder="https://linkedin.com/company/kinetix">
+          </div>
+          <div class="field">
+            <label>X / Twitter URL</label>
+            <input type="text" id="f-footer-twitter" placeholder="https://x.com/kinetixkw">
+          </div>
+        </div>
+        <div class="field">
+          <label>Location</label>
+          <input type="text" id="f-footer-location" placeholder="Kuwait City, Kuwait">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ARTICLES ── -->
+    <div class="section-panel" id="panel-articles">
+      <div class="editor-card">
+        <div class="editor-card-title">
+          Articles
+          <button class="btn-sm primary" id="new-article-btn" style="margin-left:auto;">+ New Article</button>
+        </div>
+        <div class="articles-list" id="articles-list"></div>
+      </div>
+    </div>
+
+  </div><!-- end content-area -->
+</div><!-- end main -->
+
+<!-- ── Article Editor Modal ── -->
+<div class="modal-overlay" id="article-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Edit Article</div>
+      <button class="modal-close" id="modal-close-btn">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="modal-article-id">
+      <div class="field-row">
+        <div class="field">
+          <label>Article Slug (URL)</label>
+          <input type="text" id="modal-slug" placeholder="my-article-title-here">
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <select id="modal-category">
+            <option>Paid Advertising</option>
+            <option>SEO</option>
+            <option>Social Media</option>
+            <option>Branding</option>
+            <option>AI & Automation</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Title</label>
+        <input type="text" id="modal-title-input" placeholder="Article title...">
+      </div>
+      <div class="field">
+        <label>Excerpt (shown on listing page)</label>
+        <textarea id="modal-excerpt" style="min-height:80px;"></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Date</label>
+          <input type="text" id="modal-date" placeholder="March 2025">
+        </div>
+        <div class="field">
+          <label>Read Time</label>
+          <input type="text" id="modal-readtime" placeholder="8 min read">
+        </div>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Featured article (shown large at top)</span>
+        <label class="toggle">
+          <input type="checkbox" id="modal-featured">
+          <div class="toggle-track"></div>
+          <div class="toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-cancel" id="modal-cancel">Cancel</button>
+      <button class="modal-save" id="modal-save-btn">Save Article</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Constants ──
+const REPO = () => document.getElementById('repo-input')?.value || sessionStorage.getItem('kx_repo') || 'abbashm9/Kinetix-Website';
+const TOKEN = () => sessionStorage.getItem('kx_token');
+const SALT = 'kx_cms_v1';
+
+// ── State ──
+let siteContent = {};
+let articlesData = { articles: [] };
+let isDirty = false;
+let editingArticleIndex = -1;
+
+// ── Crypto helpers ──
+async function hashPassword(pw) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw + SALT));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// ── Auth init ──
+async function initAuth() {
+  const stored = localStorage.getItem('kx_pw_hash');
+  if (!stored) {
+    showScreen('auth-setup');
+  } else if (!TOKEN()) {
+    showScreen('auth-login');
+  } else {
+    showDashboard();
+  }
+}
+
+function showScreen(id) {
+  ['auth-setup','auth-login','auth-token'].forEach(s => {
+    const el = document.getElementById(s);
+    el.classList.toggle('hidden', s !== id);
+  });
+}
+
+// ── Setup password ──
+document.getElementById('setup-btn').addEventListener('click', async () => {
+  const pw1 = document.getElementById('setup-pw1').value;
+  const pw2 = document.getElementById('setup-pw2').value;
+  const err = document.getElementById('setup-error');
+  if (pw1.length < 8) { showErr(err, 'Password must be at least 8 characters.'); return; }
+  if (pw1 !== pw2) { showErr(err, 'Passwords do not match.'); return; }
+  localStorage.setItem('kx_pw_hash', await hashPassword(pw1));
+  showScreen('auth-token');
+});
+document.getElementById('setup-pw2').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('setup-btn').click(); });
+
+// ── Login ──
+document.getElementById('login-btn').addEventListener('click', async () => {
+  const pw = document.getElementById('login-pw').value;
+  const err = document.getElementById('login-error');
+  const hash = await hashPassword(pw);
+  if (hash !== localStorage.getItem('kx_pw_hash')) { showErr(err, 'Incorrect password.'); return; }
+  showScreen('auth-token');
+});
+document.getElementById('login-pw').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('login-btn').click(); });
+
+// ── GitHub token ──
+document.getElementById('token-btn').addEventListener('click', async () => {
+  const token = document.getElementById('token-input').value.trim();
+  const repo = document.getElementById('repo-input').value.trim();
+  const err = document.getElementById('token-error');
+  if (!token) { showErr(err, 'Please enter your GitHub Personal Access Token.'); return; }
+  if (!repo.includes('/')) { showErr(err, 'Repo format must be: owner/repo-name'); return; }
+  document.getElementById('token-btn').textContent = 'Verifying...';
+  try {
+    const r = await fetch(`https://api.github.com/repos/${repo}`, { headers: { Authorization: `Bearer ${token}` } });
+    if (!r.ok) throw new Error('Invalid token or repo not found.');
+    sessionStorage.setItem('kx_token', token);
+    sessionStorage.setItem('kx_repo', repo);
+    showDashboard();
+  } catch(e) {
+    showErr(err, e.message || 'Could not connect. Check your token and repo name.');
+    document.getElementById('token-btn').textContent = 'Connect & Open Dashboard →';
+  }
+});
+document.getElementById('token-input').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('token-btn').click(); });
+
+// ── Show dashboard ──
+async function showDashboard() {
+  ['auth-setup','auth-login','auth-token'].forEach(s => document.getElementById(s).classList.add('hidden'));
+  document.getElementById('sidebar').style.display = '';
+  document.getElementById('main-area').style.display = '';
+  document.getElementById('overview-repo').textContent = REPO();
+  await loadAllContent();
+}
+
+// ── Load content from GitHub ──
+async function loadAllContent() {
+  try {
+    const [cr, ar] = await Promise.all([
+      fetchFile('content.json'),
+      fetchFile('articles/data.json')
+    ]);
+    siteContent = cr ? JSON.parse(atob(cr.content.replace(/\n/g,''))) : {};
+    articlesData = ar ? JSON.parse(atob(ar.content.replace(/\n/g,''))) : { articles: [] };
+    populateForms();
+    renderArticlesList();
+    updateOverviewCounts();
+  } catch(e) {
+    console.error('Load error:', e);
+    setStatus('Could not load content. Check your connection.', 'error');
+  }
+}
+
+async function fetchFile(path) {
+  const r = await fetch(`https://api.github.com/repos/${REPO()}/contents/${path}`, {
+    headers: { Authorization: `Bearer ${TOKEN()}` }
+  });
+  if (!r.ok) return null;
+  return r.json();
+}
+
+// ── Populate forms from loaded data ──
+function populateForms() {
+  const d = siteContent;
+  const set = (id, val) => { const el = document.getElementById(id); if(el && val !== undefined) el.value = val; };
+
+  // Hero
+  set('f-hero-eyebrow', d.hero?.eyebrow);
+  set('f-hero-hl1', d.hero?.headline_line1);
+  set('f-hero-hl2', d.hero?.headline_line2);
+  set('f-hero-accent', d.hero?.headline_accent);
+  set('f-hero-subtext', d.hero?.subtext);
+  set('f-hero-cta1-text', d.hero?.cta_primary_text);
+  set('f-hero-cta1-href', d.hero?.cta_primary_href);
+  set('f-hero-cta2-text', d.hero?.cta_secondary_text);
+  set('f-hero-cta2-href', d.hero?.cta_secondary_href);
+  set('f-hero-roi', d.hero?.stat_roi);
+  set('f-hero-roi-label', d.hero?.stat_roi_label);
+  set('f-hero-brands', d.hero?.stat_brands);
+  set('f-hero-brands-label', d.hero?.stat_brands_label);
+  set('f-hero-satisfaction', d.hero?.stat_satisfaction);
+  set('f-hero-rating', d.hero?.stat_rating);
+  renderHeroBarsEditor(d.hero?.bars || []);
+
+  // About
+  set('f-about-label', d.about?.label);
+  set('f-about-headline', d.about?.headline);
+  set('f-about-headline-em', d.about?.headline_em);
+  set('f-about-desc', d.about?.desc);
+  renderArrayEditor('pillars-editor', d.about?.pillars || [], renderPillarItem);
+
+  // Services
+  set('f-services-label', d.services?.label);
+  set('f-services-headline', d.services?.headline);
+  set('f-services-headline-em', d.services?.headline_em);
+  set('f-services-desc', d.services?.desc);
+  renderArrayEditor('services-editor', d.services?.items || [], renderServiceItem);
+
+  // Stats
+  renderArrayEditor('stats-editor', d.stats || [], renderStatItem);
+
+  // Process
+  set('f-process-label', d.process?.label);
+  set('f-process-headline', d.process?.headline);
+  set('f-process-headline-em', d.process?.headline_em);
+  set('f-process-desc', d.process?.desc);
+  set('f-process-timeline', d.process?.timeline);
+  set('f-process-timeline-sub', d.process?.timeline_sub);
+  renderArrayEditor('process-editor', d.process?.steps || [], renderStepItem);
+
+  // Contact
+  set('f-contact-accepting', d.contact?.accepting_label);
+  set('f-contact-headline', d.contact?.headline);
+  set('f-contact-headline-em', d.contact?.headline_em);
+  set('f-contact-sub', d.contact?.sub);
+  set('f-contact-whatsapp', d.contact?.whatsapp_href);
+  set('f-contact-instagram', d.contact?.instagram_href);
+  set('f-contact-phone', d.contact?.phone);
+  set('f-contact-handle', d.contact?.instagram_handle);
+
+  // Footer
+  set('f-footer-tagline', d.footer?.tagline);
+  set('f-footer-copyright', d.footer?.copyright);
+  set('f-footer-instagram', d.footer?.social_instagram);
+  set('f-footer-tiktok', d.footer?.social_tiktok);
+  set('f-footer-linkedin', d.footer?.social_linkedin);
+  set('f-footer-twitter', d.footer?.social_twitter);
+  set('f-footer-location', d.footer?.location);
+
+  attachChangeListeners();
+}
+
+// ── Array editors ──
+function renderHeroBarsEditor(bars) {
+  const c = document.getElementById('hero-bars-editor');
+  c.innerHTML = '';
+  bars.forEach((b, i) => {
+    const div = document.createElement('div');
+    div.className = 'array-item';
+    div.innerHTML = `
+      <div class="array-item-header">
+        <div class="array-item-num">Bar ${i+1}</div>
+        <button class="array-item-remove" data-target="hero-bars" data-index="${i}">Remove</button>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Label</label><input type="text" data-field="bars.${i}.label" value="${esc(b.label)}"></div>
+        <div class="field"><label>Value (%)</label><input type="number" data-field="bars.${i}.value" value="${b.value}" min="0" max="100"></div>
+      </div>`;
+    c.appendChild(div);
+  });
+}
+
+function renderArrayEditor(containerId, items, renderFn) {
+  const c = document.getElementById(containerId);
+  c.innerHTML = '';
+  items.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'array-item';
+    div.innerHTML = renderFn(item, i, containerId);
+    c.appendChild(div);
+  });
+}
+
+function renderPillarItem(p, i) {
+  return `
+    <div class="array-item-header">
+      <div class="array-item-num">Pillar ${i+1}</div>
+      <button class="array-item-remove" data-target="pillars" data-index="${i}">Remove</button>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Icon (emoji)</label><input type="text" data-field="pillars.${i}.icon" value="${esc(p.icon)}" style="max-width:80px;"></div>
+      <div class="field"><label>Name</label><input type="text" data-field="pillars.${i}.name" value="${esc(p.name)}"></div>
+    </div>
+    <div class="field"><label>Description</label><textarea data-field="pillars.${i}.desc">${esc(p.desc)}</textarea></div>`;
+}
+
+function renderServiceItem(s, i) {
+  return `
+    <div class="array-item-header">
+      <div class="array-item-num">Service ${i+1}</div>
+      <button class="array-item-remove" data-target="services" data-index="${i}">Remove</button>
+    </div>
+    <div class="field"><label>Service Name</label><input type="text" data-field="services.${i}.name" value="${esc(s.name)}"></div>
+    <div class="field"><label>Description</label><textarea data-field="services.${i}.desc">${esc(s.desc)}</textarea></div>
+    <div class="field"><label>Tags (press Enter to add)</label><div class="tags-editor" data-field="services.${i}.tags">${(s.tags||[]).map(t => `<span class="tag-pill">${esc(t)}<button class="tag-remove" data-tag="${esc(t)}">×</button></span>`).join('')}<input class="tag-add-input" placeholder="Add tag..." data-tag-input="services.${i}.tags"></div></div>`;
+}
+
+function renderStatItem(s, i) {
+  return `
+    <div class="array-item-header">
+      <div class="array-item-num">Stat ${i+1}</div>
+      <button class="array-item-remove" data-target="stats" data-index="${i}">Remove</button>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Value</label><input type="text" data-field="stats.${i}.value" value="${esc(s.value)}"></div>
+      <div class="field"><label>Label</label><input type="text" data-field="stats.${i}.label" value="${esc(s.label)}"></div>
+    </div>`;
+}
+
+function renderStepItem(s, i) {
+  return `
+    <div class="array-item-header">
+      <div class="array-item-num">Step ${i+1}</div>
+      <button class="array-item-remove" data-target="process" data-index="${i}">Remove</button>
+    </div>
+    <div class="field"><label>Step Name</label><input type="text" data-field="steps.${i}.name" value="${esc(s.name)}"></div>
+    <div class="field"><label>Description</label><textarea data-field="steps.${i}.desc">${esc(s.desc)}</textarea></div>`;
+}
+
+// ── Articles list ──
+function renderArticlesList() {
+  const list = document.getElementById('articles-list');
+  const arts = articlesData.articles || [];
+  if (!arts.length) {
+    list.innerHTML = '<div style="color:var(--muted2);font-size:13px;text-align:center;padding:20px;">No articles yet. Click "+ New Article" to create one.</div>';
+    return;
+  }
+  list.innerHTML = arts.map((a, i) => `
+    <div class="article-row">
+      <span class="article-row-cat">${a.category}</span>
+      ${a.featured ? '<span class="featured-badge">Featured</span>' : ''}
+      <div class="article-row-title">${a.title}</div>
+      <div class="article-row-date">${a.date}</div>
+      <div class="article-row-actions">
+        <button class="btn-sm primary" data-edit-article="${i}">Edit</button>
+        <button class="btn-sm danger" data-delete-article="${i}">Delete</button>
+      </div>
+    </div>`).join('');
+
+  list.querySelectorAll('[data-edit-article]').forEach(btn => {
+    btn.addEventListener('click', () => openArticleModal(parseInt(btn.dataset.editArticle)));
+  });
+  list.querySelectorAll('[data-delete-article]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = parseInt(btn.dataset.deleteArticle);
+      if (confirm(`Delete "${articlesData.articles[i].title}"?`)) {
+        articlesData.articles.splice(i, 1);
+        renderArticlesList();
+        updateOverviewCounts();
+        markDirty();
+      }
+    });
+  });
+}
+
+// ── Article modal ──
+function openArticleModal(index) {
+  editingArticleIndex = index;
+  const a = index === -1 ? {} : articlesData.articles[index];
+  document.getElementById('modal-title').textContent = index === -1 ? 'New Article' : 'Edit Article';
+  document.getElementById('modal-slug').value = a.slug || '';
+  document.getElementById('modal-category').value = a.category || 'Paid Advertising';
+  document.getElementById('modal-title-input').value = a.title || '';
+  document.getElementById('modal-excerpt').value = a.excerpt || '';
+  document.getElementById('modal-date').value = a.date || '';
+  document.getElementById('modal-readtime').value = a.readTime || '';
+  document.getElementById('modal-featured').checked = a.featured || false;
+  document.getElementById('article-modal').classList.add('open');
+}
+
+document.getElementById('new-article-btn').addEventListener('click', () => openArticleModal(-1));
+document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+document.getElementById('modal-cancel').addEventListener('click', closeModal);
+document.getElementById('article-modal').addEventListener('click', e => { if(e.target === e.currentTarget) closeModal(); });
+
+function closeModal() {
+  document.getElementById('article-modal').classList.remove('open');
+  editingArticleIndex = -1;
+}
+
+document.getElementById('modal-save-btn').addEventListener('click', () => {
+  const slug = document.getElementById('modal-slug').value.trim();
+  const title = document.getElementById('modal-title-input').value.trim();
+  if (!slug || !title) { alert('Slug and title are required.'); return; }
+
+  const article = {
+    id: slug, slug,
+    title,
+    category: document.getElementById('modal-category').value,
+    excerpt: document.getElementById('modal-excerpt').value,
+    date: document.getElementById('modal-date').value,
+    readTime: document.getElementById('modal-readtime').value,
+    featured: document.getElementById('modal-featured').checked
+  };
+
+  if (editingArticleIndex === -1) {
+    articlesData.articles.unshift(article);
+  } else {
+    articlesData.articles[editingArticleIndex] = article;
+  }
+
+  closeModal();
+  renderArticlesList();
+  updateOverviewCounts();
+  markDirty();
+});
+
+// ── Add item buttons ──
+document.getElementById('add-pillar-btn').addEventListener('click', () => {
+  if (!siteContent.about) siteContent.about = {};
+  if (!siteContent.about.pillars) siteContent.about.pillars = [];
+  siteContent.about.pillars.push({ icon: '✦', name: 'New Pillar', desc: 'Description...' });
+  renderArrayEditor('pillars-editor', siteContent.about.pillars, renderPillarItem);
+  attachArrayListeners();
+  markDirty();
+});
+
+document.getElementById('add-service-btn').addEventListener('click', () => {
+  if (!siteContent.services) siteContent.services = {};
+  if (!siteContent.services.items) siteContent.services.items = [];
+  siteContent.services.items.push({ name: 'New Service', desc: 'Description...', tags: [] });
+  renderArrayEditor('services-editor', siteContent.services.items, renderServiceItem);
+  attachArrayListeners();
+  markDirty();
+});
+
+document.getElementById('add-stat-btn').addEventListener('click', () => {
+  if (!siteContent.stats) siteContent.stats = [];
+  siteContent.stats.push({ value: '0+', label: 'New Stat' });
+  renderArrayEditor('stats-editor', siteContent.stats, renderStatItem);
+  attachArrayListeners();
+  markDirty();
+});
+
+document.getElementById('add-step-btn').addEventListener('click', () => {
+  if (!siteContent.process) siteContent.process = {};
+  if (!siteContent.process.steps) siteContent.process.steps = [];
+  siteContent.process.steps.push({ name: 'New Step', desc: 'Description...' });
+  renderArrayEditor('process-editor', siteContent.process.steps, renderStepItem);
+  attachArrayListeners();
+  markDirty();
+});
+
+// ── Change listeners ──
+function attachChangeListeners() {
+  document.querySelectorAll('.content-area input, .content-area textarea, .content-area select').forEach(el => {
+    el.addEventListener('input', () => markDirty());
+  });
+  attachArrayListeners();
+}
+
+function attachArrayListeners() {
+  // Remove buttons
+  document.querySelectorAll('.array-item-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.target;
+      const idx = parseInt(btn.dataset.index);
+      if (target === 'pillars') siteContent.about.pillars.splice(idx, 1), renderArrayEditor('pillars-editor', siteContent.about.pillars, renderPillarItem);
+      if (target === 'services') siteContent.services.items.splice(idx, 1), renderArrayEditor('services-editor', siteContent.services.items, renderServiceItem);
+      if (target === 'stats') siteContent.stats.splice(idx, 1), renderArrayEditor('stats-editor', siteContent.stats, renderStatItem);
+      if (target === 'process') siteContent.process.steps.splice(idx, 1), renderArrayEditor('process-editor', siteContent.process.steps, renderStepItem);
+      if (target === 'hero-bars') siteContent.hero.bars.splice(idx, 1), renderHeroBarsEditor(siteContent.hero.bars);
+      attachArrayListeners();
+      markDirty();
+    });
+  });
+
+  // Tag editors
+  document.querySelectorAll('[data-tag-input]').forEach(input => {
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        const val = input.value.trim().replace(/,$/, '');
+        if (!val) return;
+        const container = input.closest('.tags-editor');
+        const pill = document.createElement('span');
+        pill.className = 'tag-pill';
+        pill.innerHTML = `${esc(val)}<button class="tag-remove" data-tag="${esc(val)}">×</button>`;
+        container.insertBefore(pill, input);
+        input.value = '';
+        pill.querySelector('.tag-remove').addEventListener('click', () => { pill.remove(); markDirty(); });
+        markDirty();
+      }
+    });
+  });
+  document.querySelectorAll('.tag-remove').forEach(btn => {
+    btn.addEventListener('click', () => { btn.closest('.tag-pill').remove(); markDirty(); });
+  });
+}
+
+// ── Collect form data → object ──
+function collectFormData() {
+  const g = id => document.getElementById(id)?.value || '';
+  const getTagsFor = (field) => {
+    const container = document.querySelector(`.tags-editor[data-field="${field}"]`);
+    if (!container) return [];
+    return Array.from(container.querySelectorAll('.tag-pill')).map(p => p.childNodes[0].textContent.trim());
+  };
+
+  // Bars
+  const bars = [];
+  document.querySelectorAll('#hero-bars-editor .array-item').forEach((item, i) => {
+    bars.push({
+      label: item.querySelector(`[data-field="bars.${i}.label"]`)?.value || '',
+      value: parseInt(item.querySelector(`[data-field="bars.${i}.value"]`)?.value || 0)
+    });
+  });
+
+  // Pillars
+  const pillars = [];
+  document.querySelectorAll('#pillars-editor .array-item').forEach((item, i) => {
+    pillars.push({
+      icon: item.querySelector(`[data-field="pillars.${i}.icon"]`)?.value || '',
+      name: item.querySelector(`[data-field="pillars.${i}.name"]`)?.value || '',
+      desc: item.querySelector(`[data-field="pillars.${i}.desc"]`)?.value || ''
+    });
+  });
+
+  // Services
+  const items = [];
+  document.querySelectorAll('#services-editor .array-item').forEach((item, i) => {
+    items.push({
+      name: item.querySelector(`[data-field="services.${i}.name"]`)?.value || '',
+      desc: item.querySelector(`[data-field="services.${i}.desc"]`)?.value || '',
+      tags: getTagsFor(`services.${i}.tags`)
+    });
+  });
+
+  // Stats
+  const stats = [];
+  document.querySelectorAll('#stats-editor .array-item').forEach((item, i) => {
+    stats.push({
+      value: item.querySelector(`[data-field="stats.${i}.value"]`)?.value || '',
+      label: item.querySelector(`[data-field="stats.${i}.label"]`)?.value || ''
+    });
+  });
+
+  // Steps
+  const steps = [];
+  document.querySelectorAll('#process-editor .array-item').forEach((item, i) => {
+    steps.push({
+      name: item.querySelector(`[data-field="steps.${i}.name"]`)?.value || '',
+      desc: item.querySelector(`[data-field="steps.${i}.desc"]`)?.value || ''
+    });
+  });
+
+  return {
+    hero: {
+      eyebrow: g('f-hero-eyebrow'),
+      headline_line1: g('f-hero-hl1'),
+      headline_line2: g('f-hero-hl2'),
+      headline_accent: g('f-hero-accent'),
+      subtext: g('f-hero-subtext'),
+      cta_primary_text: g('f-hero-cta1-text'),
+      cta_primary_href: g('f-hero-cta1-href'),
+      cta_secondary_text: g('f-hero-cta2-text'),
+      cta_secondary_href: g('f-hero-cta2-href'),
+      stat_roi: g('f-hero-roi'),
+      stat_roi_label: g('f-hero-roi-label'),
+      stat_brands: g('f-hero-brands'),
+      stat_brands_label: g('f-hero-brands-label'),
+      stat_satisfaction: g('f-hero-satisfaction'),
+      stat_rating: g('f-hero-rating'),
+      bars
+    },
+    marquee: siteContent.marquee || [],
+    about: {
+      label: g('f-about-label'),
+      headline: g('f-about-headline'),
+      headline_em: g('f-about-headline-em'),
+      desc: g('f-about-desc'),
+      pillars
+    },
+    services: {
+      label: g('f-services-label'),
+      headline: g('f-services-headline'),
+      headline_em: g('f-services-headline-em'),
+      desc: g('f-services-desc'),
+      items
+    },
+    stats,
+    process: {
+      label: g('f-process-label'),
+      headline: g('f-process-headline'),
+      headline_em: g('f-process-headline-em'),
+      desc: g('f-process-desc'),
+      timeline: g('f-process-timeline'),
+      timeline_sub: g('f-process-timeline-sub'),
+      steps
+    },
+    contact: {
+      accepting_label: g('f-contact-accepting'),
+      headline: g('f-contact-headline'),
+      headline_em: g('f-contact-headline-em'),
+      sub: g('f-contact-sub'),
+      whatsapp_href: g('f-contact-whatsapp'),
+      instagram_href: g('f-contact-instagram'),
+      phone: g('f-contact-phone'),
+      instagram_handle: g('f-contact-handle')
+    },
+    footer: {
+      tagline: g('f-footer-tagline'),
+      copyright: g('f-footer-copyright'),
+      social_instagram: g('f-footer-instagram'),
+      social_tiktok: g('f-footer-tiktok'),
+      social_linkedin: g('f-footer-linkedin'),
+      social_twitter: g('f-footer-twitter'),
+      location: g('f-footer-location')
+    }
+  };
+}
+
+// ── Save to GitHub ──
+document.getElementById('save-btn').addEventListener('click', saveAll);
+
+async function saveAll() {
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  setStatus('Saving...', 'saving');
+
+  const content = collectFormData();
+
+  try {
+    await Promise.all([
+      commitFile('content.json', JSON.stringify(content, null, 2), 'Update site content via CMS'),
+      commitFile('articles/data.json', JSON.stringify(articlesData, null, 2), 'Update articles via CMS')
+    ]);
+    siteContent = content;
+    setStatus('All changes saved ✓', 'saved');
+    markClean();
+  } catch(e) {
+    setStatus('Save failed — ' + (e.message || 'check your connection'), 'error');
+    btn.disabled = false;
+  }
+}
+
+async function commitFile(path, content, message) {
+  // Get current SHA
+  const fileRes = await fetch(`https://api.github.com/repos/${REPO()}/contents/${path}`, {
+    headers: { Authorization: `Bearer ${TOKEN()}` }
+  });
+
+  let sha;
+  if (fileRes.ok) {
+    const file = await fileRes.json();
+    sha = file.sha;
+  }
+
+  const body = {
+    message,
+    content: btoa(unescape(encodeURIComponent(content))),
+    branch: 'main'
+  };
+  if (sha) body.sha = sha;
+
+  const r = await fetch(`https://api.github.com/repos/${REPO()}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${TOKEN()}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) {
+    const err = await r.json();
+    throw new Error(err.message || 'GitHub API error');
+  }
+  return r.json();
+}
+
+// ── Dirty state ──
+function markDirty() {
+  if (!isDirty) {
+    isDirty = true;
+    document.getElementById('save-btn').disabled = false;
+    document.getElementById('status-dot').classList.add('unsaved');
+    document.getElementById('status-text').textContent = 'Unsaved changes';
+    setStatus('Unsaved changes', '');
+  }
+}
+
+function markClean() {
+  isDirty = false;
+  document.getElementById('save-btn').disabled = true;
+  document.getElementById('status-dot').classList.remove('unsaved');
+  document.getElementById('status-text').textContent = 'All changes saved';
+}
+
+function setStatus(msg, cls) {
+  const el = document.getElementById('save-status');
+  el.textContent = msg;
+  el.className = 'save-status ' + cls;
+  if (cls === 'saved') setTimeout(() => { if(!isDirty) el.textContent = ''; }, 3000);
+}
+
+// ── Navigation ──
+document.querySelectorAll('.sidebar-link[data-section], .quick-link[data-section]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.dataset.section;
+    document.querySelectorAll('.sidebar-link').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+    const sidebarLink = document.querySelector(`.sidebar-link[data-section="${section}"]`);
+    if (sidebarLink) sidebarLink.classList.add('active');
+    const panel = document.getElementById(`panel-${section}`);
+    if (panel) panel.classList.add('active');
+    const titles = { overview:'Overview', hero:'Hero', about:'About', services:'Services', stats:'Stats', process:'Process', contact:'Contact', footer:'Footer', articles:'Articles' };
+    document.getElementById('topbar-title').textContent = titles[section] || section;
+  });
+});
+
+// ── Overview counts ──
+function updateOverviewCounts() {
+  document.getElementById('ov-articles-count').textContent = articlesData.articles?.length || 0;
+  document.getElementById('ov-services-count').textContent = siteContent.services?.items?.length || 0;
+  document.getElementById('ov-steps-count').textContent = siteContent.process?.steps?.length || 0;
+}
+
+// ── Sign out ──
+document.getElementById('signout-btn').addEventListener('click', () => {
+  if (isDirty && !confirm('You have unsaved changes. Sign out anyway?')) return;
+  sessionStorage.clear();
+  location.reload();
+});
+
+// ── Helpers ──
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function showErr(el, msg) { el.textContent = msg; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 4000); }
+
+// ── Warn on unload ──
+window.addEventListener('beforeunload', e => { if (isDirty) { e.preventDefault(); e.returnValue = ''; } });
+
+// ── Boot ──
+initAuth();
+</script>
+</body>
+</html>

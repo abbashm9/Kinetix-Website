@@ -250,7 +250,7 @@
   <button class="filter-btn" data-filter="AI & Automation">AI &amp; Automation</button>
 </div>
 
-<div class="articles-grid">
+<div class="articles-grid" id="articles-grid">
 
   <!-- Featured -->
   <a href="paid-advertising-kuwait.html" class="article-card featured" data-category="Paid Advertising">
@@ -378,27 +378,65 @@
 </footer>
 
 <script>
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.article-card');
+  const COVER_STYLES = {
+    'Paid Advertising': { bg: 'linear-gradient(135deg,#0d1620 0%,#1a2535 100%)', orb: 'rgba(197,232,138,0.15)', icon: '📈' },
+    'SEO':              { bg: 'linear-gradient(135deg,#0f1a1c 0%,#162028 100%)', orb: 'rgba(90,154,171,0.2)',   icon: '🔍' },
+    'Social Media':     { bg: 'linear-gradient(135deg,#0f1422 0%,#191e30 100%)', orb: 'rgba(197,232,138,0.12)', icon: '📱' },
+    'Branding':         { bg: 'linear-gradient(135deg,#1a1408 0%,#221d10 100%)', orb: 'rgba(232,197,90,0.15)',  icon: '✦'  },
+    'AI & Automation':  { bg: 'linear-gradient(135deg,#0e1220 0%,#141830 100%)', orb: 'rgba(90,154,171,0.18)', icon: '⚡' },
+  };
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  function renderArticles(articles) {
+    const grid = document.getElementById('articles-grid');
+    grid.innerHTML = articles.map((a, i) => {
+      const cs = COVER_STYLES[a.category] || COVER_STYLES['Paid Advertising'];
+      const isFeatured = a.featured && i === 0;
+      return `
+        <a href="${a.slug}.html" class="article-card${isFeatured ? ' featured' : ''}" data-category="${a.category}">
+          <div class="article-cover" style="background:${cs.bg};">
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,${cs.orb},transparent 60%);"></div>
+            <span class="article-cover-icon">${cs.icon}</span>
+          </div>
+          <div class="article-body">
+            <div class="article-meta">
+              <span class="article-cat">${a.category}</span>
+              <span class="article-date">${a.date}</span>
+              <span class="article-read">${a.readTime}</span>
+            </div>
+            <div class="article-title">${a.title}</div>
+            <div class="article-excerpt">${a.excerpt}</div>
+            <div class="article-footer"><span>By Kinetix Team</span><span class="article-arrow">→</span></div>
+          </div>
+        </a>`;
+    }).join('');
+    initFilter();
+  }
 
-      const filter = btn.dataset.filter;
-
-      cards.forEach(card => {
-        const match = filter === 'all' || card.dataset.category === filter;
-        card.style.display = match ? '' : 'none';
-        // Featured card loses its spanning layout when filtered
-        if (card.classList.contains('featured')) {
-          card.style.gridColumn = (match && filter === 'all') ? '1 / -1' : '';
-          card.style.flexDirection = (match && filter === 'all') ? '' : 'column';
-        }
+  function initFilter() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.article-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          card.style.display = match ? '' : 'none';
+          if (card.classList.contains('featured')) {
+            card.style.gridColumn = (match && filter === 'all') ? '1 / -1' : '';
+            card.style.flexDirection = (match && filter === 'all') ? '' : 'column';
+          }
+        });
       });
     });
-  });
+  }
+
+  // Load from data.json, fall back to static HTML if unavailable
+  fetch('/articles/data.json?v=' + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(data => { if (data?.articles?.length) renderArticles(data.articles); else initFilter(); })
+    .catch(() => initFilter());
 </script>
 </body>
 </html>
