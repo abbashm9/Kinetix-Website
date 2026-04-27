@@ -242,18 +242,18 @@
 </div>
 
 <div class="filter-bar">
-  <button class="filter-btn active">All Articles</button>
-  <button class="filter-btn">Paid Advertising</button>
-  <button class="filter-btn">SEO</button>
-  <button class="filter-btn">Social Media</button>
-  <button class="filter-btn">Branding</button>
-  <button class="filter-btn">AI & Automation</button>
+  <button class="filter-btn active" data-filter="all">All Articles</button>
+  <button class="filter-btn" data-filter="Paid Advertising">Paid Advertising</button>
+  <button class="filter-btn" data-filter="SEO">SEO</button>
+  <button class="filter-btn" data-filter="Social Media">Social Media</button>
+  <button class="filter-btn" data-filter="Branding">Branding</button>
+  <button class="filter-btn" data-filter="AI & Automation">AI &amp; Automation</button>
 </div>
 
 <div class="articles-grid">
 
   <!-- Featured -->
-  <a href="paid-advertising-kuwait.html" class="article-card featured">
+  <a href="paid-advertising-kuwait.html" class="article-card featured" data-category="Paid Advertising">
     <div class="article-cover" style="background: linear-gradient(135deg, #0d1620 0%, #1a2535 100%);">
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, rgba(197,232,138,0.15), transparent 60%);"></div>
       <span class="article-cover-icon">📈</span>
@@ -274,7 +274,7 @@
   </a>
 
   <!-- Article 2 -->
-  <a href="local-seo-kuwait.html" class="article-card">
+  <a href="local-seo-kuwait.html" class="article-card" data-category="SEO">
     <div class="article-cover" style="background: linear-gradient(135deg, #0f1a1c 0%, #162028 100%);">
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%, rgba(90,154,171,0.2), transparent 60%);"></div>
       <span class="article-cover-icon">🔍</span>
@@ -295,7 +295,7 @@
   </a>
 
   <!-- Article 3 -->
-  <a href="social-media-marketing-kuwait.html" class="article-card">
+  <a href="social-media-marketing-kuwait.html" class="article-card" data-category="Social Media">
     <div class="article-cover" style="background: linear-gradient(135deg, #0f1422 0%, #191e30 100%);">
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%, rgba(197,232,138,0.12), transparent 55%);"></div>
       <span class="article-cover-icon">📱</span>
@@ -316,7 +316,7 @@
   </a>
 
   <!-- Article 4 -->
-  <a href="brand-identity-kuwait.html" class="article-card">
+  <a href="brand-identity-kuwait.html" class="article-card" data-category="Branding">
     <div class="article-cover" style="background: linear-gradient(135deg, #1a1408 0%, #221d10 100%);">
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 40% 60%, rgba(232,197,90,0.15), transparent 60%);"></div>
       <span class="article-cover-icon">✦</span>
@@ -337,7 +337,7 @@
   </a>
 
   <!-- Article 5 -->
-  <a href="ai-automation-kuwait-business.html" class="article-card">
+  <a href="ai-automation-kuwait-business.html" class="article-card" data-category="AI & Automation">
     <div class="article-cover" style="background: linear-gradient(135deg, #0e1220 0%, #141830 100%);">
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 30%, rgba(90,154,171,0.18), transparent 55%);"></div>
       <span class="article-cover-icon">⚡</span>
@@ -378,10 +378,25 @@
 </footer>
 
 <script>
-  document.querySelectorAll('.filter-btn').forEach(btn => {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.article-card');
+
+  filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+        // Featured card loses its spanning layout when filtered
+        if (card.classList.contains('featured')) {
+          card.style.gridColumn = (match && filter === 'all') ? '1 / -1' : '';
+          card.style.flexDirection = (match && filter === 'all') ? '' : 'column';
+        }
+      });
     });
   });
 </script>
