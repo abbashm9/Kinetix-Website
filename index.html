@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kinetix — Digital Marketing Agency</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="brand_assets/kinetix-k-mark-dark_1024px.png">
+<link rel="apple-touch-icon" href="brand_assets/kinetix-k-mark-dark_1024px.png">
+<meta name="theme-color" content="#0F1117">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1021,158 +1025,91 @@
   .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-  /* ── SIDEBAR BACKDROP ── */
-  .sidebar-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 97;
-    background: rgba(0, 0, 0, 0.65);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s;
-  }
-  .sidebar-backdrop.open { opacity: 1; pointer-events: all; }
-
-  /* ── MOBILE SIDEBAR DRAWER ── */
-  .mobile-sidebar {
+  /* ── MOBILE MENU OVERLAY ── */
+  .mobile-menu {
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 98;
-    width: min(300px, 85vw);
-    background: var(--mid);
-    border-left: 1px solid rgba(255,255,255,0.08);
-    overflow: hidden;
-    /* Grid is more reliable than flexbox on iOS Safari/Chrome for
-       pinning a footer to the bottom of a fixed-height container */
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    transform: translateX(100%);
-    transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .mobile-sidebar.open {
-    transform: translateX(0);
-    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
-  }
-
-  .sidebar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .sidebar-close {
-    width: 36px;
-    height: 36px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--muted);
-    font-size: 16px;
-    transition: background 0.2s, color 0.2s;
-  }
-  .sidebar-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
-  .sidebar-close:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
-
-  .sidebar-nav {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .sidebar-link {
-    display: flex;
-    align-items: center;
-    padding: 18px 20px;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    transition: background 0.2s;
-    flex-shrink: 0;
-  }
-  .sidebar-link:last-child { border-bottom: none; }
-  .sidebar-link:hover,
-  .sidebar-link:active { background: rgba(255,255,255,0.04); }
-  .sidebar-link:hover .sidebar-link-arrow { color: var(--lime); transform: translateX(3px); }
-  .sidebar-link:hover .sidebar-link-num { color: rgba(197,232,138,0.8); }
-
-  .sidebar-link-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: rgba(197,232,138,0.35);
-    width: 30px;
-    flex-shrink: 0;
-    transition: color 0.2s;
-  }
-
-  .sidebar-link-body {
-    flex: 1;
-    min-width: 0;
-  }
-  .sidebar-link-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: -0.02em;
-    display: block;
-    line-height: 1.2;
-  }
-  .sidebar-link-sub {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 3px;
-    display: block;
-  }
-
-  .sidebar-link-arrow {
-    color: rgba(255,255,255,0.2);
-    font-size: 14px;
-    flex-shrink: 0;
-    margin-left: 10px;
-    transition: color 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .sidebar-footer {
-    flex-shrink: 0;
-    padding: 20px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    background: rgba(0,0,0,0.18);
-  }
-
-  .sidebar-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    left: 0;
     width: 100%;
-    padding: 14px 20px;
-    margin-bottom: 14px;
-    background: var(--lime);
-    color: var(--dark);
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: 100px;
-    text-decoration: none;
-    letter-spacing: 0.2px;
-    transition: opacity 0.2s;
+    height: 100%;
+    z-index: 200;
+    background: #0F1117;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
   }
-  .sidebar-cta:active { opacity: 0.85; }
-
-  .sidebar-contact-info {
+  .mobile-menu::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(197,232,138,0.07) 0%, transparent 65%);
+    top: -200px; left: -200px;
+    pointer-events: none;
+  }
+  .mobile-menu::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(90,154,171,0.07) 0%, transparent 65%);
+    bottom: -100px; right: -100px;
+    pointer-events: none;
+  }
+  .mobile-menu.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    transform: translateY(32px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-align: center;
+    width: 100%;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .mobile-menu.open .mobile-menu-inner {
+    transform: translateY(0);
+  }
+  .mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .mobile-nav-links li a {
+    font-family: 'Syne', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: rgba(255,255,255,0.25);
+    text-decoration: none;
+    transition: color 0.2s;
+    line-height: 1.25;
+    display: block;
+    padding: 2px 0;
+  }
+  .mobile-nav-links li a:hover,
+  .mobile-nav-links li a:active { color: var(--lime); }
+  .mobile-menu-cta {
+    font-size: 15px;
+    padding: 14px 36px;
+  }
+  .mobile-menu-contact {
     font-size: 12px;
     color: var(--muted);
+    letter-spacing: 0.3px;
   }
-  .sidebar-contact-info a {
+  .mobile-menu-contact a {
     color: var(--teal);
     text-decoration: none;
   }
@@ -1294,77 +1231,25 @@
   </button>
 </nav>
 
-<!-- ── SIDEBAR BACKDROP ── -->
-<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-
-<!-- ── MOBILE SIDEBAR ── -->
-<aside class="mobile-sidebar" id="mobileSidebar" aria-hidden="true" aria-label="Site navigation">
-
-  <div class="sidebar-header">
-    <a href="#" class="nav-logo">
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 100 100">
-        <rect width="100" height="100" rx="18" fill="#0F0F0F"/>
-        <rect x="18" y="14" width="18" height="72" rx="3" fill="#FFFFFF"/>
-        <path d="M36 50 L70 14 L82 14 Q72 32 55 50 Q72 68 82 86 L70 86 L36 50Z" fill="#FFFFFF"/>
-      </svg>
-      <span class="nav-wordmark" style="font-size:18px;">K<span>INETIX</span></span>
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <ul class="mobile-nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="articles/">Articles</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-primary mobile-menu-cta">
+      Start a Project
+      <span class="btn-arrow">→</span>
     </a>
-    <button class="sidebar-close" id="sidebarClose" aria-label="Close navigation">✕</button>
-  </div>
-
-  <nav class="sidebar-nav">
-    <a href="#about" class="sidebar-link">
-      <span class="sidebar-link-num">01</span>
-      <span class="sidebar-link-body">
-        <span class="sidebar-link-name">About</span>
-        <span class="sidebar-link-sub">Who we are &amp; our philosophy</span>
-      </span>
-      <span class="sidebar-link-arrow">→</span>
-    </a>
-    <a href="#services" class="sidebar-link">
-      <span class="sidebar-link-num">02</span>
-      <span class="sidebar-link-body">
-        <span class="sidebar-link-name">Services</span>
-        <span class="sidebar-link-sub">9 full-spectrum digital services</span>
-      </span>
-      <span class="sidebar-link-arrow">→</span>
-    </a>
-    <a href="#process" class="sidebar-link">
-      <span class="sidebar-link-num">03</span>
-      <span class="sidebar-link-body">
-        <span class="sidebar-link-name">Process</span>
-        <span class="sidebar-link-sub">How we work, step by step</span>
-      </span>
-      <span class="sidebar-link-arrow">→</span>
-    </a>
-    <a href="articles/" class="sidebar-link">
-      <span class="sidebar-link-num">04</span>
-      <span class="sidebar-link-body">
-        <span class="sidebar-link-name">Articles</span>
-        <span class="sidebar-link-sub">Insights &amp; industry thinking</span>
-      </span>
-      <span class="sidebar-link-arrow">→</span>
-    </a>
-    <a href="#contact" class="sidebar-link">
-      <span class="sidebar-link-num">05</span>
-      <span class="sidebar-link-body">
-        <span class="sidebar-link-name">Contact</span>
-        <span class="sidebar-link-sub">Start a project with us</span>
-      </span>
-      <span class="sidebar-link-arrow">→</span>
-    </a>
-  </nav>
-
-  <div class="sidebar-footer">
-    <a href="#contact" class="sidebar-cta">
-      Start a Project →
-    </a>
-    <div class="sidebar-contact-info">
+    <div class="mobile-menu-contact">
       WhatsApp: <a href="https://wa.me/96592274600">+965 9227 4600</a>
     </div>
   </div>
-
-</aside>
+</div>
 
 <!-- ── HERO ── -->
 <section class="hero">
@@ -1877,28 +1762,26 @@
     document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible'));
   }, 2500);
 
-  // ── Mobile sidebar ──
+  // ── Mobile menu ──
+  const nav = document.getElementById('nav');
   const hamburger = document.getElementById('hamburger');
-  const mobileSidebar = document.getElementById('mobileSidebar');
-  const sidebarBackdrop = document.getElementById('sidebarBackdrop');
-  const sidebarClose = document.getElementById('sidebarClose');
+  const mobileMenu = document.getElementById('mobileMenu');
   let menuOpen = false;
 
   function toggleMenu(open) {
     menuOpen = open;
     hamburger.classList.toggle('open', open);
-    mobileSidebar.classList.toggle('open', open);
-    sidebarBackdrop.classList.toggle('open', open);
+    mobileMenu.classList.toggle('open', open);
     hamburger.setAttribute('aria-expanded', open);
-    mobileSidebar.setAttribute('aria-hidden', !open);
+    mobileMenu.setAttribute('aria-hidden', !open);
     document.body.style.overflow = open ? 'hidden' : '';
+    // Keep nav (and hamburger inside it) above the overlay
+    nav.style.zIndex = open ? '201' : '';
   }
 
   hamburger.addEventListener('click', () => toggleMenu(!menuOpen));
-  sidebarClose.addEventListener('click', () => toggleMenu(false));
-  sidebarBackdrop.addEventListener('click', () => toggleMenu(false));
 
-  mobileSidebar.querySelectorAll('a').forEach(a => {
+  mobileMenu.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => toggleMenu(false));
   });
 
