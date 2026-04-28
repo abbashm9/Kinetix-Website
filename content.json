@@ -3,8 +3,8 @@
     "eyebrow": "Kuwait's Forward-Moving Agency",
     "headline_line1": "We Set",
     "headline_line2": "Brands",
-    "headline_accent": "In Totion",
-    "subtext": "Kinetix is a precision-led digital agency crafting brand strategies, campaigns, and identities that accelerate growth â in Arabic, in English, globally.",
+    "headline_accent": "In Motion.",
+    "subtext": "Kinetix is a precision-led digital agency crafting brand strategies, campaigns, and identities that accelerate growth — in Arabic, in English, globally.",
     "cta_primary_text": "Explore Services",
     "cta_primary_href": "#services",
     "cta_secondary_text": "Get in Touch",
@@ -14,190 +14,64 @@
     "stat_brands": "50+",
     "stat_brands_label": "Brands Launched",
     "stat_satisfaction": "Client Satisfaction",
-    "stat_rating": "â­â­â­â­â­ 5.0 Rating",
+    "stat_rating": "⭐⭐⭐⭐⭐ 5.0 Rating",
     "bars": [
-      {
-        "label": "Brand Awareness",
-        "value": 94
-      },
-      {
-        "label": "Lead Generation",
-        "value": 87
-      },
-      {
-        "label": "Social Engagement",
-        "value": 78
-      }
+      { "label": "Brand Awareness", "value": 94 },
+      { "label": "Lead Generation", "value": 87 },
+      { "label": "Social Engagement", "value": 78 }
     ]
   },
   "marquee": [
-    "Brand Identity",
-    "Social Media",
-    "Digital Advertising",
-    "Content Creation",
-    "Web Design",
-    "Video Production",
-    "PR & Influence",
-    "Strategy"
+    "Brand Identity", "Social Media", "Digital Advertising",
+    "Content Creation", "Web Design", "Video Production",
+    "PR & Influence", "Strategy"
   ],
   "about": {
     "label": "Our Philosophy",
     "headline": "Forward energy.",
     "headline_em": "In every decision.",
-    "desc": "We don't follow trends â we set them in motion. Kinetix exists to give brands the momentum they need to lead in a distracted world.",
+    "desc": "We don't follow trends — we set them in motion. Kinetix exists to give brands the momentum they need to lead in a distracted world.",
     "pillars": [
-      {
-        "icon": "â¡",
-        "name": "Kinetic",
-        "desc": "Always in motion. Our work creates momentum for brands that want to accelerate beyond the noise and lead their category."
-      },
-      {
-        "icon": "ð¯",
-        "name": "Precise",
-        "desc": "Data-driven decisions. Every pixel, every word, every strategy is intentional â crafted to perform, not just to look good."
-      },
-      {
-        "icon": "ð",
-        "name": "Bilingual",
-        "desc": "Rooted in Kuwait, built for global reach. We craft campaigns that speak authentically in Arabic and English â no translation, no compromise."
-      }
+      { "icon": "⚡", "name": "Kinetic", "desc": "Always in motion. Our work creates momentum for brands that want to accelerate beyond the noise and lead their category." },
+      { "icon": "🎯", "name": "Precise", "desc": "Data-driven decisions. Every pixel, every word, every strategy is intentional — crafted to perform, not just to look good." },
+      { "icon": "🌐", "name": "Bilingual", "desc": "Rooted in Kuwait, built for global reach. We craft campaigns that speak authentically in Arabic and English — no translation, no compromise." }
     ]
   },
   "services": {
     "label": "What We Do",
     "headline": "Full-spectrum",
     "headline_em": "digital services.",
-    "desc": "From brand inception to campaign execution â we handle every layer of your digital presence with craft and precision.",
+    "desc": "From brand inception to campaign execution — we handle every layer of your digital presence with craft and precision.",
     "items": [
-      {
-        "name": "Paid Advertising",
-        "desc": "Performance campaigns across Meta, TikTok, Snapchat, LinkedIn, X, and Google â built on audience planning, creative direction, and continuous optimization.",
-        "tags": [
-          "Meta Ads",
-          "Google Ads",
-          "TikTok",
-          "Snapchat"
-        ]
-      },
-      {
-        "name": "Social Media Management",
-        "desc": "Content calendars, caption writing, visual direction, posting, page management, and monthly refinement â full-service social presence handled for you.",
-        "tags": [
-          "Instagram",
-          "TikTok",
-          "LinkedIn",
-          "Snapchat"
-        ]
-      },
-      {
-        "name": "Brand Identity",
-        "desc": "Logo creation or refinement, color palettes, typography, brand style direction, social media visual systems, and brand refreshes for businesses ready to stand out.",
-        "tags": [
-          "Logo Design",
-          "Brand Style",
-          "Visual System"
-        ]
-      },
-      {
-        "name": "Web & App Development",
-        "desc": "Business websites, landing pages, lead-gen pages, customer dashboards, service portals, and app planning â built to convert and scale.",
-        "tags": [
-          "Websites",
-          "Landing Pages",
-          "Dashboards",
-          "Apps"
-        ]
-      },
-      {
-        "name": "SEO & Search Visibility",
-        "desc": "On-page optimization, keyword-based page planning, content structure for blogs and articles, local SEO, and long-term search discoverability for your business.",
-        "tags": [
-          "On-Page SEO",
-          "Local SEO",
-          "Content SEO"
-        ]
-      },
-      {
-        "name": "Google Business & Analytics",
-        "desc": "Google Business profile setup and optimization, analytics configuration, traffic and behavior review, conversion tracking, and reporting to drive better decisions.",
-        "tags": [
-          "Google Business",
-          "GA4",
-          "Conversion Tracking"
-        ]
-      },
-      {
-        "name": "AI Automation",
-        "desc": "Lead qualification flows, follow-up workflows, internal task automation, content assistance, reporting support, and operational efficiency improvements.",
-        "tags": [
-          "Lead Flows",
-          "Workflows",
-          "Task Automation"
-        ]
-      },
-      {
-        "name": "Architectural Photography",
-        "desc": "Professional exterior, interior, and space photography for real estate, hospitality, retail, and commercial property â built for listings, websites, and social media.",
-        "tags": [
-          "Exterior",
-          "Interior",
-          "Commercial",
-          "Real Estate"
-        ]
-      },
-      {
-        "name": "Cyber Security",
-        "desc": "Website security reviews, protection recommendations, access and account security guidance, platform hardening, and risk awareness for businesses operating online.",
-        "tags": [
-          "Security Reviews",
-          "Platform Hardening",
-          "Risk Assessment"
-        ]
-      }
+      { "name": "Paid Advertising", "desc": "Performance campaigns across Meta, TikTok, Snapchat, LinkedIn, X, and Google — built on audience planning, creative direction, and continuous optimization.", "tags": ["Meta Ads", "Google Ads", "TikTok", "Snapchat"] },
+      { "name": "Social Media Management", "desc": "Content calendars, caption writing, visual direction, posting, page management, and monthly refinement — full-service social presence handled for you.", "tags": ["Instagram", "TikTok", "LinkedIn", "Snapchat"] },
+      { "name": "Brand Identity", "desc": "Logo creation or refinement, color palettes, typography, brand style direction, social media visual systems, and brand refreshes for businesses ready to stand out.", "tags": ["Logo Design", "Brand Style", "Visual System"] },
+      { "name": "Web & App Development", "desc": "Business websites, landing pages, lead-gen pages, customer dashboards, service portals, and app planning — built to convert and scale.", "tags": ["Websites", "Landing Pages", "Dashboards", "Apps"] },
+      { "name": "SEO & Search Visibility", "desc": "On-page optimization, keyword-based page planning, content structure for blogs and articles, local SEO, and long-term search discoverability for your business.", "tags": ["On-Page SEO", "Local SEO", "Content SEO"] },
+      { "name": "Google Business & Analytics", "desc": "Google Business profile setup and optimization, analytics configuration, traffic and behavior review, conversion tracking, and reporting to drive better decisions.", "tags": ["Google Business", "GA4", "Conversion Tracking"] },
+      { "name": "AI Automation", "desc": "Lead qualification flows, follow-up workflows, internal task automation, content assistance, reporting support, and operational efficiency improvements.", "tags": ["Lead Flows", "Workflows", "Task Automation"] },
+      { "name": "Architectural Photography", "desc": "Professional exterior, interior, and space photography for real estate, hospitality, retail, and commercial property — built for listings, websites, and social media.", "tags": ["Exterior", "Interior", "Commercial", "Real Estate"] },
+      { "name": "Cyber Security", "desc": "Website security reviews, protection recommendations, access and account security guidance, platform hardening, and risk awareness for businesses operating online.", "tags": ["Security Reviews", "Platform Hardening", "Risk Assessment"] }
     ]
   },
   "stats": [
-    {
-      "value": "50+",
-      "label": "Brands Launched"
-    },
-    {
-      "value": "312%",
-      "label": "Avg. Campaign ROI"
-    },
-    {
-      "value": "2M+",
-      "label": "Impressions Generated"
-    },
-    {
-      "value": "5â",
-      "label": "Client Rating"
-    }
+    { "value": "50+",  "label": "Brands Launched" },
+    { "value": "312%", "label": "Avg. Campaign ROI" },
+    { "value": "2M+",  "label": "Impressions Generated" },
+    { "value": "5★",   "label": "Client Rating" }
   ],
   "process": {
     "label": "How We Work",
     "headline": "Precision from",
     "headline_em": "day one.",
-    "desc": "Every engagement follows the same disciplined process â because great outcomes don't happen by accident.",
-    "timeline": "2â4 Weeks",
+    "desc": "Every engagement follows the same disciplined process — because great outcomes don't happen by accident.",
+    "timeline": "2–4 Weeks",
     "timeline_sub": "From briefing to launch-ready",
     "steps": [
-      {
-        "name": "Discovery & Brief",
-        "desc": "We start by understanding your business, audience, goals, and competitive landscape. No assumptions â just sharp listening and the right questions."
-      },
-      {
-        "name": "Strategy & Direction",
-        "desc": "We develop a clear creative and strategic direction â positioning, messaging hierarchy, platform selection, and a performance framework before a single pixel moves."
-      },
-      {
-        "name": "Creation & Production",
-        "desc": "Our team executes with precision â design, copy, video, and code â all built to brand standard and reviewed against your objectives at every milestone."
-      },
-      {
-        "name": "Launch & Optimize",
-        "desc": "We go live and immediately track performance. Every campaign is monitored, tested, and refined in real time to push results beyond the benchmark."
-      }
+      { "name": "Discovery & Brief",      "desc": "We start by understanding your business, audience, goals, and competitive landscape. No assumptions — just sharp listening and the right questions." },
+      { "name": "Strategy & Direction",   "desc": "We develop a clear creative and strategic direction — positioning, messaging hierarchy, platform selection, and a performance framework before a single pixel moves." },
+      { "name": "Creation & Production",  "desc": "Our team executes with precision — design, copy, video, and code — all built to brand standard and reviewed against your objectives at every milestone." },
+      { "name": "Launch & Optimize",      "desc": "We go live and immediately track performance. Every campaign is monitored, tested, and refined in real time to push results beyond the benchmark." }
     ]
   },
   "contact": {
@@ -212,11 +86,11 @@
   },
   "footer": {
     "tagline": "We don't follow trends. We set them in motion.",
-    "copyright": "Â© 2026 Kinetix. All rights reserved.",
     "social_instagram": "https://instagram.com/kinetixkw",
     "social_tiktok": "#",
     "social_linkedin": "#",
     "social_twitter": "#",
-    "location": "Kuwait City, Kuwait"
+    "location": "Kuwait City, Kuwait",
+    "copyright": "© 2026 Kinetix. All rights reserved."
   }
 }
