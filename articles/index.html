@@ -421,21 +421,25 @@
     grid.innerHTML = articles.map((a, i) => {
       const cs = COVER_STYLES[a.category] || COVER_STYLES['Paid Advertising'];
       const isFeatured = a.featured && i === 0;
+      const isPdf = a.type === 'pdf';
+      const href = isPdf ? a.file : `${a.slug}.html`;
+      const target = isPdf ? ' target="_blank" rel="noopener noreferrer"' : '';
+      const pdfBadge = isPdf ? `<span style="display:inline-flex;align-items:center;gap:4px;background:rgba(197,232,138,0.12);color:var(--lime);font-size:10px;font-weight:700;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;border:1px solid rgba(197,232,138,0.2);margin-left:6px;text-transform:uppercase;">↓ PDF</span>` : '';
       return `
-        <a href="${a.slug}.html" class="article-card${isFeatured ? ' featured' : ''}" data-category="${a.category}">
+        <a href="${href}"${target} class="article-card${isFeatured ? ' featured' : ''}" data-category="${a.category}">
           <div class="article-cover" style="background:${cs.bg};">
             <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,${cs.orb},transparent 60%);"></div>
             <span class="article-cover-icon">${cs.icon}</span>
           </div>
           <div class="article-body">
             <div class="article-meta">
-              <span class="article-cat">${a.category}</span>
+              <span class="article-cat">${a.category}</span>${pdfBadge}
               <span class="article-date">${a.date}</span>
               <span class="article-read">${a.readTime}</span>
             </div>
             <div class="article-title">${a.title}</div>
             <div class="article-excerpt">${a.excerpt}</div>
-            <div class="article-footer"><span>By Kinetix Team</span><span class="article-arrow">→</span></div>
+            <div class="article-footer"><span>By Kinetix Team</span><span class="article-arrow">${isPdf ? '↓' : '→'}</span></div>
           </div>
         </a>`;
     }).join('');

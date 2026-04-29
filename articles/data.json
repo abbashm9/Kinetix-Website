@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "id": "gcc-ad-budget-allocation-2026",
+      "slug": "gcc-ad-budget-allocation-2026",
+      "file": "kinetix-gcc-ad-budget-allocation-v2.pdf",
+      "type": "pdf",
+      "title": "Ad Budget Allocation by Platform in the GCC in 2026",
+      "category": "Paid Advertising",
+      "date": "April 2026",
+      "readTime": "6 min read",
+      "excerpt": "A sector-by-sector framework for splitting ad spend across Meta, Google, Snapchat, and TikTok — built for the GCC market. Covers e-commerce, real estate, food & beverage, healthcare, education, and fashion.",
+      "featured": false
+    },
+    {
       "id": "paid-advertising-kuwait",
       "slug": "paid-advertising-kuwait",
       "title": "How Kuwait Businesses Can Use Paid Advertising to Generate More Leads in 2026",
