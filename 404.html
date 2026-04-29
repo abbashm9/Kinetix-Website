@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — Kinetix</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://kinetixkw.com/">
+  <script>
+    // Redirect www to non-www and fix /index paths
+    const host = window.location.hostname;
+    const path = window.location.pathname;
+    const targetHost = 'kinetixkw.com';
+
+    // Strip /index suffix
+    const cleanPath = path.replace(/\/index(\.html?)?$/, '/').replace(/\/index$/, '/');
+
+    if (host !== targetHost || cleanPath !== path) {
+      window.location.replace('https://' + targetHost + (cleanPath === '/' ? '/' : cleanPath));
+    } else {
+      // Genuine 404 — redirect to homepage after short delay
+      setTimeout(() => { window.location.href = '/'; }, 3000);
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0c0e15;
+      color: #e8e4dc;
+      font-family: 'Inter', system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+    .num {
+      font-size: clamp(6rem, 20vw, 12rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #c8a96e, #e8d5a0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.04em;
+    }
+    h1 { font-size: 1.25rem; font-weight: 500; margin: 1.5rem 0 0.75rem; opacity: 0.7; }
+    p { opacity: 0.45; font-size: 0.95rem; }
+    a {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      border: 1px solid rgba(200, 169, 110, 0.4);
+      color: #c8a96e;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    a:hover { background: rgba(200, 169, 110, 0.1); border-color: #c8a96e; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="num">404</div>
+    <h1>Page not found</h1>
+    <p>Redirecting you to the homepage…</p>
+    <a href="/">Back to Kinetix</a>
+  </div>
+</body>
+</html>
