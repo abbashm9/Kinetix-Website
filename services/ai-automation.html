@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Automation — Kinetix</title>
+<meta name="description" content="AI-powered automation for lead flows, business workflows, and task management — built for Kuwait businesses ready to scale.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#FAFAF8;--bg-alt:#F2F2EE;--surface:#FFFFFF;--text:#1A1A1A;--muted:#6B6B70;--faint:rgba(0,0,0,0.13);--lime:#C5E88A;--lime-text:#7aaa2e;--lime-dim:rgba(197,232,138,0.12);--teal:#5A9AAB;--stroke:rgba(0,0,0,0.07);--stroke-strong:rgba(0,0,0,0.13);--dark:#0D0F14;--dark-mid:#131620;--dark-muted:#7A8496;--dark-stroke:rgba(255,255,255,0.06);--font:'Outfit',sans-serif;--radius-lg:22px;--ease-spring:cubic-bezier(0.23,1,0.32,1);--ease-out:cubic-bezier(0.16,1,0.3,1)}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:200;display:flex;align-items:center;gap:24px;padding:10px 20px 10px 16px;background:rgba(255,255,255,0.42);backdrop-filter:blur(40px) saturate(200%) brightness(1.06);-webkit-backdrop-filter:blur(40px) saturate(200%) brightness(1.06);border:1px solid rgba(255,255,255,0.62);border-radius:100px;box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.92),inset 0 -1px 0 rgba(255,255,255,0.12),0 4px 20px rgba(0,0,0,0.06);white-space:nowrap}
+.nav-back{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--muted);transition:color 0.2s}
+.nav-back:hover{color:var(--text)}
+.nav-back svg{width:14px;height:14px}
+.nav-divider{width:1px;height:18px;background:var(--stroke-strong)}
+.nav-logo{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:800;letter-spacing:-0.01em;color:var(--text)}
+.nav-logo-k{width:28px;height:28px;background:linear-gradient(135deg,var(--lime),var(--teal));border-radius:7px;display:flex;align-items:center;justify-content:center}
+.nav-logo-name .accent{color:var(--teal)}
+.nav-cta{margin-left:auto;background:var(--text);color:#fff;font-size:12px;font-weight:700;padding:7px 16px;border-radius:100px;transition:opacity 0.2s,transform 0.15s var(--ease-spring)}
+.nav-cta:hover{opacity:0.82;transform:scale(1.03)}
+.hero{min-height:68vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding:0 0 72px}
+.hero-bg{position:absolute;inset:0;background-image:url('/images/ai-automation.jpeg');background-size:cover;background-position:center}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,250,248,0) 0%,rgba(250,250,248,0.15) 40%,rgba(250,250,248,0.88) 70%,rgba(250,250,248,1) 100%)}
+.hero-content{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 40px;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:currentColor}
+.hero-title{font-size:clamp(44px,7vw,88px);font-weight:800;line-height:1.02;letter-spacing:-0.03em;color:var(--text);margin-bottom:22px}
+.hero-sub{font-size:clamp(16px,1.8vw,20px);font-weight:400;line-height:1.65;color:var(--muted);max-width:560px}
+.section{padding:96px 0}.section.alt{background:var(--bg-alt)}
+.container{max-width:1160px;margin:0 auto;padding:0 40px;width:100%}
+.section-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.section-title{font-size:clamp(32px,4vw,52px);font-weight:800;line-height:1.1;letter-spacing:-0.025em;margin-bottom:16px;color:var(--text)}
+.section-title em{font-style:normal;color:var(--muted)}
+.section-body{font-size:17px;font-weight:400;line-height:1.7;color:var(--muted);max-width:560px}
+.deliverables-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;border:1px solid var(--stroke);border-radius:var(--radius-lg);overflow:hidden;background:var(--stroke)}
+.deliverable{background:var(--surface);padding:32px 28px;transition:background 0.2s}
+.deliverable:hover{background:var(--bg)}
+.del-num{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--lime-text);margin-bottom:10px}
+.del-name{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-0.01em;color:var(--text)}
+.del-desc{font-size:14px;line-height:1.65;color:var(--muted)}
+.process-list{display:flex;flex-direction:column;margin-top:52px}
+.process-item{display:grid;grid-template-columns:72px 1fr;padding:36px 0;border-bottom:1px solid var(--stroke)}
+.process-item:first-child{border-top:1px solid var(--stroke)}
+.process-num{font-size:12px;font-weight:700;letter-spacing:0.08em;color:var(--faint);padding-top:4px}
+.process-name{font-size:20px;font-weight:700;letter-spacing:-0.015em;margin-bottom:10px;color:var(--text)}
+.process-desc{font-size:15px;line-height:1.7;color:var(--muted)}
+.tools-wrap{margin-top:40px;display:flex;flex-wrap:wrap;gap:10px}
+.tool-tag{display:inline-flex;padding:8px 16px;border-radius:100px;border:1px solid var(--stroke-strong);font-size:13px;font-weight:500;color:var(--muted);background:transparent;transition:border-color 0.2s,color 0.2s,background 0.2s}
+.tool-tag:hover{border-color:var(--teal);background:rgba(90,154,171,0.06);color:var(--text)}
+.cta-section{background:var(--dark);padding:96px 0;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(197,232,138,0.06) 0%,transparent 70%)}
+.cta-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px}
+.cta-label{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--dark-muted)}
+.cta-title{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-0.03em;line-height:1.05;color:#fff;max-width:700px}
+.cta-title span{color:var(--lime)}
+.cta-sub{font-size:16px;color:var(--dark-muted);max-width:440px;line-height:1.65}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--lime);color:#0D0F14;font-size:15px;font-weight:700;padding:16px 32px;border-radius:100px;box-shadow:0 4px 24px rgba(197,232,138,0.18);transition:transform 0.2s var(--ease-spring),box-shadow 0.2s}
+.cta-btn:hover{transform:scale(1.04);box-shadow:0 8px 32px rgba(197,232,138,0.28)}
+.cta-btn:active{transform:scale(0.97)}
+.footer{background:var(--dark-mid);padding:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--dark-stroke)}
+.footer-brand{font-size:13px;font-weight:800;color:#fff}
+.footer-brand span{color:var(--lime)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:var(--dark-muted);transition:color 0.2s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.15);width:100%;margin-top:8px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out),transform 0.7s var(--ease-out)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:0.08s}.reveal.d2{transition-delay:0.16s}.reveal.d3{transition-delay:0.24s}.reveal.d4{transition-delay:0.32s}.reveal.d5{transition-delay:0.40s}
+@media(max-width:768px){.container{padding:0 24px}.hero-content{padding:0 24px}.hero{min-height:60vh;padding-bottom:56px}.section{padding:64px 0}.deliverables-grid{grid-template-columns:1fr}.process-item{grid-template-columns:48px 1fr}.footer{flex-direction:column;gap:20px;text-align:center}.footer-links{justify-content:center}.nav-cta{display:none}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/#services" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>All Services</a>
+  <div class="nav-divider"></div>
+  <div class="nav-logo"><span class="nav-logo-name">K<span class="accent">INETIX</span></span></div>
+  <a href="https://wa.me/96592274600" class="nav-cta" rel="noopener">Start a Project</a>
+</nav>
+<section class="hero"><div class="hero-bg"></div><div class="hero-content"><div class="hero-eyebrow">Service 07</div><h1 class="hero-title">AI<br>Automation</h1><p class="hero-sub">Intelligent workflows that handle your lead follow-ups, task routing, and business processes — so your team focuses on work only humans can do.</p></div></section>
+<section class="section"><div class="container"><div class="reveal"><div class="section-eyebrow">What's Included</div><h2 class="section-title">Automate the repetitive, <em>amplify the human.</em></h2><p class="section-body">We identify the processes eating your team's time and replace them with reliable, AI-powered automations that run 24/7.</p></div><div class="deliverables-grid"><div class="deliverable reveal d1"><div class="del-num">01</div><div class="del-name">Lead Flow Automation</div><div class="del-desc">Automatically capture, qualify, tag, and route leads from your website, WhatsApp, or ads into your CRM — no manual entry, no delays.</div></div><div class="deliverable reveal d2"><div class="del-num">02</div><div class="del-name">WhatsApp Chatbots</div><div class="del-desc">AI-powered WhatsApp bots that handle FAQs, booking requests, and lead qualification in Arabic and English — around the clock.</div></div><div class="deliverable reveal d3"><div class="del-num">03</div><div class="del-name">Workflow Automation</div><div class="del-desc">Multi-step automations connecting your tools — CRM, email, Sheets, Slack, WhatsApp — so data flows without human intervention.</div></div><div class="deliverable reveal d4"><div class="del-num">04</div><div class="del-name">AI Content Workflows</div><div class="del-desc">Automated content pipelines that draft social captions, email responses, and reports using your brand voice as the foundation.</div></div><div class="deliverable reveal d5"><div class="del-num">05</div><div class="del-name">CRM Integration</div><div class="del-desc">Connecting your lead sources, communication tools, and sales pipeline into a single, automated system with no data silos.</div></div><div class="deliverable reveal d5"><div class="del-num">06</div><div class="del-name">Automation Audit</div><div class="del-desc">A process mapping session to identify your highest-ROI automation opportunities before a single workflow is built.</div></div></div></div></section>
+<section class="section alt"><div class="container"><div class="reveal"><div class="section-eyebrow">Our Approach</div><h2 class="section-title">Map the process, <em>then eliminate it.</em></h2></div><div class="process-list"><div class="process-item reveal d1"><div class="process-num">01</div><div><div class="process-name">Process Discovery</div><div class="process-desc">We map your current workflows — from lead capture to follow-up to reporting — and identify every manual step that is costing you time and money.</div></div></div><div class="process-item reveal d2"><div class="process-num">02</div><div><div class="process-name">Automation Design</div><div class="process-desc">We design the automation architecture — triggers, conditions, actions, and fallbacks — and present it for approval before building anything.</div></div></div><div class="process-item reveal d3"><div class="process-num">03</div><div><div class="process-name">Build & Test</div><div class="process-desc">We build, connect, and stress-test each automation with real data — edge cases and failure modes identified before go-live.</div></div></div><div class="process-item reveal d4"><div class="process-num">04</div><div><div class="process-name">Handoff & Monitor</div><div class="process-desc">Full documentation, team training, and a 30-day monitoring window to catch any issues. Then the system runs without you.</div></div></div></div></div></section>
+<section class="cta-section"><div class="container"><div class="cta-inner reveal"><div class="cta-label">Ready to start?</div><h2 class="cta-title">Stop doing manually <span>what a machine can do better.</span></h2><p class="cta-sub">Tell us your biggest operational headache and we'll show you how to automate it.</p><a href="https://wa.me/96592274600" class="cta-btn" rel="noopener">Chat on WhatsApp →</a></div></div></section>
+<footer class="footer"><div class="footer-brand">K<span>INETIX</span></div><div class="footer-links"><a href="/">Home</a><a href="/#services">Services</a><a href="/#contact">Contact</a></div><p class="footer-copy">© 2025 Kinetix. Kuwait's forward-moving agency.</p></footer>
+<script>(function(){const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>io.observe(el))})();</script>
+</body>
+</html>
