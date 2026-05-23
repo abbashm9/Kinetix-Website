@@ -2404,17 +2404,19 @@ applyWordReveal();
     if (d.services?.headline) setHtml('services-title', `${d.services.headline}<br><em>${d.services.headline_em}</em>`);
     set('services-desc', d.services?.desc);
     if (d.services?.items?.length) {
+      const serviceSlugs = ['paid-advertising','social-media','brand-identity','web-development','seo','google-business','ai-automation','photography','cyber-security'];
       document.getElementById('services-grid').innerHTML = d.services.items.map((s, i) => {
         const span = tileSpans[i] || 1;
+        const slug = serviceSlugs[i] || '#';
         return `
-        <div class="service-tile reveal" ${span > 1 ? 'data-wide="true"' : ''}>
+        <a href="/services/${slug}.html" class="service-tile reveal" ${span > 1 ? 'data-wide="true"' : ''}>
           <div class="service-tile-top">
             <div class="service-tile-num">0${i+1}</div>
             <div class="service-tile-arrow">→</div>
           </div>
           <div class="service-tile-name">${s.name}</div>
           <div class="service-tile-tags">${(s.tags||[]).map(tg => `<span class="tag">${tg}</span>`).join('')}</div>
-        </div>`;
+        </a>`;
       }).join('');
       document.querySelectorAll('#services-grid .reveal').forEach(el => observer.observe(el));
     }
