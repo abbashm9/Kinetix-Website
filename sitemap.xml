@@ -2,57 +2,129 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://kinetixkw.com/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://www.kinetixkw.com/</loc>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://kinetixkw.com/articles/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://www.kinetixkw.com/articles/</loc>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Service pages -->
   <url>
-    <loc>https://kinetixkw.com/articles/gcc-ad-budget-allocation-2026.html</loc>
+    <loc>https://www.kinetixkw.com/services/web-development.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/services/brand-identity.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/services/social-media.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/services/paid-advertising.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/services/seo.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/services/google-business.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/services/ai-automation.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/services/photography.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/services/cyber-security.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Articles -->
+  <url>
+    <loc>https://www.kinetixkw.com/articles/gcc-ad-budget-allocation-2026.html</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://kinetixkw.com/articles/paid-advertising-kuwait.html</loc>
+    <loc>https://www.kinetixkw.com/articles/paid-advertising-kuwait.html</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://kinetixkw.com/articles/local-seo-kuwait.html</loc>
+    <loc>https://www.kinetixkw.com/articles/local-seo-kuwait.html</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://kinetixkw.com/articles/social-media-marketing-kuwait.html</loc>
+    <loc>https://www.kinetixkw.com/articles/social-media-marketing-kuwait.html</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://kinetixkw.com/articles/brand-identity-kuwait.html</loc>
+    <loc>https://www.kinetixkw.com/articles/brand-identity-kuwait.html</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://kinetixkw.com/articles/ai-automation-kuwait-business.html</loc>
+    <loc>https://www.kinetixkw.com/articles/ai-automation-kuwait-business.html</loc>
     <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/articles/claude-adobe-creative-cloud.html</loc>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
