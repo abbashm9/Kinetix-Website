@@ -4,3 +4,5 @@ package-lock.json
 readpdf.mjs
 .DS_Store
 *.local
+.env
+google-service-account.json
