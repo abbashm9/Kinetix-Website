@@ -1,6 +1,16 @@
 {
   "articles": [
     {
+      "id": "chatgpt-ads-2026",
+      "slug": "chatgpt-ads-2026",
+      "title": "ChatGPT Ads in 2026: How OpenAI's New Ad Platform Works",
+      "category": "Paid Advertising",
+      "date": "June 2026",
+      "readTime": "7 min read",
+      "excerpt": "OpenAI started showing ads inside ChatGPT in 2026 — sponsored cards below the AI's answer, reaching 800M+ weekly users on the free tier. Here's how the ad platform works, what it costs, and what it means for businesses in Kuwait and the GCC.",
+      "featured": true
+    },
+    {
       "id": "claude-adobe-creative-cloud",
       "slug": "claude-adobe-creative-cloud",
       "title": "Claude × Adobe: The Creative Cloud Just Got an AI Co-Pilot",
