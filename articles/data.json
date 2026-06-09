@@ -1,6 +1,26 @@
 {
   "articles": [
     {
+      "id": "instagram-plus-2026",
+      "slug": "instagram-plus-2026",
+      "title": "Instagram Plus Is Here: What It Means for Your Business",
+      "category": "Social Media",
+      "date": "June 2026",
+      "readTime": "7 min read",
+      "excerpt": "Meta launched Instagram Plus on June 4, 2026 — $3.99/month for consumers, up to $49.99/month for businesses. From anonymous story viewing to links in organic posts, here's every feature and which plan GCC businesses should actually care about.",
+      "featured": true
+    },
+    {
+      "id": "n8n-vs-agentic-ai",
+      "slug": "n8n-vs-agentic-ai",
+      "title": "n8n vs Agentic AI: The Future of Business Automation",
+      "category": "AI & Automation",
+      "date": "June 2026",
+      "readTime": "8 min read",
+      "excerpt": "Workflow tools like n8n follow fixed rules. Agentic AI reasons, adapts, and decides. Here's how the two automation paradigms compare, when each is the right tool, and how the most powerful stacks in 2026 combine both.",
+      "featured": true
+    },
+    {
       "id": "chatgpt-ads-2026",
       "slug": "chatgpt-ads-2026",
       "title": "ChatGPT Ads in 2026: How OpenAI's New Ad Platform Works",

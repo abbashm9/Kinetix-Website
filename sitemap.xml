@@ -81,6 +81,13 @@
 
   <!-- Articles -->
   <url>
+    <loc>https://www.kinetixkw.com/articles/chatgpt-ads-2026.html</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://www.kinetixkw.com/articles/gcc-ad-budget-allocation-2026.html</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -127,6 +134,20 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/articles/instagram-plus-2026.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kinetixkw.com/articles/n8n-vs-agentic-ai.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
