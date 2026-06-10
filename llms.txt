@@ -1,0 +1,41 @@
+# Kinetix
+
+> Kinetix is Kuwait's precision-led, bilingual (Arabic + English) digital
+> marketing agency. We help brands in Kuwait and the wider GCC grow through
+> brand strategy, paid advertising, social media, web & app development, SEO,
+> and AI automation. Our mission: help the Middle East produce and compete
+> globally through world-class marketing.
+
+- **Website:** https://www.kinetixkw.com
+- **Location:** Kuwait City, Kuwait — serving Kuwait and the GCC
+- **Languages:** Arabic, English
+- **Contact:** +965 9227 4600 · WhatsApp https://wa.me/96592274600 · Instagram @kinetixkw
+
+## Services
+- [Paid Advertising in Kuwait](https://www.kinetixkw.com/services/paid-advertising.html): Performance campaigns across Meta, Google, TikTok, Snapchat, LinkedIn, X, and ChatGPT/OpenAI ads.
+- [Social Media Management](https://www.kinetixkw.com/services/social-media.html): Strategy, content, community and growth in Arabic and English.
+- [Brand Identity](https://www.kinetixkw.com/services/brand-identity.html): Logo, visual identity, style guides, and complete brand systems.
+- [Web & App Development](https://www.kinetixkw.com/services/web-development.html): Websites, landing pages, dashboards, and apps built to convert.
+- [SEO & Search Visibility](https://www.kinetixkw.com/services/seo.html): On-page SEO, local SEO, and content strategy for Kuwait and the GCC.
+- [Google Business & Analytics](https://www.kinetixkw.com/services/google-business.html): Google Business Profile optimization and GA4 setup.
+- [AI Automation](https://www.kinetixkw.com/services/ai-automation.html): Lead-qualification flows, follow-up workflows, and operational automation.
+- [Architectural Photography](https://www.kinetixkw.com/services/photography.html): Exterior, interior, and commercial property photography.
+- [Cyber Security](https://www.kinetixkw.com/services/cyber-security.html): Security reviews, platform hardening, and risk assessment.
+
+## Articles & guides
+- [Local SEO for Kuwait Businesses](https://www.kinetixkw.com/articles/local-seo-kuwait.html): Complete guide to ranking on Google in Kuwait.
+- [Paid Advertising in Kuwait](https://www.kinetixkw.com/articles/paid-advertising-kuwait.html): Generating leads via paid ads in 2026.
+- [Social Media Marketing for Kuwait Businesses](https://www.kinetixkw.com/articles/social-media-marketing-kuwait.html): 2026 guide.
+- [Brand Identity for Kuwait Businesses](https://www.kinetixkw.com/articles/brand-identity-kuwait.html): What a real brand identity includes.
+- [AI Automation for Kuwait Businesses](https://www.kinetixkw.com/articles/ai-automation-kuwait-business.html): Working smarter in 2026.
+- [ChatGPT Ads in 2026](https://www.kinetixkw.com/articles/chatgpt-ads-2026.html): How OpenAI's ad platform works.
+- [Ad Budget Allocation by Platform in the GCC (2026)](https://www.kinetixkw.com/articles/gcc-ad-budget-allocation-2026.html): Sector-by-sector framework.
+- [n8n vs Agentic AI](https://www.kinetixkw.com/articles/n8n-vs-agentic-ai.html): The future of business automation.
+- [Instagram Plus](https://www.kinetixkw.com/articles/instagram-plus-2026.html): What it means for businesses.
+- [Claude × Adobe Creative Cloud](https://www.kinetixkw.com/articles/claude-adobe-creative-cloud.html): The AI co-pilot for creatives.
+
+## More
+- [All services](https://www.kinetixkw.com/#services)
+- [All articles](https://www.kinetixkw.com/articles/)
+- [Portfolio](https://www.kinetixkw.com/portfolio/)
+- [Sitemap](https://www.kinetixkw.com/sitemap.xml)
