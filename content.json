@@ -71,10 +71,11 @@
     "items": [
       {
         "name": "Paid Advertising",
-        "desc": "Performance campaigns across Meta, TikTok, Snapchat, LinkedIn, X, and Google — built on audience planning, creative direction, and continuous optimization.",
+        "desc": "Performance campaigns across Meta, TikTok, Snapchat, LinkedIn, X, Google — and ChatGPT, OpenAI's new ad platform — built on audience planning, creative direction, and continuous optimization.",
         "tags": [
           "Meta Ads",
           "Google Ads",
+          "ChatGPT Ads",
           "TikTok",
           "Snapchat"
         ]
@@ -156,6 +157,54 @@
       }
     ]
   },
+  "work": {
+    "label": "Selected Work",
+    "headline": "Proof of",
+    "headline_em": "momentum.",
+    "desc": "A look at what we've built and grown — products shipped, brands launched, and campaigns that moved the needle for businesses across Kuwait and the region.",
+    "logo_wall_label": "Trusted by brands across Kuwait & the region",
+    "projects": [
+      {
+        "type": "Web Design & Build",
+        "name": "Business Website",
+        "outcome": "A fast, conversion-focused website built from the ground up — design, copy, and development handled end to end.",
+        "tags": ["Web Design", "Development", "SEO-Ready"],
+        "frame": "browser",
+        "badge": "Website",
+        "image": "https://placehold.co/720x480/FAFAF8/1A1A1A?text=Website+Mockup",
+        "href": "/portfolio/#web"
+      },
+      {
+        "type": "Mobile App",
+        "name": "Cross-Platform App",
+        "outcome": "A single product experience shipped to both the App Store and Google Play — consistent, polished, and built to scale.",
+        "tags": ["iOS", "Android", "UI/UX"],
+        "frame": "duo",
+        "badge": "iOS + Android",
+        "image": "https://placehold.co/300x620/0D0F14/C5E88A?text=iOS",
+        "image2": "https://placehold.co/300x620/0D0F14/C5E88A?text=Android",
+        "href": "/portfolio/#app-cross"
+      },
+      {
+        "type": "Mobile App",
+        "name": "Android App",
+        "outcome": "A native Android product designed for everyday use — clean flows, fast performance, and a distinctly on-brand interface.",
+        "tags": ["Android", "Product Design"],
+        "frame": "phone",
+        "badge": "Android",
+        "image": "https://placehold.co/300x620/0D0F14/C5E88A?text=Android",
+        "href": "/portfolio/#app-android"
+      }
+    ],
+    "logos": [
+      { "name": "Client", "src": "/images/logos/placeholder-1.svg" },
+      { "name": "Client", "src": "/images/logos/placeholder-2.svg" },
+      { "name": "Client", "src": "/images/logos/placeholder-3.svg" },
+      { "name": "Client", "src": "/images/logos/placeholder-4.svg" },
+      { "name": "Client", "src": "/images/logos/placeholder-5.svg" },
+      { "name": "Client", "src": "/images/logos/placeholder-6.svg" }
+    ]
+  },
   "stats": [
     {
       "value": "50+",
@@ -210,6 +259,18 @@
     "phone": "+965 9227 4600",
     "instagram_handle": "@kinetixkw"
   },
+  "business": {
+    "name": "Kinetix",
+    "street": "Qatar Street, Street 06, Building 08, Floor 1",
+    "locality": "Salmiya",
+    "region": "Hawalli Governorate",
+    "country": "Kuwait",
+    "phone": "+965 9227 4600",
+    "phone_e164": "+96592274600",
+    "whatsapp": "https://wa.me/96592274600",
+    "instagram": "@kinetixkw",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Kinetix%20Qatar%20Street%20Salmiya%20Kuwait"
+  },
   "footer": {
     "tagline": "We don't follow trends. We set them in motion.",
     "copyright": "© 2026 Kinetix. All rights reserved.",
@@ -217,6 +278,6 @@
     "social_tiktok": "#",
     "social_linkedin": "#",
     "social_twitter": "#",
-    "location": "Kuwait City, Kuwait"
+    "location": "Salmiya, Kuwait"
   }
 }
