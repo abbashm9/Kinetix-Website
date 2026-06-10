@@ -1095,6 +1095,10 @@ section, .section-block {
   background-color: var(--bg);
 }
 
+/* Work/Portfolio section hidden until real, client-approved content + a
+   /portfolio/ page are ready. DELETE the next line to restore it. */
+#work { display: none; }
+
 .work-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1897,7 +1901,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#work">Work</a></li>
+    <!-- <li><a href="#work">Work</a></li> hidden until portfolio ready -->
     <li><a href="#process">Process</a></li>
     <li><a href="articles/">Articles</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1944,6 +1948,7 @@ footer {
       </span>
       <span class="sb-link-arrow">→</span>
     </a>
+    <!-- Work sidebar link hidden until portfolio ready
     <a href="#work" class="sb-link">
       <span class="sb-link-num">03</span>
       <span class="sb-link-body">
@@ -1952,6 +1957,7 @@ footer {
       </span>
       <span class="sb-link-arrow">→</span>
     </a>
+    -->
     <a href="#process" class="sb-link">
       <span class="sb-link-num">04</span>
       <span class="sb-link-body">
@@ -2306,7 +2312,13 @@ footer {
   </section>
 </div>
 
-<!-- ── WORK / PORTFOLIO TEASER ── -->
+<!-- ── WORK / PORTFOLIO TEASER ──
+     TEMPORARILY HIDDEN: section uses placeholder projects + client logos and
+     links to /portfolio/ (not yet built). It is populated from content.json
+     via JS, so it is hidden with CSS (#work{display:none}) rather than removed,
+     to avoid a script error. To restore: delete the `#work{display:none}` rule
+     in the <style> block, re-enable the nav "Work" links, and swap in real
+     content in content.json once client permission is in place. -->
 <div id="work" class="work-wrap">
   <section>
     <div class="container">
@@ -2532,7 +2544,7 @@ footer {
           <ul class="footer-links">
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#work">Work</a></li>
+            <!-- <li><a href="#work">Work</a></li> hidden until portfolio ready -->
             <li><a href="#process">Process</a></li>
             <li><a href="articles/">Articles</a></li>
             <li><a href="#contact">Contact</a></li>
