@@ -261,15 +261,13 @@
   },
   "business": {
     "name": "Kinetix",
-    "street": "Qatar Street, Street 06, Building 08, Floor 1",
     "locality": "Salmiya",
     "region": "Hawalli Governorate",
     "country": "Kuwait",
     "phone": "+965 9227 4600",
     "phone_e164": "+96592274600",
     "whatsapp": "https://wa.me/96592274600",
-    "instagram": "@kinetixkw",
-    "maps": "https://www.google.com/maps/search/?api=1&query=Kinetix%20Qatar%20Street%20Salmiya%20Kuwait"
+    "instagram": "@kinetixkw"
   },
   "footer": {
     "tagline": "We don't follow trends. We set them in motion.",
