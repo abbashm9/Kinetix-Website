@@ -11,6 +11,36 @@
       "featured": true
     },
     {
+      "id": "professional-photography-kuwait",
+      "slug": "professional-photography-kuwait",
+      "title": "Architectural Photography That Does Your Best Work Justice",
+      "category": "Branding",
+      "date": "June 2026",
+      "readTime": "6 min read",
+      "excerpt": "Your portfolio is your reputation. For developers, interior designers, and architects in Kuwait, professional architectural photography is what makes your best work look as good on screen as it does in person.",
+      "featured": false
+    },
+    {
+      "id": "web-design-kuwait-that-converts",
+      "slug": "web-design-kuwait-that-converts",
+      "title": "Why Your Kuwait Business Website Isn't Bringing You Customers",
+      "category": "Web & Apps",
+      "date": "June 2026",
+      "readTime": "6 min read",
+      "excerpt": "Most Kuwait business websites look fine but don't sell. Here's what actually makes a website convert visitors into customers — backed by Google's own page-speed and mobile research — and how to fix yours.",
+      "featured": false
+    },
+    {
+      "id": "google-business-profile-kuwait",
+      "slug": "google-business-profile-kuwait",
+      "title": "How to Set Up and Optimize Your Google Business Profile in Kuwait",
+      "category": "SEO",
+      "date": "June 2026",
+      "readTime": "7 min read",
+      "excerpt": "Nearly half of all Google searches are local. This step-by-step guide shows Kuwait businesses how to set up and optimize their Google Business Profile to show up on Maps and win customers.",
+      "featured": false
+    },
+    {
       "id": "n8n-vs-agentic-ai",
       "slug": "n8n-vs-agentic-ai",
       "title": "n8n vs Agentic AI: The Future of Business Automation",

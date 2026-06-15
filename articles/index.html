@@ -311,7 +311,7 @@ body::after {
     <span class="nav-wordmark">K<span>INETIX</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="../#about">About</a></li>
+    <li><a href="/about.html">About</a></li>
     <li><a href="../#services">Services</a></li>
     <li><a href="../#process">Process</a></li>
     <li><a href="./" class="active">Articles</a></li>
@@ -333,6 +333,7 @@ body::after {
   <button class="filter-btn" data-filter="Social Media">Social Media</button>
   <button class="filter-btn" data-filter="Branding">Branding</button>
   <button class="filter-btn" data-filter="AI & Automation">AI &amp; Automation</button>
+  <button class="filter-btn" data-filter="Web & Apps">Web &amp; Apps</button>
 </div>
 
 <div class="articles-grid" id="articles-grid"></div>
@@ -358,7 +359,7 @@ body::after {
     </div>
     <div class="footer-col">
       <h4>Company</h4>
-      <a href="../#about">About</a>
+      <a href="/about.html">About</a>
       <a href="../#process">Process</a>
       <a href="./">Articles</a>
       <a href="../#contact">Contact</a>
@@ -384,6 +385,7 @@ const COVER_STYLES = {
   'Social Media':     { bg:'linear-gradient(135deg,#e8f0f8 0%,#d4e4f0 100%)', orb:'rgba(90,140,200,0.3)', icon:'📱' },
   'Branding':         { bg:'linear-gradient(135deg,#f5f0e8 0%,#ede0cc 100%)', orb:'rgba(200,160,80,0.3)', icon:'✦'  },
   'AI & Automation':  { bg:'linear-gradient(135deg,#e8eef8 0%,#d0dcf0 100%)', orb:'rgba(90,100,180,0.3)', icon:'⚡' },
+  'Web & Apps':       { bg:'linear-gradient(135deg,#e8f4ef 0%,#d4ede0 100%)', orb:'rgba(90,171,140,0.35)', icon:'💻' },
 };
 
 function renderArticles(articles) {
