@@ -6,3 +6,6 @@ readpdf.mjs
 *.local
 .env
 google-service-account.json
+
+# Unfinished — kept local, not published until ready
+portfolio/
