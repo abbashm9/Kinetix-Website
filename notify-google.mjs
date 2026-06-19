@@ -2,8 +2,10 @@
 /**
  * notify-google.mjs
  *
- * Submits new/changed pages to IndexNow (Google, Bing, Yandex).
- * Runs automatically via the git post-push hook.
+ * Submits new/changed pages to IndexNow (Bing, Yandex, Naver, Seznam).
+ * NOTE: Google does NOT participate in IndexNow — for Google, rely on the
+ *       sitemap (auto-crawled) + manual "Request Indexing" in Search Console.
+ * Run this after every push (git has no real "post-push" hook).
  *
  * Usage:
  *   node notify-google.mjs           — submits URLs changed in the last commit
@@ -76,7 +78,7 @@ async function submitToIndexNow(urls) {
     urlList: urls,
   };
 
-  // Submit to IndexNow API (hits Google, Bing, Yandex simultaneously)
+  // Submit to IndexNow API (hits Bing, Yandex, Naver, Seznam simultaneously — not Google)
   const res = await post('api.indexnow.org', '/indexnow', payload);
   const ok = res.status >= 200 && res.status < 300;
   console.log(`  ${ok ? '✓' : '✗'} IndexNow [${res.status}] — ${urls.length} URL(s) submitted`);
@@ -100,7 +102,8 @@ async function main() {
   console.log('');
 
   await submitToIndexNow(urls);
-  console.log('\n✅ Done. Pages queued for indexing on Google, Bing & Yandex.\n');
+  console.log('\n✅ Done. Pages queued for indexing on Bing, Yandex, Naver & Seznam.');
+  console.log('   (Google ignores IndexNow — use the sitemap + Search Console for Google.)\n');
 }
 
 main().catch(err => { console.error('Error:', err.message); process.exit(1); });
