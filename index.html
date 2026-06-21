@@ -2344,7 +2344,7 @@ footer {
 
       <div class="work-grid" id="work-grid">
 
-        <a href="/portfolio/#web" class="work-card reveal">
+        <a href="/#contact" class="work-card reveal">
           <div class="work-media">
             <span class="work-badge">Website</span>
             <div class="work-frame-browser">
@@ -2365,7 +2365,7 @@ footer {
           </div>
         </a>
 
-        <a href="/portfolio/#app-cross" class="work-card reveal d1">
+        <a href="/#contact" class="work-card reveal d1">
           <div class="work-media">
             <span class="work-badge">iOS + Android</span>
             <div class="work-frame-duo">
@@ -2386,7 +2386,7 @@ footer {
           </div>
         </a>
 
-        <a href="/portfolio/#app-android" class="work-card reveal d2">
+        <a href="/#contact" class="work-card reveal d2">
           <div class="work-media">
             <span class="work-badge">Android</span>
             <div class="work-frame-phone" style="width:54%; max-width:184px;"><div class="work-phone-screen"><img src="https://placehold.co/300x620/0D0F14/C5E88A?text=Android" alt="Android app screen" loading="lazy"></div></div>
@@ -2424,7 +2424,7 @@ footer {
       </div>
 
       <div class="work-cta reveal">
-        <a href="/portfolio/" class="work-cta-link">See full portfolio <span class="work-cta-arrow">→</span></a>
+        <a href="/#contact" class="work-cta-link">See full portfolio <span class="work-cta-arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -2917,7 +2917,7 @@ applyWordReveal();
         return `<div class="work-frame-phone" style="width:54%; max-width:184px;"><div class="work-phone-screen"><img src="${p.image}" alt="${p.name} screen" loading="lazy"></div></div>`;
       };
       document.getElementById('work-grid').innerHTML = d.work.projects.map((p, i) => `
-        <a href="${p.href || '/portfolio/'}" class="work-card reveal${i ? ' d'+Math.min(i,2) : ''}">
+        <a href="${p.href || '/#contact'}" class="work-card reveal${i ? ' d'+Math.min(i,2) : ''}">
           <div class="work-media">
             <span class="work-badge">${p.badge || ''}</span>
             ${frameMarkup(p)}
