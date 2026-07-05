@@ -7,8 +7,8 @@
   <title>See it in your room — AR Preview (Phase 0)</title>
   <meta name="description" content="Point your phone at the floor and place the setup in your own space, at real size. No app needed." />
 
-  <!-- Google model-viewer: free, open-source WebAR. Wraps iOS AR Quick Look + Android Scene Viewer. -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <!-- Google model-viewer: free, open-source WebAR. Self-hosted so it never depends on an external CDN being reachable. -->
+  <script type="module" src="./model-viewer.min.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -300,6 +300,8 @@
         ar-scale="auto"
         ar-placement="floor"
         camera-controls
+        loading="eager"
+        reveal="auto"
         touch-action="pan-y"
         shadow-intensity="1.1"
         shadow-softness="0.9"
@@ -316,9 +318,9 @@
           View in your room
         </button>
 
-        <div slot="poster" class="poster-fallback">
+        <div slot="poster" class="poster-fallback" id="poster">
           <div class="spinner"></div>
-          Loading 3D preview…
+          <span id="poster-text">Loading 3D preview…</span>
         </div>
       </model-viewer>
     </div>
@@ -352,14 +354,53 @@
   </div>
 
   <script>
-    // Graceful messaging if AR isn't supported on this device.
     const mv = document.getElementById('viewer');
-    mv.addEventListener('ar-status', (e) => {
-      if (e.detail.status === 'failed') {
-        console.warn('AR session failed to start.');
-      }
+    const posterText = document.getElementById('poster-text');
+    const spinner = document.querySelector('#poster .spinner');
+    let loaded = false;
+
+    // 1. Confirm the model-viewer script actually defined the custom element.
+    //    If not (e.g. blocked script), tell the user plainly instead of spinning forever.
+    if (!customElements.get('model-viewer')) {
+      customElements.whenDefined('model-viewer').catch(() => {});
+    }
+
+    // 2. Success: model finished loading.
+    mv.addEventListener('load', () => {
+      loaded = true;
+      console.log('[AR] model loaded OK');
     });
-    // Lightweight tap analytics hook (wire to real analytics later).
+
+    // 3. Failure: model-viewer reports a load/decoding error.
+    mv.addEventListener('error', (e) => {
+      loaded = true; // stop the timeout from also firing
+      showError('The 3D model could not load (' + (e.detail?.type || 'error') + ').');
+      console.error('[AR] model-viewer error:', e.detail);
+    });
+
+    // 4. Watchdog: if nothing has loaded after 20s, surface a clear message + a direct link.
+    setTimeout(() => {
+      if (loaded) return;
+      const defined = !!customElements.get('model-viewer');
+      showError(defined
+        ? 'Still loading — your connection may be slow. Try refreshing.'
+        : 'The 3D engine did not load on this device/network. Tap to open the model directly.');
+    }, 20000);
+
+    function showError(msg) {
+      if (spinner) spinner.style.display = 'none';
+      if (posterText) {
+        posterText.innerHTML = msg +
+          '<br><a href="models/table.glb" style="color:var(--amber);text-decoration:underline;">Open 3D file directly</a>';
+        posterText.style.maxWidth = '32ch';
+        posterText.style.textAlign = 'center';
+      }
+    }
+
+    // AR support / status feedback.
+    mv.addEventListener('ar-status', (e) => {
+      if (e.detail.status === 'failed') console.warn('[AR] session failed to start.');
+    });
     document.querySelector('.ar-btn')?.addEventListener('click', () => {
       console.log('[AR] "View in your room" tapped');
     });
