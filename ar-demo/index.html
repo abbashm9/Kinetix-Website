@@ -285,15 +285,17 @@
       <!--
         ═══════════════════════════════════════════════════════════════
         PHASE 0 — TEST MODEL (Abbas's downloaded "Kitchen Table" set)
-          src="models/table.glb"   ← Android / desktop 3D
-          (no ios-src → model-viewer auto-generates the USDZ for iPhone)
-        For REAL buffet models later: author in true meters, add a proper
+          src="models/table.glb"    ← Android / desktop 3D
+          ios-src="models/table.usdz" ← iPhone AR Quick Look (real file,
+             pre-generated from the GLB — do NOT rely on on-the-fly USDZ)
+        For REAL buffet models later: author in true meters, regenerate the
         .usdz, and switch ar-scale to "fixed" for genuine real-world size.
         ═══════════════════════════════════════════════════════════════
       -->
       <model-viewer
         id="viewer"
         src="models/table.glb"
+        ios-src="models/table.usdz"
         alt="3D preview of a kitchen table set — AR test model"
         ar
         ar-modes="webxr scene-viewer quick-look"
