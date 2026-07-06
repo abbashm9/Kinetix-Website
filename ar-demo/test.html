@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>AR Quick Look — diagnostic</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: -apple-system, system-ui, sans-serif;
+      background: #17110d; color: #f6ece0;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 2rem 1.25rem 4rem; gap: 1.5rem; text-align: center;
+    }
+    h1 { font-size: 1.35rem; margin: 1rem 0 0; }
+    p.sub { color: #b9a894; max-width: 34ch; line-height: 1.5; margin: 0; font-size: .95rem; }
+    .card {
+      width: 100%; max-width: 420px;
+      background: #221913; border: 1px solid #3a2b1f; border-radius: 18px;
+      padding: 1.25rem; display: flex; flex-direction: column; gap: .75rem; align-items: center;
+    }
+    .card h2 { margin: 0; font-size: 1.05rem; }
+    .card small { color: #9c8b78; line-height: 1.45; }
+    a.arlink {
+      display: inline-flex; align-items: center; gap: .5rem;
+      text-decoration: none; font-weight: 600; font-size: 1.02rem;
+      color: #1a1109; background: linear-gradient(180deg, #e2a860, #cf9445);
+      padding: .9rem 1.5rem; border-radius: 100px; margin-top: .25rem;
+    }
+    a.arlink:active { transform: translateY(1px); }
+    .num { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: #cf9445; font-weight: 700; }
+    ol { text-align: left; max-width: 420px; line-height: 1.6; color: #cbbaa6; font-size: .92rem; padding-left: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>AR Quick Look — diagnostic</h1>
+  <p class="sub">Open this page in <strong>real Safari</strong> on your iPhone. Tap each button and note what happens.</p>
+
+  <div class="card">
+    <span class="num">Test A</span>
+    <h2>Apple's official sample</h2>
+    <small>Guaranteed-good AR file, straight from Apple. If this fails too, the issue is the device/settings — not our model.</small>
+    <a class="arlink" rel="ar" href="models/apple-sample.usdz">
+      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="1" height="1" />
+      Open Apple teapot in AR
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="num">Test B</span>
+    <h2>Our buffet table</h2>
+    <small>The Kinetix model. Same launch mechanism as Test A.</small>
+    <a class="arlink" rel="ar" href="models/table.usdz">
+      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="1" height="1" />
+      Open our table in AR
+    </a>
+  </div>
+
+  <ol>
+    <li><strong>Both work</strong> → problem was the old page; the real demo is fixed.</li>
+    <li><strong>A works, B fails</strong> → our model file; I'll fix the model.</li>
+    <li><strong>Both fail the same way</strong> → your device/Safari/AR settings (e.g. Low Power Mode, an in-app browser, or a restriction). Tell me and we'll check those.</li>
+  </ol>
+</body>
+</html>
