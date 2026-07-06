@@ -190,9 +190,17 @@
     .ar-btn:active { transform: translateX(-50%) translateY(-1px); }
     .ar-btn:focus-visible { outline: 2px solid var(--amber-bright); outline-offset: 3px; }
     .ar-btn { text-decoration: none; }
-    .ar-btn svg { width: 20px; height: 20px; }
-    /* Required by AR Quick Look but must not be visible in the button. */
-    .ar-badge { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    /* Cube icon via mask — NOT an element child of the anchor (an <svg>/<img>
+       sibling to the required badge <img> breaks AR Quick Look). */
+    .ar-btn::before {
+      content: "";
+      width: 20px; height: 20px; flex: none;
+      background: currentColor;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l7 4v10l-7 4-7-4V7l7-4z'/%3E%3Cpath d='M12 3v18M5 7l7 4 7-4'/%3E%3C/svg%3E") center / contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l7 4v10l-7 4-7-4V7l7-4z'/%3E%3Cpath d='M12 3v18M5 7l7 4 7-4'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    /* The badge <img> is required by AR Quick Look but must stay invisible. */
+    .ar-btn img { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 
     .ar-msg {
       margin: 1rem auto 0;
