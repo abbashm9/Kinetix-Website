@@ -189,7 +189,10 @@
     .ar-btn:hover { transform: translateX(-50%) translateY(-3px); box-shadow: 0 16px 40px -8px rgba(207, 148, 69, 0.7), 0 2px 0 rgba(255,255,255,0.3) inset; }
     .ar-btn:active { transform: translateX(-50%) translateY(-1px); }
     .ar-btn:focus-visible { outline: 2px solid var(--amber-bright); outline-offset: 3px; }
+    .ar-btn { text-decoration: none; }
     .ar-btn svg { width: 20px; height: 20px; }
+    /* Required by AR Quick Look but must not be visible in the button. */
+    .ar-badge { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 
     .ar-msg {
       margin: 1rem auto 0;
@@ -306,15 +309,14 @@
         .usdz, and switch ar-scale to "fixed" for genuine real-world size.
         ═══════════════════════════════════════════════════════════════
       -->
+      <!-- model-viewer is used ONLY for the on-page 3D preview. AR is driven
+           entirely by the static rel="ar" link below (iOS) / Scene Viewer intent
+           (Android). model-viewer's own AR is intentionally OFF so it can't fight
+           the Quick Look session — that conflict caused the camera to flash-close. -->
       <model-viewer
         id="viewer"
         src="models/table.glb"
-        ios-src="models/table.usdz"
         alt="3D preview of a kitchen table set — AR test model"
-        ar
-        ar-modes="webxr scene-viewer quick-look"
-        ar-scale="auto"
-        ar-placement="floor"
         camera-controls
         loading="eager"
         reveal="auto"
@@ -333,15 +335,17 @@
         </div>
       </model-viewer>
 
-      <!-- Standalone AR launcher — NOT slotted into model-viewer, so it works
-           even if model-viewer's internal AR pipeline never initialises. It
-           drives Apple AR Quick Look (iOS) and Scene Viewer (Android) directly. -->
-      <button id="arBtn" type="button" class="ar-btn">
+      <!-- Native AR launcher. On iOS this is a plain rel="ar" anchor to the
+           .usdz with an <img> child — the exact mechanism Apple uses and the one
+           proven working on /ar-demo/test.html. JS only intercepts for Android
+           (Scene Viewer), in-app browsers, and desktop; iOS is left fully native. -->
+      <a id="arBtn" class="ar-btn" rel="ar" href="models/table.usdz">
+        <img class="ar-badge" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="1" height="1" />
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 3l7 4v10l-7 4-7-4V7l7-4z"/><path d="M12 3v18M5 7l7 4 7-4"/>
         </svg>
         View in your room
-      </button>
+      </a>
     </div>
     <p id="arMsg" class="ar-msg" role="status" hidden></p>
 
@@ -417,14 +421,11 @@
       }
     }
 
-    // AR support / status feedback.
-    mv.addEventListener('ar-status', (e) => {
-      if (e.detail.status === 'failed') console.warn('[AR] session failed to start.');
-    });
-    // ─── Direct AR launcher ───────────────────────────────────────────────
-    // Bypasses model-viewer's internal AR entirely for maximum reliability:
-    //   • iOS  → native AR Quick Look via <a rel="ar"> to the .usdz
-    //   • Android → Scene Viewer intent to the .glb (model-viewer as fallback)
+    // ─── AR launcher ──────────────────────────────────────────────────────
+    // #arBtn is a native <a rel="ar" href="models/table.usdz"> anchor. On iOS we
+    // let the browser handle it natively (the proven-working path from test.html)
+    // and do NOT preventDefault. For every other case we cancel the navigation
+    // and route appropriately.
     const abs = (p) => new URL(p, location.href).href;
     const ua = navigator.userAgent || '';
     const isIOS = /iPhone|iPad|iPod/.test(ua) ||
@@ -437,32 +438,22 @@
     const arNote = (msg) => { arMsg.textContent = msg; arMsg.hidden = false; };
 
     const arBtn = document.getElementById('arBtn');
-    arBtn.addEventListener('click', async () => {
+    arBtn.addEventListener('click', (e) => {
       console.log('[AR] tapped — iOS:', isIOS, 'Android:', isAndroid, 'inApp:', inApp);
       arMsg.hidden = true;
 
-      if (inApp) {
-        arNote('Open this page in Safari (iPhone) or Chrome (Android) to view in AR — in-app browsers block it. Tap ••• → "Open in Browser".');
-        return;
-      }
+      // iOS in real Safari: let the native rel="ar" anchor do its thing.
+      if (isIOS && !inApp) return;
 
-      if (isIOS) {
-        // Apple AR Quick Look: an <a rel="ar"> whose only child is an <img>.
-        const a = document.createElement('a');
-        a.setAttribute('rel', 'ar');
-        a.href = abs('models/table.usdz');
-        a.appendChild(document.createElement('img'));
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => a.remove(), 1000);
+      // Everything else: this anchor is not a valid AR target — take over.
+      e.preventDefault();
+
+      if (inApp) {
+        arNote('Open this page in Safari (iPhone) or Chrome (Android) to view in AR — in-app browsers block it. Tap the ••• menu → "Open in Browser".');
         return;
       }
 
       if (isAndroid) {
-        // Prefer model-viewer (WebXR/Scene Viewer); fall back to a raw intent.
-        try {
-          if (typeof mv.activateAR === 'function') { await mv.activateAR(); return; }
-        } catch (err) { console.warn('[AR] activateAR failed, using intent', err); }
         const glb = abs('models/table.glb');
         const intent = 'intent://arvr.google.com/scene-viewer/1.0?file=' +
           encodeURIComponent(glb) + '&mode=ar_preferred&title=Buffet%20Table' +
