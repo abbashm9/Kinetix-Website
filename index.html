@@ -2486,6 +2486,30 @@ footer {
 </section>
 
 <!-- ── CTA ── -->
+<style>
+.contact-form-wrap{max-width:560px;margin:44px auto 0;padding-top:40px;border-top:1px solid var(--dark-stroke);text-align:left;}
+.contact-form-label{text-align:center;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:24px;}
+.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.contact-field{display:flex;flex-direction:column;gap:7px;}
+.contact-field.field-full{grid-column:1 / -1;}
+.contact-field label{font-size:13px;font-weight:600;color:rgba(255,255,255,0.72);}
+.contact-field input,.contact-field textarea{font-family:var(--font-body);font-size:15px;color:#fff;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-sm);padding:13px 15px;width:100%;transition:border-color 0.2s var(--ease-out),background 0.2s,box-shadow 0.2s;}
+.contact-field input::placeholder,.contact-field textarea::placeholder{color:rgba(255,255,255,0.32);}
+.contact-field input:hover,.contact-field textarea:hover{border-color:rgba(255,255,255,0.18);}
+.contact-field input:focus,.contact-field textarea:focus{outline:none;border-color:var(--lime);background:rgba(255,255,255,0.06);box-shadow:0 0 0 3px var(--lime-dim);}
+.contact-field textarea{resize:vertical;min-height:112px;}
+.contact-hp{position:absolute!important;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
+.contact-submit{grid-column:1 / -1;margin-top:6px;width:100%;justify-content:center;border:none;cursor:pointer;font-size:15px;}
+.contact-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px var(--lime-shadow);}
+.contact-submit:active{transform:translateY(0);}
+.contact-submit:focus-visible{outline:2px solid var(--lime);outline-offset:3px;}
+.contact-submit[disabled]{opacity:0.6;cursor:progress;transform:none;box-shadow:none;}
+.contact-status{grid-column:1 / -1;font-size:14px;line-height:1.6;margin:0;text-align:center;}
+.contact-status.show{margin-top:6px;}
+.contact-status.ok{color:var(--lime);}
+.contact-status.err{color:#ff9b9b;}
+@media(max-width:560px){.contact-form{grid-template-columns:1fr;}}
+</style>
 <div id="contact" class="cta-section dark-section">
   <section>
     <div class="container">
@@ -2515,10 +2539,85 @@ footer {
         <div class="cta-contact">
           <a href="https://instagram.com/kinetixkw" id="contact-handle-link">@kinetixkw</a> on Instagram · WhatsApp <a href="https://wa.me/96592274600" id="contact-phone-link">+965 9227 4600</a>
         </div>
+
+        <div class="contact-form-wrap reveal">
+          <div class="contact-form-label">Or send us a message</div>
+          <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <input type="hidden" name="access_key" value="895805b7-b41f-4945-ad12-67c5859e7cbe">
+            <input type="hidden" name="subject" value="New enquiry from kinetixkw.com">
+            <input type="hidden" name="from_name" value="Kinetix Website">
+            <input type="hidden" name="redirect" value="https://www.kinetixkw.com/?sent=1#contact">
+            <input type="checkbox" name="botcheck" class="contact-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="contact-field">
+              <label for="cf-name">Name</label>
+              <input id="cf-name" type="text" name="name" placeholder="Your name" required autocomplete="name">
+            </div>
+            <div class="contact-field">
+              <label for="cf-phone">Phone</label>
+              <input id="cf-phone" type="tel" name="phone" placeholder="+965 …" autocomplete="tel">
+            </div>
+            <div class="contact-field field-full">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" type="email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+            <div class="contact-field field-full">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" placeholder="Tell us a bit about your project…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary contact-submit">Send Message →</button>
+            <p class="contact-status" id="cf-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 </div>
+<script>
+(function(){
+  var form=document.getElementById('contactForm');
+  if(!form)return;
+  var status=document.getElementById('cf-status');
+  var btn=form.querySelector('.contact-submit');
+  var label=btn.textContent;
+  function thankYou(){
+    status.className='contact-status show ok';
+    status.textContent='✓ Thanks — your message is on its way. We’ll get back to you shortly.';
+    if(window.gtag){gtag('event','generate_lead',{method:'contact_form'});}
+  }
+  // If we came back from the native-POST fallback (?sent=1), show the thank-you.
+  if(/[?&]sent=1(&|$)/.test(location.search)){
+    thankYou();
+    if(history.replaceState){history.replaceState({},'',location.pathname+'#contact');}
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.reportValidity())return;
+    status.className='contact-status';status.textContent='';
+    btn.disabled=true;btn.textContent='Sending…';
+    fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Accept':'application/json'},
+      body:new FormData(form)
+    }).then(function(r){return r.json();}).then(function(json){
+      if(json.success){
+        form.reset();
+        thankYou();
+      }else{
+        status.className='contact-status show err';
+        status.textContent='Something went wrong. Please WhatsApp us on +965 9227 4600 instead.';
+      }
+      btn.disabled=false;btn.textContent=label;
+    }).catch(function(){
+      // Fetch blocked (CORS/network) — fall back to a plain form POST, which
+      // Web3Forms handles server-side then redirects back with ?sent=1.
+      form.submit();
+    });
+  });
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
+    a.addEventListener('click',function(){if(window.gtag){gtag('event','generate_lead',{method:'whatsapp'});}});
+  });
+})();
+</script>
 
 <!-- ── FOOTER ── -->
 <footer>
