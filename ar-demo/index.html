@@ -191,6 +191,20 @@
     .ar-btn:focus-visible { outline: 2px solid var(--amber-bright); outline-offset: 3px; }
     .ar-btn svg { width: 20px; height: 20px; }
 
+    .ar-msg {
+      margin: 1rem auto 0;
+      max-width: 40ch;
+      text-align: center;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--amber-bright);
+      background: rgba(207, 148, 69, 0.08);
+      border: 1px solid rgba(207, 148, 69, 0.28);
+      border-radius: 14px;
+      padding: 0.85rem 1.1rem;
+    }
+
     /* Poster / loading state */
     .poster-fallback {
       display: flex;
@@ -313,19 +327,23 @@
         auto-rotate-delay="2500"
         interaction-prompt="none">
 
-        <button slot="ar-button" class="ar-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3l7 4v10l-7 4-7-4V7l7-4z"/><path d="M12 3v18M5 7l7 4 7-4"/>
-          </svg>
-          View in your room
-        </button>
-
         <div slot="poster" class="poster-fallback" id="poster">
           <div class="spinner"></div>
           <span id="poster-text">Loading 3D preview…</span>
         </div>
       </model-viewer>
+
+      <!-- Standalone AR launcher — NOT slotted into model-viewer, so it works
+           even if model-viewer's internal AR pipeline never initialises. It
+           drives Apple AR Quick Look (iOS) and Scene Viewer (Android) directly. -->
+      <button id="arBtn" type="button" class="ar-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 4v10l-7 4-7-4V7l7-4z"/><path d="M12 3v18M5 7l7 4 7-4"/>
+        </svg>
+        View in your room
+      </button>
     </div>
+    <p id="arMsg" class="ar-msg" role="status" hidden></p>
 
     <div class="steps">
       <div class="step">
@@ -403,8 +421,60 @@
     mv.addEventListener('ar-status', (e) => {
       if (e.detail.status === 'failed') console.warn('[AR] session failed to start.');
     });
-    document.querySelector('.ar-btn')?.addEventListener('click', () => {
-      console.log('[AR] "View in your room" tapped');
+    // ─── Direct AR launcher ───────────────────────────────────────────────
+    // Bypasses model-viewer's internal AR entirely for maximum reliability:
+    //   • iOS  → native AR Quick Look via <a rel="ar"> to the .usdz
+    //   • Android → Scene Viewer intent to the .glb (model-viewer as fallback)
+    const abs = (p) => new URL(p, location.href).href;
+    const ua = navigator.userAgent || '';
+    const isIOS = /iPhone|iPad|iPod/.test(ua) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/.test(ua);
+    // In-app browsers (Instagram/Facebook/TikTok/Gmail webviews) cannot launch AR.
+    const inApp = /(FBAN|FBAV|Instagram|Line|TikTok|GSA|; wv\))/.test(ua);
+
+    const arMsg = document.getElementById('arMsg');
+    const arNote = (msg) => { arMsg.textContent = msg; arMsg.hidden = false; };
+
+    const arBtn = document.getElementById('arBtn');
+    arBtn.addEventListener('click', async () => {
+      console.log('[AR] tapped — iOS:', isIOS, 'Android:', isAndroid, 'inApp:', inApp);
+      arMsg.hidden = true;
+
+      if (inApp) {
+        arNote('Open this page in Safari (iPhone) or Chrome (Android) to view in AR — in-app browsers block it. Tap ••• → "Open in Browser".');
+        return;
+      }
+
+      if (isIOS) {
+        // Apple AR Quick Look: an <a rel="ar"> whose only child is an <img>.
+        const a = document.createElement('a');
+        a.setAttribute('rel', 'ar');
+        a.href = abs('models/table.usdz');
+        a.appendChild(document.createElement('img'));
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => a.remove(), 1000);
+        return;
+      }
+
+      if (isAndroid) {
+        // Prefer model-viewer (WebXR/Scene Viewer); fall back to a raw intent.
+        try {
+          if (typeof mv.activateAR === 'function') { await mv.activateAR(); return; }
+        } catch (err) { console.warn('[AR] activateAR failed, using intent', err); }
+        const glb = abs('models/table.glb');
+        const intent = 'intent://arvr.google.com/scene-viewer/1.0?file=' +
+          encodeURIComponent(glb) + '&mode=ar_preferred&title=Buffet%20Table' +
+          '#Intent;scheme=https;package=com.google.android.googlequicksearchbox;' +
+          'action=android.intent.action.VIEW;S.browser_fallback_url=' +
+          encodeURIComponent(location.href) + ';end;';
+        location.href = intent;
+        return;
+      }
+
+      // Desktop: no AR — nudge to open on a phone.
+      arNote('AR opens on a phone. On this computer, drag the preview above to spin the 3D model. Open this page on your iPhone or Android to place it in your room.');
     });
   </script>
 </body>
