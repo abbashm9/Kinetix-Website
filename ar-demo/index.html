@@ -157,9 +157,16 @@
       opacity: 0;
       animation: rise 1.1s var(--ease) 0.45s forwards;
     }
+    /* display:block + min-height are critical: until the model-viewer script
+       upgrades the custom element it is an inline unknown tag that IGNORES
+       height, collapsing the stage and letting the AR button overlap the
+       poster. Reserving the box up-front keeps the layout stable while the
+       935KB script + model load on slow connections. */
     model-viewer {
+      display: block;
       width: 100%;
       height: min(62vh, 560px);
+      min-height: 340px;
       --poster-color: transparent;
       background: transparent;
     }
