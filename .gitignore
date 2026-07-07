@@ -9,3 +9,4 @@ google-service-account.json
 
 # Unfinished — kept local, not published until ready
 portfolio/
+ar-demo/models/*.bak

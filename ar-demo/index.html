@@ -8,7 +8,12 @@
   <meta name="description" content="Point your phone at the floor and place the setup in your own space, at real size. No app needed." />
 
   <!-- Google model-viewer: free, open-source WebAR. Self-hosted so it never depends on an external CDN being reachable. -->
-  <script type="module" src="./model-viewer.min.js"></script>
+  <!-- Preload the engine + model in parallel from the first byte so the GLB
+       isn't waiting for the script to parse before it starts downloading
+       (root-absolute paths so they resolve with or without a trailing slash). -->
+  <link rel="modulepreload" href="/ar-demo/model-viewer.min.js" />
+  <link rel="preload" href="/ar-demo/models/table.glb" as="fetch" type="model/gltf-binary" crossorigin="anonymous" />
+  <script type="module" src="/ar-demo/model-viewer.min.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -414,14 +419,16 @@
       console.error('[AR] model-viewer error:', e.detail);
     });
 
-    // 4. Watchdog: if nothing has loaded after 20s, surface a clear message + a direct link.
+    // 4. Watchdog: only surface a message after a long grace period (45s) so a
+    //    merely-slow mobile connection doesn't trigger a false "failed" error
+    //    while the engine + model are still legitimately downloading.
     setTimeout(() => {
       if (loaded) return;
       const defined = !!customElements.get('model-viewer');
       showError(defined
-        ? 'Still loading — your connection may be slow. Try refreshing.'
-        : 'The 3D engine did not load on this device/network. Tap to open the model directly.');
-    }, 20000);
+        ? 'Still loading — your connection looks slow. Give it a moment, or tap refresh.'
+        : 'Taking longer than usual on this network. Keep waiting a moment, or tap below to open the model directly.');
+    }, 45000);
 
     function showError(msg) {
       if (spinner) spinner.style.display = 'none';
