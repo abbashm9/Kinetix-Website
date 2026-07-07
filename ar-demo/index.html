@@ -323,7 +323,7 @@
            the Quick Look session — that conflict caused the camera to flash-close. -->
       <model-viewer
         id="viewer"
-        src="models/table.glb"
+        src="/ar-demo/models/table.glb"
         alt="3D preview of a kitchen table set — AR test model"
         camera-controls
         loading="eager"
@@ -347,7 +347,7 @@
            .usdz with an <img> child — the exact mechanism Apple uses and the one
            proven working on /ar-demo/test.html. JS only intercepts for Android
            (Scene Viewer), in-app browsers, and desktop; iOS is left fully native. -->
-      <a id="arBtn" class="ar-btn" rel="ar" href="models/table.usdz?v=2">
+      <a id="arBtn" class="ar-btn" rel="ar" href="/ar-demo/models/table.usdz">
         <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="1" height="1" />
         View in your room
       </a>
@@ -420,7 +420,7 @@
       if (spinner) spinner.style.display = 'none';
       if (posterText) {
         posterText.innerHTML = msg +
-          '<br><a href="models/table.glb" style="color:var(--amber);text-decoration:underline;">Open 3D file directly</a>';
+          '<br><a href="/ar-demo/models/table.glb" style="color:var(--amber);text-decoration:underline;">Open 3D file directly</a>';
         posterText.style.maxWidth = '32ch';
         posterText.style.textAlign = 'center';
       }
@@ -459,7 +459,7 @@
       }
 
       if (isAndroid) {
-        const glb = abs('models/table.glb');
+        const glb = abs('/ar-demo/models/table.glb');
         const intent = 'intent://arvr.google.com/scene-viewer/1.0?file=' +
           encodeURIComponent(glb) + '&mode=ar_preferred&title=Buffet%20Table' +
           '#Intent;scheme=https;package=com.google.android.googlequicksearchbox;' +
