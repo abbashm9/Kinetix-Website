@@ -165,44 +165,71 @@
     "logo_wall_label": "Trusted by brands across Kuwait & the region",
     "projects": [
       {
-        "type": "Web Design & Build",
-        "name": "Business Website",
-        "outcome": "A fast, conversion-focused website built from the ground up — design, copy, and development handled end to end.",
-        "tags": ["Web Design", "Development", "SEO-Ready"],
-        "frame": "browser",
-        "badge": "Website",
-        "image": "https://placehold.co/720x480/FAFAF8/1A1A1A?text=Website+Mockup",
-        "href": "/portfolio/#web"
+        "kicker": "Case Study — Full Service",
+        "status": "Ongoing",
+        "name": "Al-Jadad Center",
+        "scope": [
+          "Brand Identity",
+          "Website",
+          "Social Media",
+          "Paid Ads"
+        ],
+        "desc": "A psychotherapy & couples-therapy center in Kuwait. Kinetix built the brand identity from the ground up, designed and developed the website, and now runs the center’s social media content and paid campaigns — one partner across the whole journey.",
+        "images": [
+          "/images/work/aljadad-billboard.jpg",
+          "/images/work/aljadad-social.jpg"
+        ],
+        "site": {
+          "url": "https://aljadad.com",
+          "label": "aljadad.com",
+          "image": "/images/work/aljadad-site.jpg"
+        },
+        "href": "/portfolio/aljadad.html",
+        "cta": "Read the case study"
       },
       {
-        "type": "Mobile App",
-        "name": "Cross-Platform App",
-        "outcome": "A single product experience shipped to both the App Store and Google Play — consistent, polished, and built to scale.",
-        "tags": ["iOS", "Android", "UI/UX"],
-        "frame": "duo",
-        "badge": "iOS + Android",
-        "image": "https://placehold.co/300x620/0D0F14/C5E88A?text=iOS",
-        "image2": "https://placehold.co/300x620/0D0F14/C5E88A?text=Android",
-        "href": "/portfolio/#app-cross"
-      },
-      {
-        "type": "Mobile App",
-        "name": "Android App",
-        "outcome": "A native Android product designed for everyday use — clean flows, fast performance, and a distinctly on-brand interface.",
-        "tags": ["Android", "Product Design"],
-        "frame": "phone",
-        "badge": "Android",
-        "image": "https://placehold.co/300x620/0D0F14/C5E88A?text=Android",
-        "href": "/portfolio/#app-android"
+        "kicker": "Case Study — Brand Identity",
+        "name": "Roselle Loungewear",
+        "scope": [
+          "Logo & Visual System",
+          "Packaging",
+          "Retail Applications"
+        ],
+        "desc": "A Kuwaiti loungewear label with a bilingual identity — logotype, five-petal mark, palette, packaging, and retail applications designed to sit comfortably beside the region’s most polished retail brands.",
+        "images": [
+          "/images/work/roselle-storefront.jpg",
+          "/images/work/roselle-packaging.jpg",
+          "/images/work/roselle-signage.jpg"
+        ],
+        "href": "/portfolio/roselle.html",
+        "cta": "Read the case study"
       }
     ],
     "logos": [
-      { "name": "Client", "src": "/images/logos/placeholder-1.svg" },
-      { "name": "Client", "src": "/images/logos/placeholder-2.svg" },
-      { "name": "Client", "src": "/images/logos/placeholder-3.svg" },
-      { "name": "Client", "src": "/images/logos/placeholder-4.svg" },
-      { "name": "Client", "src": "/images/logos/placeholder-5.svg" },
-      { "name": "Client", "src": "/images/logos/placeholder-6.svg" }
+      {
+        "name": "Client",
+        "src": "/images/logos/placeholder-1.svg"
+      },
+      {
+        "name": "Client",
+        "src": "/images/logos/placeholder-2.svg"
+      },
+      {
+        "name": "Client",
+        "src": "/images/logos/placeholder-3.svg"
+      },
+      {
+        "name": "Client",
+        "src": "/images/logos/placeholder-4.svg"
+      },
+      {
+        "name": "Client",
+        "src": "/images/logos/placeholder-5.svg"
+      },
+      {
+        "name": "Client",
+        "src": "/images/logos/placeholder-6.svg"
+      }
     ]
   },
   "stats": [
