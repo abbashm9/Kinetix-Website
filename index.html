@@ -2201,8 +2201,8 @@ setTimeout(function () {
   gl.useProgram(prog);
 
   var isMobile = window.innerWidth < 860;
-  var COLS = isMobile ? 90 : 170;
-  var ROWS = isMobile ? 55 : 95;
+  var COLS = isMobile ? 90 : 120;
+  var ROWS = isMobile ? 55 : 70;
   var count = 0;
   var buf = gl.createBuffer();
   function fillGrid() {
@@ -2232,7 +2232,7 @@ setTimeout(function () {
   gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
   gl.clearColor(0, 0, 0, 0);
 
-  var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
   function resize() {
     var w = canvas.clientWidth, h = canvas.clientHeight;
     canvas.width = Math.round(w * dpr);
@@ -2271,9 +2271,9 @@ setTimeout(function () {
   function frame(now) {
     if (running && inView) {
       var dt = now - prev;
-      if (warm > 60 && dt < 250 && quality > -1) { /* ignore warmup + tab-switch gaps */
+      if (warm > 30 && dt < 250 && quality > -1) { /* ignore warmup + tab-switch gaps */
         accum += dt; samples++;
-        if (samples >= 90) {
+        if (samples >= 45) {
           if (accum / samples > 24) stepDown(); /* sustained < ~42fps */
           accum = 0; samples = 0;
         }
@@ -2884,7 +2884,7 @@ function initLiquid() {
     '  vec2 uv = (vUv - 0.5) * 0.97 + 0.5;', /* slight over-zoom hides warp overshoot */
     '  float t = uTime;',
     '  vec2 warp = vec2(fbm(uv * 2.2 + t * 0.055), fbm(uv * 2.2 + 13.7 - t * 0.05)) - 0.5;',
-    '  uv += warp * 0.016;',
+    '  uv += warp * 0.007;',
     '  uv.y += sin(uv.x * 3.14159) * uVel;',
     '  uv.x += sin(uv.y * 6.2832) * uVel * 0.18;',
     '  vec2 asp = vec2(uRes.x / uRes.y, 1.0);',
@@ -2893,10 +2893,10 @@ function initLiquid() {
     '  uv += (dm / max(dd, 0.001)) * exp(-dd * dd * 16.0) * uMStr * 0.03 * sin(t * 3.2 - dd * 12.0);',
     '  float n = fbm(uv * 3.1 + t * 0.03);',
     '  vec2 disp = vec2(n, fbm(uv * 3.1 + 4.2 - t * 0.03)) - 0.5;',
-    '  vec4 a = texture2D(uT0, cover(uv + disp * uProg * 0.55, uSz0));',
-    '  vec4 b = texture2D(uT1, cover(uv - disp * (1.0 - uProg) * 0.55, uSz1));',
+    '  vec4 a = texture2D(uT0, cover(uv + disp * uProg * 0.22, uSz0));',
+    '  vec4 b = texture2D(uT1, cover(uv - disp * (1.0 - uProg) * 0.22, uSz1));',
     '  float act = 1.0 - abs(uProg * 2.0 - 1.0);', /* noise edge only mid-transition so idle is pixel-clean */
-    '  float m = smoothstep(0.12, 0.88, uProg + (n - 0.5) * 0.45 * act);',
+    '  float m = smoothstep(0.12, 0.88, uProg + (n - 0.5) * 0.28 * act);',
     '  gl_FragColor = mix(a, b, m);',
     '}'
   ].join('\n');
@@ -2929,23 +2929,40 @@ function initLiquid() {
 
   var texs = [], sizes = [], loadedTex = [], from = 0, to = 0, p = 1, pending = -1, started = false;
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-  urls.forEach(function (src, i) {
+  /* Sequential lazy loading: don't compete with initial page load. Textures
+     start loading only when the user nears the chapters, one at a time, with
+     async decode + a yielded upload so no single long task hits the main thread. */
+  function loadTex(i) {
+    if (dead || i >= urls.length) return;
     var img = new Image();
-    img.onload = function () {
+    function upload() {
       if (dead) return;
-      var tx = gl.createTexture();
-      gl.bindTexture(gl.TEXTURE_2D, tx);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, img);
-      texs[i] = tx; sizes[i] = [img.naturalWidth, img.naturalHeight]; loadedTex[i] = true;
-      if (i === 0 && !started) start();
-      if (pending === i) { var pi = pending; pending = -1; go(pi); }
+      setTimeout(function () {
+        if (dead) return;
+        var tx = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, tx);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, img);
+        texs[i] = tx; sizes[i] = [img.naturalWidth, img.naturalHeight]; loadedTex[i] = true;
+        if (i === 0 && !started) start();
+        if (pending === i) { var pi = pending; pending = -1; go(pi); }
+        loadTex(i + 1);
+      }, 40);
+    }
+    img.onload = function () {
+      if (img.decode) img.decode().catch(function () {}).then(upload);
+      else upload();
     };
-    img.src = src;
-  });
+    img.onerror = function () { loadTex(i + 1); };
+    img.src = urls[i];
+  }
+  var lazyIO = new IntersectionObserver(function (en) {
+    if (en[0].isIntersecting) { lazyIO.disconnect(); loadTex(0); }
+  }, { rootMargin: '150% 0px' });
+  lazyIO.observe(stage);
 
   function go(idx) {
     if (dead || idx === to || idx < 0 || idx >= urls.length) return;
