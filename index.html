@@ -832,6 +832,14 @@ html.js-ready .reveal.d4 { transition-delay: 0.32s; }
 .ch-bg.on .ch-slat:nth-child(4) .ch-slat-in { transition-delay: 0.18s; }
 .ch-bg.on .ch-slat:nth-child(5) .ch-slat-in { transition-delay: 0.24s; }
 .ch-bg.was .ch-slat-in { transform: translateX(0); transition: none; }
+
+/* Liquid stage: WebGL canvas supersedes the CSS slat crossfade on real GPUs */
+.ch-liquid {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0; transition: opacity 1.1s var(--ease-out);
+}
+.liquid-on .ch-liquid { opacity: 1; }
+.liquid-on .ch-bgs { opacity: 0; transition: opacity 0.4s linear 0.5s; }
 .ch-overlay {
   position: absolute; inset: 0; z-index: 3; pointer-events: none;
   background:
@@ -2403,6 +2411,7 @@ function bindChapters() {
       if (dots[i]) dots[i].classList.toggle('on', i === idx);
     }
     if (numEl) numEl.textContent = '0' + (idx + 1);
+    if (window.__liquidGo) window.__liquidGo(idx);
   }
   function update() {
     ticking = false;
@@ -2826,12 +2835,202 @@ var servicesFallback = [
   { name: 'Cyber Security', desc: 'Website security reviews, protection recommendations, access and account security guidance, platform hardening, and risk awareness for businesses operating online.', tags: ['Security Reviews','Platform Hardening','Risk Assessment'] }
 ];
 
+/* ══ LIQUID CHAPTER STAGE — WebGL displacement engine ══
+   Supersedes the CSS slat crossfade on machines with a real GPU: chapter
+   images melt into each other, breathe with noise, bend with scroll
+   velocity, and ripple around the cursor. Any failure (no GL, software
+   renderer, shader error, sustained low fps) falls back to the untouched
+   CSS pipeline, which setActive keeps driving in parallel. */
+function initLiquid() {
+  if (reduced || docEl.classList.contains('low-gfx')) return;
+  var stage = document.querySelector('.chapters-stage');
+  var bgsEl = document.getElementById('chBgs');
+  if (!stage || !bgsEl) return;
+  var urls = chapterOrder.map(function (s) { return imgSrc(chapterImgs[s]); });
+
+  var canvas = document.createElement('canvas');
+  canvas.className = 'ch-liquid';
+  canvas.setAttribute('aria-hidden', 'true');
+  bgsEl.parentNode.insertBefore(canvas, bgsEl.nextSibling);
+  var dead = false;
+  function bail() {
+    dead = true;
+    if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+    stage.classList.remove('liquid-on');
+    window.__liquidGo = null;
+  }
+  var gl = canvas.getContext('webgl', { alpha: false, antialias: false });
+  if (!gl) return bail();
+  var dbg = gl.getExtension('WEBGL_debug_renderer_info');
+  var rn = dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : '';
+  if (/swiftshader|llvmpipe|softpipe|software|basic render/i.test(rn)) return bail();
+
+  var vsSrc = 'attribute vec2 aP; varying vec2 vUv; void main(){ vUv = aP * 0.5 + 0.5; gl_Position = vec4(aP, 0.0, 1.0); }';
+  var fsSrc = [
+    'precision mediump float;',
+    'varying vec2 vUv;',
+    'uniform sampler2D uT0; uniform sampler2D uT1;',
+    'uniform vec2 uRes; uniform vec2 uSz0; uniform vec2 uSz1; uniform vec2 uMouse;',
+    'uniform float uProg; uniform float uTime; uniform float uVel; uniform float uMStr;',
+    'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }',
+    'float noise(vec2 p){ vec2 i = floor(p); vec2 f = fract(p); f = f * f * (3.0 - 2.0 * f);',
+    '  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y); }',
+    'float fbm(vec2 p){ return noise(p) * 0.62 + noise(p * 2.3 + 5.2) * 0.26 + noise(p * 5.1 + 1.7) * 0.12; }',
+    'vec2 cover(vec2 uv, vec2 img){',
+    '  float sr = uRes.x / uRes.y; float ir = img.x / img.y;',
+    '  vec2 s = sr > ir ? vec2(1.0, ir / sr) : vec2(sr / ir, 1.0);',
+    '  return (uv - 0.5) * s + 0.5; }',
+    'void main(){',
+    '  vec2 uv = (vUv - 0.5) * 0.97 + 0.5;', /* slight over-zoom hides warp overshoot */
+    '  float t = uTime;',
+    '  vec2 warp = vec2(fbm(uv * 2.2 + t * 0.055), fbm(uv * 2.2 + 13.7 - t * 0.05)) - 0.5;',
+    '  uv += warp * 0.016;',
+    '  uv.y += sin(uv.x * 3.14159) * uVel;',
+    '  uv.x += sin(uv.y * 6.2832) * uVel * 0.18;',
+    '  vec2 asp = vec2(uRes.x / uRes.y, 1.0);',
+    '  vec2 dm = (uv - uMouse) * asp;',
+    '  float dd = length(dm);',
+    '  uv += (dm / max(dd, 0.001)) * exp(-dd * dd * 16.0) * uMStr * 0.03 * sin(t * 3.2 - dd * 12.0);',
+    '  float n = fbm(uv * 3.1 + t * 0.03);',
+    '  vec2 disp = vec2(n, fbm(uv * 3.1 + 4.2 - t * 0.03)) - 0.5;',
+    '  vec4 a = texture2D(uT0, cover(uv + disp * uProg * 0.55, uSz0));',
+    '  vec4 b = texture2D(uT1, cover(uv - disp * (1.0 - uProg) * 0.55, uSz1));',
+    '  float act = 1.0 - abs(uProg * 2.0 - 1.0);', /* noise edge only mid-transition so idle is pixel-clean */
+    '  float m = smoothstep(0.12, 0.88, uProg + (n - 0.5) * 0.45 * act);',
+    '  gl_FragColor = mix(a, b, m);',
+    '}'
+  ].join('\n');
+
+  function sh(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+  }
+  var vs = sh(gl.VERTEX_SHADER, vsSrc), fs = sh(gl.FRAGMENT_SHADER, fsSrc);
+  if (!vs || !fs) return bail();
+  var pg = gl.createProgram();
+  gl.attachShader(pg, vs); gl.attachShader(pg, fs); gl.linkProgram(pg);
+  if (!gl.getProgramParameter(pg, gl.LINK_STATUS)) return bail();
+  gl.useProgram(pg);
+
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  var aP = gl.getAttribLocation(pg, 'aP');
+  gl.enableVertexAttribArray(aP);
+  gl.vertexAttribPointer(aP, 2, gl.FLOAT, false, 0, 0);
+
+  var u = {};
+  ['uT0','uT1','uRes','uSz0','uSz1','uMouse','uProg','uTime','uVel','uMStr'].forEach(function (nm) {
+    u[nm] = gl.getUniformLocation(pg, nm);
+  });
+  gl.uniform1i(u.uT0, 0);
+  gl.uniform1i(u.uT1, 1);
+
+  var texs = [], sizes = [], loadedTex = [], from = 0, to = 0, p = 1, pending = -1, started = false;
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  urls.forEach(function (src, i) {
+    var img = new Image();
+    img.onload = function () {
+      if (dead) return;
+      var tx = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tx);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, img);
+      texs[i] = tx; sizes[i] = [img.naturalWidth, img.naturalHeight]; loadedTex[i] = true;
+      if (i === 0 && !started) start();
+      if (pending === i) { var pi = pending; pending = -1; go(pi); }
+    };
+    img.src = src;
+  });
+
+  function go(idx) {
+    if (dead || idx === to || idx < 0 || idx >= urls.length) return;
+    if (!loadedTex[idx]) { pending = idx; return; }
+    from = to; to = idx; p = 0;
+  }
+  window.__liquidGo = go;
+
+  /* cursor + scroll-velocity state */
+  var mx = 0.5, my = 0.5, tmx = 0.5, tmy = 0.5, mstr = 0, tstr = 0;
+  if (finePointer) {
+    stage.addEventListener('mousemove', function (e) {
+      var r = stage.getBoundingClientRect();
+      var nx = (e.clientX - r.left) / r.width;
+      var ny = 1 - (e.clientY - r.top) / r.height;
+      tstr = Math.min(1, tstr + Math.abs(nx - tmx) * 6 + Math.abs(ny - tmy) * 6);
+      tmx = nx; tmy = ny;
+    }, { passive: true });
+  }
+  var lastY = window.scrollY, vel = 0;
+
+  var inView = false;
+  new IntersectionObserver(function (en) { inView = en[0].isIntersecting; }).observe(stage);
+  var dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+  function resize() {
+    canvas.width = Math.round(stage.clientWidth * dpr);
+    canvas.height = Math.round(stage.clientHeight * dpr);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  window.addEventListener('resize', resize, { passive: true });
+
+  var warm = 0, accum = 0, samples = 0, prev = 0, t0 = 0;
+  function start() {
+    started = true;
+    resize();
+    stage.classList.add('liquid-on');
+    t0 = prev = performance.now();
+    requestAnimationFrame(frame);
+  }
+  function frame(now) {
+    if (dead) return;
+    var dt = now - prev; prev = now;
+    if (inView && !document.hidden) {
+      /* governor: sustained low fps → drop dpr, then hand back to CSS pipeline */
+      if (warm > 40 && dt < 250) {
+        accum += dt; samples++;
+        if (samples >= 90) {
+          if (accum / samples > 26) {
+            if (dpr > 1) { dpr = 1; resize(); } else return bail();
+          }
+          accum = 0; samples = 0;
+        }
+      } else warm++;
+      var y = window.scrollY;
+      vel += (Math.max(-14, Math.min(14, y - lastY)) * 0.0022 - vel) * 0.075;
+      lastY = y;
+      mx += (tmx - mx) * 0.06; my += (tmy - my) * 0.06;
+      tstr *= 0.94; mstr += (tstr - mstr) * 0.08;
+      if (p < 1) p = Math.min(1, p + dt / 1400);
+      var pe = 1 - Math.pow(1 - p, 3);
+      gl.uniform1f(u.uTime, (now - t0) / 1000);
+      gl.uniform1f(u.uProg, pe);
+      gl.uniform1f(u.uVel, vel);
+      gl.uniform1f(u.uMStr, mstr);
+      gl.uniform2f(u.uMouse, mx, my);
+      gl.uniform2f(u.uRes, canvas.width, canvas.height);
+      gl.uniform2f(u.uSz0, sizes[from][0], sizes[from][1]);
+      gl.uniform2f(u.uSz1, sizes[to][0], sizes[to][1]);
+      gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, texs[from]);
+      gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, texs[to]);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    } else {
+      lastY = window.scrollY;
+    }
+    requestAnimationFrame(frame);
+  }
+}
+
 hydrate().then(function () {
   bindReveals();
   bindChapters();
   bindTilt();
   bindScrollFX();
   bindFooterLines();
+  initLiquid();
   if (hasGsap) ScrollTrigger.refresh();
 });
 })();
