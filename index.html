@@ -1379,6 +1379,16 @@ footer { position: relative; background: #07080B; border-top: 1px solid var(--w-
   .ch-bg { transition: opacity 0.01ms; }
   .ch-panel { transition: none; }
 }
+
+/* ═══ LOW-GFX (software-rendered GPU): strip compositing-heavy effects ═══ */
+.low-gfx .nav.scrolled {
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  background: rgba(10,11,15,0.95);
+}
+.low-gfx .hero-badge, .low-gfx .sidebar-backdrop, .low-gfx .ch-tags i, .low-gfx .tag {
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.low-gfx .orbit, .low-gfx .shard-set, .low-gfx .shard { animation: none; }
 </style>
   <script src="/analytics.js" defer></script>
 <script type="application/ld+json">
@@ -2087,6 +2097,16 @@ setTimeout(function () {
   var gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'high-performance' });
   if (!gl) { canvas.style.display = 'none'; return; }
 
+  /* CPU-rendered WebGL (SwiftShader/llvmpipe) can't sustain the particle field —
+     bail immediately and strip blur-heavy CSS via .low-gfx */
+  var dbgInfo = gl.getExtension('WEBGL_debug_renderer_info');
+  var rendererName = dbgInfo ? String(gl.getParameter(dbgInfo.UNMASKED_RENDERER_WEBGL)) : '';
+  if (/swiftshader|llvmpipe|softpipe|software|basic render/i.test(rendererName)) {
+    canvas.style.display = 'none';
+    docEl.classList.add('low-gfx');
+    return;
+  }
+
   var NOISE = [
     'vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}',
     'vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}',
@@ -2231,10 +2251,11 @@ setTimeout(function () {
 
   /* Quality governor: if real frame times sag on this machine, step down —
      full → dpr 1 → half particle density. Never steps back up (avoids flicker). */
-  var quality = 2, warm = 0, accum = 0, samples = 0;
+  var quality = 2, warm = 0, accum = 0, samples = 0, frozen = false;
   function stepDown() {
     if (quality === 2) { dpr = 1; resize(); }
     else if (quality === 1) { ROWS = Math.max(28, Math.round(ROWS / 2)); fillGrid(); }
+    else { frozen = true; docEl.classList.add('low-gfx'); } /* still slow at min quality: freeze on last frame */
     quality--;
   }
   var start = performance.now();
@@ -2242,7 +2263,7 @@ setTimeout(function () {
   function frame(now) {
     if (running && inView) {
       var dt = now - prev;
-      if (warm > 60 && dt < 250 && quality > 0) { /* ignore warmup + tab-switch gaps */
+      if (warm > 60 && dt < 250 && quality > -1) { /* ignore warmup + tab-switch gaps */
         accum += dt; samples++;
         if (samples >= 90) {
           if (accum / samples > 24) stepDown(); /* sustained < ~42fps */
@@ -2257,7 +2278,7 @@ setTimeout(function () {
       gl.drawArrays(gl.POINTS, 0, count);
     }
     prev = now;
-    if (!reduced) requestAnimationFrame(frame);
+    if (!reduced && !frozen) requestAnimationFrame(frame);
   }
   if (reduced) {
     gl.uniform1f(uTime, 12);
