@@ -1397,6 +1397,9 @@ footer { position: relative; background: #07080B; border-top: 1px solid var(--w-
   -webkit-backdrop-filter: none; backdrop-filter: none;
 }
 .low-gfx .orbit, .low-gfx .shard-set, .low-gfx .shard { animation: none; }
+
+/* Attention swarm owns the hero: retire the orbital shard decoration */
+.swarm-on .orbit, .swarm-on .h3d { display: none; }
 </style>
   <script src="/analytics.js" defer></script>
 <script type="application/ld+json">
@@ -2098,15 +2101,17 @@ setTimeout(function () {
   });
 }, 2600);
 
-/* ══ WEBGL HERO — kinetic particle terrain ══ */
+/* ══ WEBGL HERO — ATTENTION SWARM ══
+   Thousands of glowing particles drift as chaos, obey the cursor (vortex +
+   pull), and periodically condense into brand shapes (K mark → growth arrow
+   → rising bars) before dissolving back. The metaphor is the pitch: attention
+   is chaotic — Kinetix directs it into form. CPU-simulated into a dynamic
+   buffer; same software-GL bail + quality governor as the old terrain. */
 (function () {
   var canvas = document.getElementById('webgl-hero');
   if (!canvas) return;
   var gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'high-performance' });
   if (!gl) { canvas.style.display = 'none'; return; }
-
-  /* CPU-rendered WebGL (SwiftShader/llvmpipe) can't sustain the particle field —
-     bail immediately and strip blur-heavy CSS via .low-gfx */
   var dbgInfo = gl.getExtension('WEBGL_debug_renderer_info');
   var rendererName = dbgInfo ? String(gl.getParameter(dbgInfo.UNMASKED_RENDERER_WEBGL)) : '';
   if (/swiftshader|llvmpipe|softpipe|software|basic render/i.test(rendererName)) {
@@ -2114,86 +2119,39 @@ setTimeout(function () {
     docEl.classList.add('low-gfx');
     return;
   }
-
-  var NOISE = [
-    'vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}',
-    'vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}',
-    'vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}',
-    'vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}',
-    'float snoise(vec3 v){',
-    'const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);',
-    'vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);',
-    'vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);',
-    'vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;',
-    'i=mod289(i);',
-    'vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));',
-    'float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;',
-    'vec4 j=p-49.0*floor(p*ns.z*ns.z);',
-    'vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);',
-    'vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);',
-    'vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);',
-    'vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));',
-    'vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;',
-    'vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);',
-    'vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));',
-    'p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;',
-    'vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;',
-    'return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}'
-  ].join('\n');
+  docEl.classList.add('swarm-on');
 
   var vsSrc = [
     'precision mediump float;',
-    'attribute vec2 aPos;', // x: -1..1 spread, y: 0(near)..1(far)
-    'uniform float uTime; uniform vec2 uMouse; uniform float uAspect; uniform float uDpr;',
-    'varying float vGlow; varying float vFar;',
-    NOISE,
+    'attribute vec2 aPos; attribute float aSeed;',
+    'uniform float uAspect; uniform float uDpr; uniform float uTime;',
+    'varying float vSeed; varying float vTw;',
     'void main(){',
-    '  float r = aPos.y;',
-    '  float wx = aPos.x * 3.4;',
-    '  float wz = r * 5.0;',
-    '  float t = uTime * 0.14;',
-    '  float h = snoise(vec3(wx*0.42, wz*0.5 - t*2.2, t*0.6)) * 0.62',
-    '          + snoise(vec3(wx*1.35, wz*1.5 - t*4.0, t)) * 0.16;',
-    // screen-space base position (pseudo-perspective landscape)
-    '  float spread = mix(1.75, 0.62, r);',
-    '  float sx = aPos.x * spread;',
-    '  float sy = mix(-1.12, 0.42, pow(r, 0.78));',
-    '  float amp = mix(0.34, 0.05, r);',
-    // mouse ripple in screen space
-    '  vec2 base = vec2(sx, sy);',
-    '  float d = distance(base * vec2(uAspect, 1.0), uMouse * vec2(uAspect, 1.0));',
-    '  h += exp(-d*d*7.0) * 0.9 * sin(uTime*2.6 - d*9.0);',
-    '  float y = sy + h * amp;',
-    '  gl_Position = vec4(sx, y, 0.0, 1.0);',
-    '  gl_PointSize = (mix(3.4, 1.1, r) + max(h, 0.0) * 1.6) * uDpr;',
-    '  vGlow = smoothstep(-0.5, 0.9, h);',
-    '  vFar = r;',
+    '  gl_Position = vec4(aPos.x / uAspect, aPos.y, 0.0, 1.0);',
+    '  vTw = 0.75 + 0.25 * sin(uTime * (1.2 + fract(aSeed * 7.31) * 1.6) + aSeed * 40.0);',
+    '  gl_PointSize = (1.5 + fract(aSeed * 13.7) * 2.8) * uDpr;',
+    '  vSeed = aSeed;',
     '}'
   ].join('\n');
-
   var fsSrc = [
     'precision mediump float;',
-    'varying float vGlow; varying float vFar;',
+    'varying float vSeed; varying float vTw;',
     'void main(){',
     '  vec2 uv = gl_PointCoord - 0.5;',
-    '  float m = smoothstep(0.5, 0.08, length(uv));',
+    '  float m = smoothstep(0.5, 0.06, length(uv));',
     '  vec3 teal = vec3(0.353, 0.604, 0.671);',
     '  vec3 lime = vec3(0.773, 0.910, 0.541);',
-    '  vec3 col = mix(teal, lime, vGlow);',
-    '  float a = m * mix(0.62, 0.13, vFar) * (0.4 + vGlow * 0.9);',
+    '  vec3 col = mix(teal, lime, fract(vSeed * 3.17));',
+    '  float a = m * vTw * (0.30 + fract(vSeed * 5.71) * 0.55);',
     '  gl_FragColor = vec4(col * a, a);',
     '}'
   ].join('\n');
-
   function shader(type, src) {
     var s = gl.createShader(type);
-    gl.shaderSource(s, src);
-    gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { return null; }
-    return s;
+    gl.shaderSource(s, src); gl.compileShader(s);
+    return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
   }
-  var vs = shader(gl.VERTEX_SHADER, vsSrc);
-  var fs = shader(gl.FRAGMENT_SHADER, fsSrc);
+  var vs = shader(gl.VERTEX_SHADER, vsSrc), fs = shader(gl.FRAGMENT_SHADER, fsSrc);
   if (!vs || !fs) { canvas.style.display = 'none'; return; }
   var prog = gl.createProgram();
   gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
@@ -2201,30 +2159,29 @@ setTimeout(function () {
   gl.useProgram(prog);
 
   var isMobile = window.innerWidth < 860;
-  var COLS = isMobile ? 90 : 120;
-  var ROWS = isMobile ? 55 : 70;
-  var count = 0;
-  var buf = gl.createBuffer();
-  function fillGrid() {
-    var pts = new Float32Array(COLS * ROWS * 2);
-    var k = 0;
-    for (var j = 0; j < ROWS; j++) {
-      for (var i2 = 0; i2 < COLS; i2++) {
-        pts[k++] = (i2 / (COLS - 1)) * 2 - 1;
-        pts[k++] = j / (ROWS - 1);
-      }
-    }
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, pts, gl.STATIC_DRAW);
-    count = COLS * ROWS;
-  }
-  fillGrid();
-  var loc = gl.getAttribLocation(prog, 'aPos');
-  gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  var N = isMobile ? 2400 : 7000;
+  var count = N;
+  var pos = new Float32Array(N * 2);   /* world coords: x ±aspect, y ±1 */
+  var vel = new Float32Array(N * 2);
+  var seeds = new Float32Array(N);
+  var slots = new Float32Array(N * 2);
+  var k;
+  for (k = 0; k < N; k++) seeds[k] = Math.random();
+
+  var posBuf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+  gl.bufferData(gl.ARRAY_BUFFER, pos, gl.DYNAMIC_DRAW);
+  var aPosL = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(aPosL);
+  gl.vertexAttribPointer(aPosL, 2, gl.FLOAT, false, 0, 0);
+  var seedBuf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, seedBuf);
+  gl.bufferData(gl.ARRAY_BUFFER, seeds, gl.STATIC_DRAW);
+  var aSeedL = gl.getAttribLocation(prog, 'aSeed');
+  gl.enableVertexAttribArray(aSeedL);
+  gl.vertexAttribPointer(aSeedL, 1, gl.FLOAT, false, 0, 0);
 
   var uTime = gl.getUniformLocation(prog, 'uTime');
-  var uMouse = gl.getUniformLocation(prog, 'uMouse');
   var uAspect = gl.getUniformLocation(prog, 'uAspect');
   var uDpr = gl.getUniformLocation(prog, 'uDpr');
 
@@ -2232,23 +2189,105 @@ setTimeout(function () {
   gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
   gl.clearColor(0, 0, 0, 0);
 
+  /* ── shape targets sampled from rasterized silhouettes ── */
+  var SC = 220;
+  var shapeCanvas = document.createElement('canvas');
+  shapeCanvas.width = SC; shapeCanvas.height = SC;
+  var sctx = shapeCanvas.getContext('2d', { willReadFrequently: true });
+  function samplePoints(draw) {
+    sctx.clearRect(0, 0, SC, SC);
+    sctx.fillStyle = '#fff'; sctx.strokeStyle = '#fff';
+    draw(sctx);
+    var data = sctx.getImageData(0, 0, SC, SC).data;
+    var pts = [];
+    for (var y = 0; y < SC; y++) {
+      for (var x = 0; x < SC; x++) {
+        if (data[(y * SC + x) * 4 + 3] > 100) pts.push([(x / SC - 0.5) * 2, (0.5 - y / SC) * 2]);
+      }
+    }
+    if (pts.length < 40) return null;
+    var out = new Float32Array(N * 2);
+    for (var j = 0; j < N; j++) {
+      var p = pts[(Math.random() * pts.length) | 0];
+      out[j * 2] = p[0] + (Math.random() - 0.5) * 0.016;
+      out[j * 2 + 1] = p[1] + (Math.random() - 0.5) * 0.016;
+    }
+    return out;
+  }
+  var shapes = [];
+  /* growth arrow ↗ */
+  var arrow = samplePoints(function (c) {
+    c.lineWidth = 26; c.lineCap = 'round'; c.lineJoin = 'round';
+    c.beginPath(); c.moveTo(38, 186); c.lineTo(182, 42); c.stroke();
+    c.beginPath(); c.moveTo(104, 38); c.lineTo(184, 38); c.lineTo(184, 118); c.stroke();
+  });
+  if (arrow) shapes.push(arrow);
+  /* rising bars */
+  var bars = samplePoints(function (c) {
+    var bw = 30, gap = 17, x0 = 34, hs = [62, 100, 140, 178], b;
+    for (b = 0; b < 4; b++) c.fillRect(x0 + b * (bw + gap), 198 - hs[b], bw, hs[b]);
+  });
+  if (bars) shapes.push(bars);
+  /* real K mark (async — jumps the queue once loaded) */
+  var kimg = new Image();
+  kimg.onload = function () {
+    var s = samplePoints(function (c) {
+      var r = Math.min(SC / kimg.width, SC / kimg.height) * 0.88;
+      var w = kimg.width * r, h = kimg.height * r;
+      c.drawImage(kimg, (SC - w) / 2, (SC - h) / 2, w, h);
+    });
+    if (s) {
+      shapes.unshift(s);
+      if (phase === 0) shapeIdx = 0; /* K condenses next if we're still in chaos */
+    }
+  };
+  kimg.src = '/images/brand/k-mark-gradient.png';
+
+  var aspect = 1, shapeOffX = 0, shapeOffY = 0, shapeScale = 0.62, shapesOn = true;
+  function layoutShape() {
+    shapesOn = aspect > 1.05; /* phones: text-dominant hero — ambient drift only */
+    if (shapesOn) { shapeOffX = aspect * 0.46; shapeOffY = 0.04; shapeScale = 0.62; }
+    else { shapeOffX = 0; shapeOffY = 0.1; shapeScale = 0.5; }
+  }
+  var shapeIdx = 0;
+  function retarget() {
+    if (!shapes.length) return;
+    var s = shapes[shapeIdx % shapes.length];
+    for (var j = 0; j < N; j++) {
+      slots[j * 2] = s[j * 2] * shapeScale + shapeOffX;
+      slots[j * 2 + 1] = s[j * 2 + 1] * shapeScale + shapeOffY;
+    }
+  }
+
   var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
   function resize() {
     var w = canvas.clientWidth, h = canvas.clientHeight;
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
     gl.viewport(0, 0, canvas.width, canvas.height);
-    gl.uniform1f(uAspect, canvas.width / canvas.height);
+    aspect = canvas.width / Math.max(1, canvas.height);
+    gl.uniform1f(uAspect, aspect);
     gl.uniform1f(uDpr, dpr);
+    layoutShape();
+    retarget();
   }
   resize();
   window.addEventListener('resize', resize, { passive: true });
+  for (k = 0; k < N; k++) {
+    var sa = Math.random() * 6.28318, sr = Math.sqrt(Math.random()) * 0.85;
+    pos[k * 2] = shapeOffX + Math.cos(sa) * sr;
+    pos[k * 2 + 1] = shapeOffY + Math.sin(sa) * sr;
+  }
 
-  var mx = 0, my = -2, tmx = 0, tmy = -2;
+  var mx = 0, my = -2, mxT = 0, myT = -2, mstr = 0, tstr = 0;
   if (finePointer) {
     window.addEventListener('mousemove', function (e) {
-      tmx = (e.clientX / window.innerWidth) * 2 - 1;
-      tmy = -((e.clientY / window.innerHeight) * 2 - 1);
+      var r = canvas.getBoundingClientRect();
+      if (r.height < 2) return;
+      var nx = ((e.clientX - r.left) / r.width * 2 - 1) * aspect;
+      var ny = -((e.clientY - r.top) / r.height * 2 - 1);
+      tstr = Math.min(1, tstr + Math.abs(nx - mxT) * 0.8 + Math.abs(ny - myT) * 0.8);
+      mxT = nx; myT = ny;
     }, { passive: true });
   }
 
@@ -2257,31 +2296,76 @@ setTimeout(function () {
   io.observe(canvas);
   document.addEventListener('visibilitychange', function () { running = !document.hidden; });
 
-  /* Quality governor: if real frame times sag on this machine, step down —
-     full → dpr 1 → half particle density. Never steps back up (avoids flicker). */
+  /* phase machine: 0 chaos → 1 condense → 2 hold → 3 release */
+  var PH = [2.2, 1.6, 4.6, 1.1];
+  var phase = 0, phaseT = 0, shapeAmt = 0;
+
   var quality = 2, warm = 0, accum = 0, samples = 0, frozen = false;
   function stepDown() {
     if (quality === 2) { dpr = 1; resize(); }
-    else if (quality === 1) { ROWS = Math.max(28, Math.round(ROWS / 2)); fillGrid(); }
-    else { frozen = true; docEl.classList.add('low-gfx'); } /* still slow at min quality: freeze on last frame */
+    else if (quality === 1) { count = Math.floor(count / 2); }
+    else { frozen = true; docEl.classList.add('low-gfx'); }
     quality--;
   }
+
   var start = performance.now();
   var prev = start;
   function frame(now) {
-    if (running && inView) {
+    if (running && inView && !frozen) {
       var dt = now - prev;
-      if (warm > 30 && dt < 250 && quality > -1) { /* ignore warmup + tab-switch gaps */
+      if (warm > 30 && dt < 250 && quality > -1) {
         accum += dt; samples++;
         if (samples >= 45) {
-          if (accum / samples > 24) stepDown(); /* sustained < ~42fps */
+          if (accum / samples > 24) stepDown();
           accum = 0; samples = 0;
         }
       } else { warm++; }
-      mx += (tmx - mx) * 0.05;
-      my += (tmy - my) * 0.05;
-      gl.uniform1f(uTime, (now - start) / 1000);
-      gl.uniform2f(uMouse, mx, my);
+      var dts = Math.min(dt, 50) / 1000;
+      var tS = (now - start) / 1000;
+
+      phaseT += dts;
+      if (phaseT > PH[phase]) {
+        phaseT = 0;
+        phase = (phase + 1) % 4;
+        if (phase === 1) retarget();
+        if (phase === 0) shapeIdx++;
+      }
+      if (phase === 1) { var q = phaseT / PH[1]; shapeAmt = q * q * (3 - 2 * q); }
+      else if (phase === 2) shapeAmt = 1;
+      else if (phase === 3) { var q2 = 1 - phaseT / PH[3]; shapeAmt = q2 * q2; }
+      else shapeAmt = 0;
+      if (!shapes.length || !shapesOn) shapeAmt = 0;
+
+      mx += (mxT - mx) * 0.1;
+      my += (myT - my) * 0.1;
+      tstr *= 0.95; mstr += (tstr - mstr) * 0.08;
+
+      var dampF = Math.exp(-dts * 5.2);
+      var driftA = 0.9 * (1 - shapeAmt * 0.85);
+      var springK = 15 * shapeAmt;
+      var curF = 0.55 + mstr * 3.2;
+      for (k = 0; k < count; k++) {
+        var ix = k * 2, iy = ix + 1;
+        var px = pos[ix], py = pos[iy];
+        var s1 = seeds[k] * 6.28318;
+        var ax = Math.sin(py * 1.9 + tS * 0.55 + s1) * driftA - (px - shapeOffX) * 0.85 * (1 - shapeAmt);
+        var ay = Math.cos(px * 1.5 - tS * 0.48 + s1) * driftA - (py - shapeOffY) * 0.95 * (1 - shapeAmt);
+        if (springK > 0) {
+          ax += (slots[ix] - px) * springK;
+          ay += (slots[iy] - py) * springK;
+        }
+        var dx = px - mx, dy = py - my;
+        var f = Math.exp(-(dx * dx + dy * dy) * 5.0) * curF;
+        ax += (-dy * 1.7 - dx * 0.5) * f;
+        ay += (dx * 1.7 - dy * 0.5) * f;
+        vel[ix] = (vel[ix] + ax * dts) * dampF;
+        vel[iy] = (vel[iy] + ay * dts) * dampF;
+        pos[ix] = px + vel[ix] * dts * 8;
+        pos[iy] = py + vel[iy] * dts * 8;
+      }
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, pos);
+      gl.uniform1f(uTime, tS);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.POINTS, 0, count);
     }
@@ -2289,8 +2373,13 @@ setTimeout(function () {
     if (!reduced && !frozen) requestAnimationFrame(frame);
   }
   if (reduced) {
-    gl.uniform1f(uTime, 12);
-    gl.uniform2f(uMouse, 0, -2);
+    for (k = 0; k < N; k++) {
+      pos[k * 2] = (Math.random() * 2 - 1) * aspect;
+      pos[k * 2 + 1] = Math.random() * 2 - 1;
+    }
+    gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+    gl.bufferSubData(gl.ARRAY_BUFFER, 0, pos);
+    gl.uniform1f(uTime, 8);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.POINTS, 0, count);
   } else {
