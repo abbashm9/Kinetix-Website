@@ -167,6 +167,14 @@ a, button { touch-action: manipulation; }
   ]
 }
 </script>
+<style>
+/* System/manual theme: light remap of the dark listing palette (theme.js drives data-theme) */
+html[data-theme="light"] { --ink:#FAFAF8; --ink-2:#FFFFFF; --ink-3:#EDEEE9; --bone:#16181F; --m-dark:#5A6172; --m-light:#8892A4; color-scheme: light; }
+html[data-theme="light"] .nav, html[data-theme="light"] .nav.scrolled { background: rgba(255,255,255,0.78); border-color: rgba(0,0,0,0.08); box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+html[data-theme="light"] .nav img[src*="wordmark-white"] { filter: brightness(0); }
+html[data-theme="light"] .nav a { color: #16181F; }
+</style>
+<script src="/articles/theme.js?v=3"></script>
 </head>
 <body>
 

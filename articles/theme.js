@@ -35,7 +35,7 @@
     '.kx-nav-right { display: flex; align-items: center; gap: 10px; }',
     '#kx-theme-toggle {',
     '  width: 38px; height: 38px; border-radius: 50%; flex: 0 0 auto;',
-    '  border: 1px solid var(--stroke-md); background: var(--surface); color: var(--text);',
+    '  border: 1px solid var(--stroke-md, rgba(136,146,164,0.35)); background: var(--surface, var(--ink-2, #fff)); color: var(--text, var(--bone, #16181F));',
     '  cursor: pointer; display: flex; align-items: center; justify-content: center;',
     '  transition: transform 0.2s var(--ease-out, ease);',
     '}',
