@@ -1597,19 +1597,19 @@ footer { position: relative; background: #07080B; border-top: 1px solid var(--w-
 <!-- ── MARQUEE ── -->
 <nav class="marquee" aria-label="Our services">
   <div class="marquee-track">
+    <a class="marquee-item" href="/services/ai-automation.html">AI Automation</a>
     <a class="marquee-item" href="/services/brand-identity.html">Brand Identity</a>
+    <a class="marquee-item" href="/services/web-development.html">Web Development</a>
     <a class="marquee-item" href="/services/paid-advertising.html">Paid Advertising</a>
     <a class="marquee-item" href="/services/social-media.html">Social Media</a>
-    <a class="marquee-item" href="/services/web-development.html">Web Development</a>
     <a class="marquee-item" href="/services/seo.html">SEO</a>
-    <a class="marquee-item" href="/services/ai-automation.html">AI Automation</a>
     <a class="marquee-item" href="/services/cyber-security.html">Cyber Security</a>
+    <a class="marquee-item" href="/services/ai-automation.html" tabindex="-1" aria-hidden="true">AI Automation</a>
     <a class="marquee-item" href="/services/brand-identity.html" tabindex="-1" aria-hidden="true">Brand Identity</a>
+    <a class="marquee-item" href="/services/web-development.html" tabindex="-1" aria-hidden="true">Web Development</a>
     <a class="marquee-item" href="/services/paid-advertising.html" tabindex="-1" aria-hidden="true">Paid Advertising</a>
     <a class="marquee-item" href="/services/social-media.html" tabindex="-1" aria-hidden="true">Social Media</a>
-    <a class="marquee-item" href="/services/web-development.html" tabindex="-1" aria-hidden="true">Web Development</a>
     <a class="marquee-item" href="/services/seo.html" tabindex="-1" aria-hidden="true">SEO</a>
-    <a class="marquee-item" href="/services/ai-automation.html" tabindex="-1" aria-hidden="true">AI Automation</a>
     <a class="marquee-item" href="/services/cyber-security.html" tabindex="-1" aria-hidden="true">Cyber Security</a>
   </div>
 </nav>
@@ -2190,7 +2190,7 @@ setTimeout(function () {
   gl.clearColor(0, 0, 0, 0);
 
   /* ── shape targets sampled from rasterized silhouettes ── */
-  var SC = 220;
+  var SC = 280;
   var shapeCanvas = document.createElement('canvas');
   shapeCanvas.width = SC; shapeCanvas.height = SC;
   var sctx = shapeCanvas.getContext('2d', { willReadFrequently: true });
@@ -2202,15 +2202,15 @@ setTimeout(function () {
     var pts = [];
     for (var y = 0; y < SC; y++) {
       for (var x = 0; x < SC; x++) {
-        if (data[(y * SC + x) * 4 + 3] > 100) pts.push([(x / SC - 0.5) * 2, (0.5 - y / SC) * 2]);
+        if (data[(y * SC + x) * 4 + 3] > 40) pts.push([(x / SC - 0.5) * 2, (0.5 - y / SC) * 2]);
       }
     }
     if (pts.length < 40) return null;
     var out = new Float32Array(N * 2);
     for (var j = 0; j < N; j++) {
       var p = pts[(Math.random() * pts.length) | 0];
-      out[j * 2] = p[0] + (Math.random() - 0.5) * 0.016;
-      out[j * 2 + 1] = p[1] + (Math.random() - 0.5) * 0.016;
+      out[j * 2] = p[0] + (Math.random() - 0.5) * 0.009;
+      out[j * 2 + 1] = p[1] + (Math.random() - 0.5) * 0.009;
     }
     return out;
   }
@@ -2232,7 +2232,7 @@ setTimeout(function () {
   var kimg = new Image();
   kimg.onload = function () {
     var s = samplePoints(function (c) {
-      var r = Math.min(SC / kimg.width, SC / kimg.height) * 0.88;
+      var r = Math.min(SC / kimg.width, SC / kimg.height) * 0.96;
       var w = kimg.width * r, h = kimg.height * r;
       c.drawImage(kimg, (SC - w) / 2, (SC - h) / 2, w, h);
     });
@@ -2669,7 +2669,7 @@ var pillarIcons = [
 var serviceSlugs = ['paid-advertising','social-media','brand-identity','web-development','seo','google-business','ai-automation','photography','cyber-security'];
 /* Homepage service layout: 6 cinematic chapters + compact strip.
    'photography' is intentionally absent from the homepage (per Abbas) — its service page still exists. */
-var chapterOrder = ['paid-advertising','social-media','brand-identity','web-development','seo','ai-automation'];
+var chapterOrder = ['ai-automation','brand-identity','web-development','paid-advertising','social-media','seo'];
 var stripOrder = ['google-business','cyber-security'];
 var chapterImgs = {
   'paid-advertising': '/images/chapters/paid-advertising.jpg',
