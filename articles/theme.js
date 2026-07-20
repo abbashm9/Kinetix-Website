@@ -32,14 +32,15 @@
     'html[data-theme="dark"] .nav-cta { background: var(--lime); color: #0F1117; }',
     'html[data-theme="dark"] img { opacity: 0.92; }',
     'html[data-theme="dark"] img[src*="wordmark-dark"] { filter: brightness(0) invert(1); opacity: 1; }',
+    '.kx-nav-right { display: flex; align-items: center; gap: 10px; }',
     '#kx-theme-toggle {',
-    '  position: fixed; right: 24px; bottom: 92px; z-index: 500;',
-    '  width: 46px; height: 46px; border-radius: 50%;',
+    '  width: 38px; height: 38px; border-radius: 50%; flex: 0 0 auto;',
     '  border: 1px solid var(--stroke-md); background: var(--surface); color: var(--text);',
     '  cursor: pointer; display: flex; align-items: center; justify-content: center;',
-    '  box-shadow: 0 4px 16px rgba(0,0,0,0.14); transition: transform 0.2s var(--ease-out, ease);',
+    '  transition: transform 0.2s var(--ease-out, ease);',
     '}',
-    '#kx-theme-toggle:hover { transform: translateY(-2px); }',
+    '#kx-theme-toggle.kx-floating { position: fixed; right: 24px; top: 24px; z-index: 500; box-shadow: 0 4px 16px rgba(0,0,0,0.14); }',
+    '#kx-theme-toggle:hover { transform: translateY(-1px); }',
     '#kx-theme-toggle:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }',
     '#kx-theme-toggle:active { transform: scale(0.94); }',
     '#kx-theme-toggle svg { width: 20px; height: 20px; }',
@@ -64,7 +65,18 @@
       apply(next);
       try { localStorage.setItem('kx-theme', next); } catch (e) {}
     });
-    document.body.appendChild(b);
+    /* top right: slot into the nav pill beside the CTA; float only as fallback */
+    var cta = document.querySelector('.nav .nav-cta');
+    if (cta) {
+      var wrap = document.createElement('span');
+      wrap.className = 'kx-nav-right';
+      cta.parentNode.insertBefore(wrap, cta);
+      wrap.appendChild(b);
+      wrap.appendChild(cta);
+    } else {
+      b.className = 'kx-floating';
+      document.body.appendChild(b);
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addToggle);
   else addToggle();
