@@ -39,7 +39,7 @@ Show SAR equivalents next to KWD in any KSA-facing article (1 KWD ≈ 12.2 SAR; 
 
 ## Tasks
 
-1. **EN homepage, structure + copy + signature move** — `todo`
+1. **EN homepage, structure + copy + signature move** — `awaiting-approval` (PR `agent/homepage-en` into `overhaul/ai-first`, screenshots in `docs/review/homepage-en/`)
    Build `scrollcraft/builds/kinetix-v2/index.html` per BRIEF.md: 6 acts, split-stage grammar, divider as chrome, "owner's day" clock + handled ledger, collapse close. Real copy, placeholders for Flow assets. Run scroll-craft Step 5 harness (desktop, mobile, reduced-motion). Approval needed: yes (contact sheet + 6 act screenshots).
    Feedback: —
 
