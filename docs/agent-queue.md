@@ -49,7 +49,7 @@ Show SAR equivalents next to KWD in any KSA-facing article (1 KWD ≈ 12.2 SAR; 
 3. **AR homepage (`/ar/`, RTL)** — `todo` (after 1 is approved)
    Same structure mirrored for RTL; the divider and collapse direction flip. hreflang pair both ways. Approval needed: yes.
 
-4. **Service pages rewrite** — `todo`
+4. **Service pages rewrite** — `awaiting-approval` (PR agent/service-pages)
    Rewrite to proven services only, EN + AR: content-engine, meta-ads, brand-identity, web-development, ai-reporting, ai-inbox-assistant (pilot label). Each: problem in the owner's words → what we deliver → real proof (Samah / Bonyad / Al Jadad site) → WhatsApp CTA. Old pages not on this list (cyber-security, photography, google-business, seo, social-media, paid-advertising, ai-automation): list them in the PR with a proposed 308 redirect target each; **don't delete or redirect until Abbas approves**. Approval needed: yes.
 
 5. **Pricing article (EN + AR)** — `todo`
