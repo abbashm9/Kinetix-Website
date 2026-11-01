@@ -39,9 +39,10 @@ Show SAR equivalents next to KWD in any KSA-facing article (1 KWD ≈ 12.2 SAR; 
 
 ## Tasks
 
-1. **EN homepage, structure + copy + signature move** — `awaiting-approval` (PR `agent/homepage-en` into `overhaul/ai-first`, screenshots in `docs/review/homepage-en/`)
+1. **EN homepage, structure + copy + signature move** — `changes-requested` (PR `agent/homepage-en` into `overhaul/ai-first`, screenshots in `docs/review/homepage-en/`)
    Build `scrollcraft/builds/kinetix-v2/index.html` per BRIEF.md: 6 acts, split-stage grammar, divider as chrome, "owner's day" clock + handled ledger, collapse close. Real copy, placeholders for Flow assets. Run scroll-craft Step 5 harness (desktop, mobile, reduced-motion). Approval needed: yes (contact sheet + 6 act screenshots).
    Feedback: "The look is very basic and its the same as the previous website, what i mean by overhaul i mean something entirely different and new" (Abbas, Telegram, 2026-11-01). Redone: night/day split, full-bleed real work photography, lime flood at the peak.
+   Feedback 2 (Telegram, Abbas, 2026-11-01): "Still the focus is on marketing i want to focus on the tech and ai side more than marketing" / "Find a way to watch this video and try to apply it to our strategy" (Instagram reel DfFoUcNjUPY). Waiting on clarification: this conflicts with the rules above (proven services only, no AI employees/bots/booking automation); asked Abbas which tech/AI claims are allowed and what the reel shows (agent cannot watch Instagram).
 
 2. **Swap in Flow assets** — `blocked` (on Abbas generating the assets from FLOW-BRIEF.md into `scrollcraft/builds/kinetix-v2/raw/`)
    Encode with scroll-craft `encode.sh` (desktop + mobile), downscale stills, re-run harness. Approval needed: yes.
