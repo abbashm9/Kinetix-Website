@@ -11,3 +11,6 @@
 - Abbas said v1 looked basic and the same as the old site. Same grammar and ledger, new art direction: left is night ink with a giant ghost clock, right is daylight with full-bleed real Al Jadad photography (laptop site mockup, posters). The peak floods the right side lime; the close collapses onto the lime with the handled list.
 - Removed the dashed placeholder boxes and the div-built fake report (refuse list). Report is plain type now. Samah and Bonyad images are still not in the repo, so they are not shown. 05-motion peak clip still a Flow placeholder (the flood stands in).
 - Harness: desktop, mobile 390, reduced motion all pass: no dead scroll, cues clear contrast (one 3.9:1 on the large 'Handled.' headline, large-text OK). Not verified: a real phone, Google Fonts (sandbox may use fallback).
+
+## 2026-11-01: Agent run: feedback check
+- PR #1 (homepage) and #2 (service pages) in flight. No GitHub comments. Telegram feedback on homepage recorded as changes-requested; direction conflicts with queue rules, asked Abbas to clarify before rebuilding. No build this run.
