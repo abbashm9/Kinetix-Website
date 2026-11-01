@@ -14,3 +14,6 @@
 
 ## 2026-11-01: Agent run: feedback check
 - PR #1 (homepage) and #2 (service pages) in flight. No GitHub comments. Telegram feedback on homepage recorded as changes-requested; direction conflicts with queue rules, asked Abbas to clarify before rebuilding. No build this run.
+
+## 2026-11-01: Agent run: feedback 3 (no build)
+- Abbas clarified: sell results not tools; research services first and add the ones we can truly deliver. Wrote `docs/service-proposal.md` (proposal only, no web research, nothing on the site). Rebuild waits on his picks because it changes the queue's proven-services rule.
