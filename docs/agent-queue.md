@@ -55,7 +55,7 @@ Show SAR equivalents next to KWD in any KSA-facing article (1 KWD ≈ 12.2 SAR; 
 5. **Pricing article (EN + AR)** — `todo`
    "How much does a marketing agency cost in Saudi Arabia and the GCC (2026)", using the price table above, with FAQ section + FAQPage schema. Link from website-cost-kuwait article. Approval needed: yes.
 
-6. **Three cost articles (EN + AR)** — `todo`
+6. **Three cost articles (EN + AR)** — `awaiting-approval` (branch `agent/cost-articles`, shots in `docs/review/cost-articles/`)
    Social media management cost GCC; brand identity cost GCC; website cost Saudi Arabia. Same format as website-cost-kuwait.html (the page ChatGPT cites). FAQ + schema each. Approval needed: yes.
 
 7. **llms.txt, schema, sitemap, hreflang** — `todo` (after 4)
