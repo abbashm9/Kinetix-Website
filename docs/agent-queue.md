@@ -55,8 +55,9 @@ Show SAR equivalents next to KWD in any KSA-facing article (1 KWD ≈ 12.2 SAR; 
 5. **Pricing article (EN + AR)** — `todo`
    "How much does a marketing agency cost in Saudi Arabia and the GCC (2026)", using the price table above, with FAQ section + FAQPage schema. Link from website-cost-kuwait article. Approval needed: yes.
 
-6. **Three cost articles (EN + AR)** — `todo`
+6. **Three cost articles (EN + AR)** — `changes-requested` (branch `agent/cost-articles`, shots in `docs/review/cost-articles/`)
    Social media management cost GCC; brand identity cost GCC; website cost Saudi Arabia. Same format as website-cost-kuwait.html (the page ChatGPT cites). FAQ + schema each. Approval needed: yes.
+   Feedback (Telegram, Abbas, 2026-11-03): "I don't like to add our prices like this, like we're a restaurant, but we can talk about market prices in articles" / "This should talk about identity benefits and stuff also not just the price" / service name is "Brand Identity Design" (AR: تصميم الهوية التجارية) / "be very very careful with the copywriting". Brand identity article redone this run (no Kinetix prices, benefits-led, new name). Social media and website-cost articles still carry Kinetix prices: waiting on Abbas for market-price figures with sources (agent will not invent them).
 
 7. **llms.txt, schema, sitemap, hreflang** — `todo` (after 4)
    Rewrite llms.txt around the proven menu + GCC/KSA. Organization/ProfessionalService schema areaServed = SA, KW, AE, QA, BH, OM. Remove old stats from content.json. Add every new page to sitemap.xml. Approval needed: no (text-only, but list the diff in the PR).
@@ -70,3 +71,8 @@ Show SAR equivalents next to KWD in any KSA-facing article (1 KWD ≈ 12.2 SAR; 
 - Bing Webmaster Tools: add kinetixkw.com, submit sitemap, enable IndexNow.
 - Decide Growth + SEO tier (rename + ~900 KWD recommended).
 - Final merge of `overhaul/ai-first` → `main` (= going live).
+
+## Proposed (not started, needs Abbas's go-ahead)
+
+- **Deep research: agentic-as-a-service / AI-native services agency** (Abbas, 2026-11-02/03, video transcript). Research only, conflicts with the proven-services rule until he decides what we can honestly sell.
+- **Free SEO score tool + lead capture** (Abbas, 2026-11-03). Needs the old dashboard tool's code and a decision on where leads go.
