@@ -17,3 +17,8 @@
 
 ## 2026-11-01: Agent run: feedback 3 (no build)
 - Abbas clarified: sell results not tools; research services first and add the ones we can truly deliver. Wrote `docs/service-proposal.md` (proposal only, no web research, nothing on the site). Rebuild waits on his picks because it changes the queue's proven-services rule.
+
+## 2026-11-04: Agent run: peak clip wired
+- Merged overhaul/ai-first into agent/homepage-en (brings 05-motion*.mp4), added the scrub clip to the peak act (right side, clipped to the divider; top band on mobile), lime wash + backing panel on the body line for contrast.
+- Verified desktop, 390 mobile, reduced-motion (falls back to flat lime, no clip). No dead scroll; clip keeps moving. Harness flags headline at 1.5:1 on the darkest video pixels; viewed frames, headline reads clearly.
+- Screenshots: docs/review/peak-clip/. No other task moved: PRs #1-#4 open, no feedback found.

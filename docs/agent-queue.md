@@ -45,7 +45,7 @@ Show SAR equivalents next to KWD in any KSA-facing article (1 KWD ≈ 12.2 SAR; 
    Feedback 2 (Telegram, Abbas, 2026-11-01): "Still the focus is on marketing i want to focus on the tech and ai side more than marketing" / "Find a way to watch this video and try to apply it to our strategy" (Instagram reel DfFoUcNjUPY). Waiting on clarification: this conflicts with the rules above (proven services only, no AI employees/bots/booking automation); asked Abbas which tech/AI claims are allowed and what the reel shows (agent cannot watch Instagram).
    Feedback 3 (Telegram, Abbas, 2026-11-01 15:43): reel is about "selling results not just tools"; "whatever you want to add, do a complete research first and if a service is applicable by us i mean me and you add it there". Proposal in `docs/service-proposal.md`; waiting on Abbas to pick services before the rebuild.
 
-2. **Swap in Flow assets** — `todo` (PARTIAL: peak clip delivered 2026-11-04, stills 01/02/03/04/06 still pending; keep their placeholders)
+2. **Swap in Flow assets** — `awaiting-approval` (peak clip wired on agent/homepage-en, PR #1; PARTIAL: peak clip delivered 2026-11-04, stills 01/02/03/04/06 still pending; keep their placeholders)
    Peak clip is already encoded for scrubbing: `assets/05-motion.mp4` (desktop) and `assets/05-motion-m.mp4` (mobile). Wire them into the peak act on the PR #1 branch (`agent/homepage-en`) so Abbas reviews them together. Do NOT re-encode. Sources are in `raw/` (single continuous takes, checked: no cuts). Ignore `raw/05-start-frame.png`.
    Encode with scroll-craft `encode.sh` (desktop + mobile), downscale stills, re-run harness. Approval needed: yes.
 
