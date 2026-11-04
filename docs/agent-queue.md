@@ -43,7 +43,8 @@ Show SAR equivalents next to KWD in any KSA-facing article (1 KWD ≈ 12.2 SAR; 
    Build `scrollcraft/builds/kinetix-v2/index.html` per BRIEF.md: 6 acts, split-stage grammar, divider as chrome, "owner's day" clock + handled ledger, collapse close. Real copy, placeholders for Flow assets. Run scroll-craft Step 5 harness (desktop, mobile, reduced-motion). Approval needed: yes (contact sheet + 6 act screenshots).
    Feedback: —
 
-2. **Swap in Flow assets** — `blocked` (on Abbas generating the assets from FLOW-BRIEF.md into `scrollcraft/builds/kinetix-v2/raw/`)
+2. **Swap in Flow assets** — `todo` (PARTIAL: peak clip delivered 2026-11-04, stills 01/02/03/04/06 still pending; keep their placeholders)
+   Peak clip is already encoded for scrubbing: `assets/05-motion.mp4` (desktop) and `assets/05-motion-m.mp4` (mobile). Wire them into the peak act on the PR #1 branch (`agent/homepage-en`) so Abbas reviews them together. Do NOT re-encode. Sources are in `raw/` (single continuous takes, checked: no cuts). Ignore `raw/05-start-frame.png`.
    Encode with scroll-craft `encode.sh` (desktop + mobile), downscale stills, re-run harness. Approval needed: yes.
 
 3. **AR homepage (`/ar/`, RTL)** — `todo` (after 1 is approved)
