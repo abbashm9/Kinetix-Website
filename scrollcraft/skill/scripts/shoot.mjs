@@ -44,6 +44,7 @@ const REDUCED = has("--reduced-motion");
 
 const CHROME = [
   process.env.SCROLLCRAFT_CHROME,
+  process.env.PW_CHROMIUM,
   // Windows
   "C:/Program Files/Google/Chrome/Application/chrome.exe",
   "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",

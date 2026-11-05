@@ -28,6 +28,7 @@ changes only grammar and world will fail it.
 
 | Build | Grammar | Nav treatment | Hero device | Act-sequence shape | Close pattern | Signature move | World | Port |
 |---|---|---|---|---|---|---|---|---|
+| kinetix-v2 (EN home) | Split stage | No bar, the divider is the chrome (capsule with wordmark + labels, day clock) | Pin, split hero 50/50, both headlines readable | pin > reveal > kinetic > parallax > silence > scrub (peak, widest) > pin + collapse | Collapse: divider travels to the edge, one dark column, lime CTA | Owner's day ledger: problems ticked and struck, stamped into a running Handled today list | Photographic placeholders, light Apple canvas | EN only |
 
 *(empty: your first build has nothing to clear, so build whatever the interview
 points at. From the second onwards, this table is the constraint.)*
