@@ -22,3 +22,6 @@
 - Merged overhaul/ai-first into agent/homepage-en (brings 05-motion*.mp4), added the scrub clip to the peak act (right side, clipped to the divider; top band on mobile), lime wash + backing panel on the body line for contrast.
 - Verified desktop, 390 mobile, reduced-motion (falls back to flat lime, no clip). No dead scroll; clip keeps moving. Harness flags headline at 1.5:1 on the darkest video pixels; viewed frames, headline reads clearly.
 - Screenshots: docs/review/peak-clip/. No other task moved: PRs #1-#4 open, no feedback found.
+
+## 2026-11-05: Agent run: services strategy v2
+- Abbas asked (Telegram 2026-11-04) to rethink services as outcomes, not tools. Wrote docs/service-strategy-v2.md (proposal only, no site change). Other PRs #2-#4 still open, no feedback. Rebuild waits on his approval of the outcomes.
