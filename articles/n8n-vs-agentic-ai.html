@@ -447,8 +447,8 @@ body::after {
     <h3>What n8n does particularly well</h3>
     <ul>
       <li><strong>Syncing data between systems:</strong> New invoice in QuickBooks → create a record in your CRM → notify the account manager in WhatsApp.</li>
-      <li><strong>Lead routing and follow-up:</strong> Form submission → enrich with Clearbit → if score &gt; 70, assign to senior rep and send personalised email; else nurture sequence.</li>
-      <li><strong>Reporting and scheduled tasks:</strong> Every Monday at 8am, pull last week's ad spend from Meta and Google, compile a report, post it to Slack.</li>
+      <li><strong>Lead routing and follow-up:</strong> Form submission → enrich the record → if score &gt; 70, assign to senior rep and send personalised email; else nurture sequence.</li>
+      <li><strong>Reporting and scheduled tasks:</strong> Every Monday at 8am, pull last week's sales and bookings, compile a report, post it to Slack.</li>
       <li><strong>Notification pipelines:</strong> When a review is posted on Google Maps, send it to the customer success WhatsApp group.</li>
     </ul>
 
@@ -541,22 +541,8 @@ body::after {
       </tbody>
     </table>
 
-    <div class="stat-row">
-      <div class="stat-box">
-        <div class="stat-box-num">400+</div>
-        <div class="stat-box-label">Native integrations in n8n</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-box-num">~10×</div>
-        <div class="stat-box-label">Faster iteration for agent tasks vs. scripting every branch</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-box-num">2026</div>
-        <div class="stat-box-label">Year hybrid stacks became the new default</div>
-      </div>
-    </div>
 
-    <h2 id="when">When to Use Each, A Practical Decision Guide</h2>
+    <h2 id="when">When to Use Each: A Practical Decision Guide</h2>
 
     <p>The answer is almost never "one or the other." The question is which one is the <em>right layer</em> for a specific task. Here is a simple decision framework:</p>
 
@@ -622,6 +608,14 @@ body::after {
       <li><strong>Introduce the agent layer on top.</strong> Start with one high-value agent task, measure the output quality, then expand.</li>
     </ol>
 
+        <h2 id="faq">FAQ</h2>
+    <h3>What is the difference between n8n and agentic AI?</h3>
+    <p>n8n is a workflow automation tool that executes a fixed, predefined sequence of steps when triggered, deterministic and rule-based. Agentic AI uses a language model to reason about a goal, choose which tools to use, and adapt to unexpected situations, making it suitable for tasks where the exact path can&#x27;t be scripted in advance.</p>
+    <h3>Should I use n8n or an AI agent for my business?</h3>
+    <p>Use n8n (or similar workflow tools) for repetitive, predictable tasks with clear inputs and outputs, syncing data, sending notifications, generating reports. Use AI agents for tasks that involve judgment, variable inputs, or multi-step reasoning, lead qualification, customer support triage, research, or content drafting. Most mature automation stacks use both together.</p>
+    <h3>Can n8n and agentic AI work together?</h3>
+    <p>Yes, this is the most powerful pattern. An AI agent handles the reasoning and decision-making, then triggers n8n workflows to execute reliable, tested actions (send an email, update a CRM record, log a row). n8n can also call AI models mid-workflow for classification or drafting steps. The two paradigms complement rather than replace each other.</p>
+
     <h2 id="kinetix">How Kinetix Can Help</h2>
 
     <p>Kinetix is a product studio that builds AI systems for businesses in Kuwait and the GCC, from the first n8n workflow to WhatsApp AI agents that answer in Arabic and English, qualify inquiries and book appointments. See <a href="/services/ai-automation.html">AI systems and WhatsApp AI agents</a>.</p>
@@ -640,7 +634,8 @@ body::after {
         <li><a href="#when">When to Use Each</a></li>
         <li><a href="#hybrid">The Hybrid Stack</a></li>
         <li><a href="#gcc">GCC Business Context</a></li>
-        <li><a href="#kinetix">How Kinetix Can Help</a></li>
+        <li><a href="#faq">FAQ</a></li>
+          <li><a href="#kinetix">How Kinetix Can Help</a></li>
       </ul>
     </div>
 
@@ -653,7 +648,7 @@ body::after {
     <div class="sidebar-card">
       <div class="sidebar-label">Related Articles</div>
       <div class="sidebar-related">
-        <a href="ai-automation-kuwait-business.html">How AI Automation is Helping Kuwait Businesses Work Smarter</a>
+        <a href="ai-automation-kuwait-business.html">AI automation and WhatsApp AI agents for GCC businesses</a>
         <a href="website-cost-kuwait.html">How much does a website cost in Kuwait?</a>
         <a href="web-design-kuwait-that-converts.html">Website development in Kuwait: what makes a site sell</a>
       </div>
@@ -665,7 +660,7 @@ body::after {
     <div class="related-grid">
       <a href="ai-automation-kuwait-business.html" class="related-card">
         <div class="related-cat">AI &amp; Automation</div>
-        <div class="related-title">How AI Automation is Helping Kuwait Businesses Work Smarter in 2026</div>
+        <div class="related-title">AI automation and WhatsApp AI agents for GCC businesses</div>
       </a>
       <a href="website-cost-kuwait.html" class="related-card">
         <div class="related-cat">Web &amp; Apps</div>
