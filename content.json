@@ -1,180 +1,84 @@
 {
   "hero": {
-    "eyebrow": "Kuwait's Forward-Moving Agency",
-    "headline_line1": "We Set",
-    "headline_line2": "Brands",
-    "headline_accent": "In Motion ",
-    "subtext": "Kinetix is a precision-led digital agency crafting brand strategies, campaigns, and identities that accelerate growth — in Arabic, in English, globally.",
-    "cta_primary_text": "Explore Services",
-    "cta_primary_href": "#services",
-    "cta_secondary_text": "Get in Touch",
-    "cta_secondary_href": "#contact",
-    "stat_roi": "+312%",
-    "stat_roi_label": "Average ROI across client campaigns",
-    "stat_brands": "50+",
-    "stat_brands_label": "Brands Launched",
-    "stat_satisfaction": "Client Satisfaction",
-    "stat_rating": "⭐⭐⭐⭐⭐ 5.0 Rating",
-    "bars": [
-      {
-        "label": "Brand Awareness",
-        "value": 94
-      },
-      {
-        "label": "Lead Generation",
-        "value": 87
-      },
-      {
-        "label": "Social Engagement",
-        "value": 78
-      }
-    ]
+    "eyebrow": "Product studio for apps, websites and AI systems",
+    "headline_line1": "We build the products",
+    "headline_line2": "your business",
+    "headline_accent": "runs on.",
+    "subtext": "Apps, multilingual websites and AI systems, designed and shipped by a small studio that uses AI to move faster than an agency.",
+    "cta_primary_text": "Start a project",
+    "cta_primary_href": "/start",
+    "cta_secondary_text": "What we build",
+    "cta_secondary_href": "#services"
   },
   "marquee": [
-    "Brand Identity",
-    "Social Media",
-    "Digital Advertising",
-    "Content Creation",
-    "Web Design",
-    "Video Production",
-    "PR & Influence",
-    "Strategy"
+    "Apps",
+    "Websites and stores",
+    "AI systems",
+    "WhatsApp agents",
+    "Brand identity"
   ],
   "about": {
-    "label": "Our Philosophy",
-    "headline": "Forward energy.",
-    "headline_em": "In every decision.",
-    "desc": "We don't follow trends — we set them in motion. Kinetix exists to give brands the momentum they need to lead in a distracted world.",
-    "pillars": [
-      {
-        "icon": "⚡",
-        "name": "Kinetic",
-        "desc": "Always in motion. Our work creates momentum for brands that want to accelerate beyond the noise and lead their category."
-      },
-      {
-        "icon": "🎯",
-        "name": "Precise",
-        "desc": "Data-driven decisions. Every pixel, every word, every strategy is intentional — crafted to perform, not just to look good."
-      },
-      {
-        "icon": "🌐",
-        "name": "Bilingual",
-        "desc": "Rooted in Kuwait, built for global reach. We craft campaigns that speak authentically in Arabic and English — no translation, no compromise."
-      }
-    ]
+    "label": "Studio products",
+    "headline": "What we're",
+    "headline_em": "building.",
+    "desc": "Alongside client work we build our own products. Client projects fund them, and what we learn ships back to you.",
+    "pillars": []
   },
   "services": {
-    "label": "What We Do",
-    "headline": "Full-spectrum",
-    "headline_em": "digital services.",
-    "desc": "From brand inception to campaign execution — we handle every layer of your digital presence with craft and precision.",
+    "label": "What we build",
+    "headline": "What we",
+    "headline_em": "build.",
+    "desc": "Designed and shipped by a small studio that uses AI to move faster than an agency.",
     "items": [
       {
-        "name": "Paid Advertising",
-        "desc": "Performance campaigns across Meta, TikTok, Snapchat, LinkedIn, X, Google — and ChatGPT, OpenAI's new ad platform — built on audience planning, creative direction, and continuous optimization.",
+        "slug": "apps",
+        "name": "Apps",
+        "desc": "iOS and Android apps, from first version to launch.",
         "tags": [
-          "Meta Ads",
-          "Google Ads",
-          "ChatGPT Ads",
-          "TikTok",
-          "Snapchat"
+          "iOS",
+          "Android"
         ]
       },
       {
-        "name": "Social Media Management",
-        "desc": "Content calendars, caption writing, visual direction, posting, page management, and monthly refinement — full-service social presence handled for you.",
+        "slug": "websites",
+        "name": "Websites and stores",
+        "desc": "Arabic, English and more, with payments, booking and real tracking. Brand identity included when you need one.",
         "tags": [
-          "Instagram",
-          "TikTok",
-          "LinkedIn",
-          "Snapchat"
+          "Arabic",
+          "English",
+          "Payments",
+          "Booking"
         ]
       },
       {
-        "name": "Brand Identity",
-        "desc": "Logo creation or refinement, color palettes, typography, brand style direction, social media visual systems, and brand refreshes for businesses ready to stand out.",
+        "slug": "ai-systems",
+        "name": "AI systems",
+        "desc": "WhatsApp agents and automations that take work off your team.",
         "tags": [
-          "Logo Design",
-          "Brand Style",
-          "Visual System"
-        ]
-      },
-      {
-        "name": "Web & App Development",
-        "desc": "Business websites, landing pages, lead-gen pages, customer dashboards, service portals, and app planning — built to convert and scale.",
-        "tags": [
-          "Websites",
-          "Landing Pages",
-          "Dashboards",
-          "Apps"
-        ]
-      },
-      {
-        "name": "SEO & Search Visibility",
-        "desc": "On-page optimization, keyword-based page planning, content structure for blogs and articles, local SEO, and long-term search discoverability for your business.",
-        "tags": [
-          "On-Page SEO",
-          "Local SEO",
-          "Content SEO"
-        ]
-      },
-      {
-        "name": "Google Business & Analytics",
-        "desc": "Google Business profile setup and optimization, analytics configuration, traffic and behavior review, conversion tracking, and reporting to drive better decisions.",
-        "tags": [
-          "Google Business",
-          "GA4",
-          "Conversion Tracking"
-        ]
-      },
-      {
-        "name": "AI Automation",
-        "desc": "Lead qualification flows, follow-up workflows, internal task automation, content assistance, reporting support, and operational efficiency improvements.",
-        "tags": [
-          "Lead Flows",
-          "Workflows",
-          "Task Automation"
-        ]
-      },
-      {
-        "name": "Architectural Photography",
-        "desc": "Professional exterior, interior, and space photography for real estate, hospitality, retail, and commercial property — built for listings, websites, and social media.",
-        "tags": [
-          "Exterior",
-          "Interior",
-          "Commercial",
-          "Real Estate"
-        ]
-      },
-      {
-        "name": "Cyber Security",
-        "desc": "Website security reviews, protection recommendations, access and account security guidance, platform hardening, and risk awareness for businesses operating online.",
-        "tags": [
-          "Security Reviews",
-          "Platform Hardening",
-          "Risk Assessment"
+          "WhatsApp agents",
+          "Automations"
         ]
       }
     ]
   },
   "work": {
-    "label": "Selected Work",
+    "label": "Proof",
     "headline": "Proof of",
     "headline_em": "momentum.",
-    "desc": "A look at what we've built and grown — products shipped, brands launched, and campaigns that moved the needle for businesses across Kuwait and the region.",
+    "desc": "Outcomes, not services.",
     "logo_wall_label": "Trusted by brands across Kuwait & the region",
     "projects": [
       {
-        "kicker": "Case Study — Full Service",
+        "kicker": "Case study: brand, website, platform and app",
         "status": "Ongoing",
         "name": "Al-Jadad Center",
         "scope": [
           "Brand Identity",
           "Website",
-          "Social Media",
-          "Paid Ads"
+          "Course platform",
+          "App"
         ],
-        "desc": "A psychotherapy & couples-therapy center in Kuwait. Kinetix built the brand identity from the ground up, designed and developed the website, and now runs the center’s social media content and paid campaigns — one partner across the whole journey.",
+        "desc": "A course platform and app for a 124K-follower psychologist. Kinetix built the brand identity from the ground up, then designed and built the website, course platform and app.",
         "images": [
           "/images/work/aljadad-billboard.jpg",
           "/images/work/aljadad-social.jpg"
@@ -188,14 +92,14 @@
         "cta": "Read the case study"
       },
       {
-        "kicker": "Case Study — Brand Identity",
+        "kicker": "Case study: brand identity",
         "name": "Roselle Loungewear",
         "scope": [
           "Logo & Visual System",
           "Packaging",
           "Retail Applications"
         ],
-        "desc": "A Kuwaiti loungewear label with a bilingual identity — logotype, five-petal mark, palette, packaging, and retail applications designed to sit comfortably beside the region’s most polished retail brands.",
+        "desc": "A Kuwaiti loungewear label with a bilingual identity, logotype, five-petal mark, palette, packaging, and retail applications designed to sit comfortably beside the region’s most polished retail brands.",
         "images": [
           "/images/work/roselle-storefront.jpg",
           "/images/work/roselle-packaging.jpg",
@@ -230,6 +134,18 @@
         "name": "Client",
         "src": "/images/logos/placeholder-6.svg"
       }
+    ],
+    "outcomes": [
+      {
+        "client": "Shahrayar",
+        "figure": "$16 to $4.40",
+        "text": "Cost per lead from $16 to $4.40."
+      },
+      {
+        "client": "Al Jadad",
+        "figure": "124K",
+        "text": "A course platform and app for a 124K-follower psychologist."
+      }
     ]
   },
   "stats": [
@@ -254,36 +170,35 @@
     "label": "How We Work",
     "headline": "Precision from",
     "headline_em": "day one.",
-    "desc": "Every engagement follows the same disciplined process — because great outcomes don't happen by accident.",
+    "desc": "Every project follows the same disciplined process, because great outcomes don't happen by accident.",
     "timeline": "2–4 Weeks",
     "timeline_sub": "From briefing to launch-ready",
     "steps": [
       {
         "name": "Discovery & Brief",
-        "desc": "We start by understanding your business, audience, goals, and competitive landscape. No assumptions — just sharp listening and the right questions."
+        "desc": "We start by understanding your business, audience, goals, and competitive landscape. No assumptions, just sharp listening and the right questions."
       },
       {
         "name": "Strategy & Direction",
-        "desc": "We develop a clear creative and strategic direction — positioning, messaging hierarchy, platform selection, and a performance framework before a single pixel moves."
+        "desc": "We agree on scope, structure and a fixed quote before a single pixel moves."
       },
       {
         "name": "Creation & Production",
-        "desc": "Our team executes with precision — design, copy, video, and code — all built to brand standard and reviewed against your objectives at every milestone."
+        "desc": "We design and build in short rounds, reviewed against your objectives at every milestone."
       },
       {
         "name": "Launch & Optimize",
-        "desc": "We go live and immediately track performance. Every campaign is monitored, tested, and refined in real time to push results beyond the benchmark."
+        "desc": "We go live and track how it performs. Every build is monitored, tested and refined after launch."
       }
     ]
   },
   "contact": {
-    "accepting_label": "Now Accepting New Clients",
-    "headline": "Ready to put your brand",
-    "headline_em": "in motion?",
-    "sub": "Whether you're launching a new brand or scaling an existing one, let's build something that moves people.",
-    "whatsapp_href": "https://wa.me/96592274600",
+    "accepting_label": "Now accepting new projects",
+    "headline": "Projects from",
+    "headline_em": "750 KD.",
+    "sub": "Every project gets a fixed quote after a short call.",
+    "start_href": "/start",
     "instagram_href": "https://instagram.com/kinetixkw",
-    "phone": "+965 9227 4600",
     "instagram_handle": "@kinetixkw"
   },
   "business": {
@@ -293,11 +208,10 @@
     "country": "Kuwait",
     "phone": "+965 9227 4600",
     "phone_e164": "+96592274600",
-    "whatsapp": "https://wa.me/96592274600",
     "instagram": "@kinetixkw"
   },
   "footer": {
-    "tagline": "We don't follow trends. We set them in motion.",
+    "tagline": "Product studio for apps, websites and AI systems.",
     "copyright": "© 2026 Kinetix. All rights reserved.",
     "social_instagram": "https://instagram.com/kinetixkw",
     "social_tiktok": "#",
