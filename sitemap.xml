@@ -1,217 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.kinetixkw.com/</loc>
     <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kinetixkw.com/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.kinetixkw.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kinetixkw.com/"/>
   </url>
-
   <url>
     <loc>https://www.kinetixkw.com/ar/</loc>
     <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kinetixkw.com/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.kinetixkw.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kinetixkw.com/"/>
   </url>
-
   <url>
     <loc>https://www.kinetixkw.com/start</loc>
     <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kinetixkw.com/start"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.kinetixkw.com/ar/start"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kinetixkw.com/start"/>
   </url>
-
   <url>
     <loc>https://www.kinetixkw.com/ar/start</loc>
     <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kinetixkw.com/start"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.kinetixkw.com/ar/start"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kinetixkw.com/start"/>
   </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/join</loc>
-    <lastmod>2026-11-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/ar/join</loc>
-    <lastmod>2026-11-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Portfolio -->
-  <url>
-    <loc>https://www.kinetixkw.com/portfolio/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/portfolio/aljadad.html</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/portfolio/roselle.html</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Service pages -->
   <url>
     <loc>https://www.kinetixkw.com/services/web-development.html</loc>
     <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/services/brand-identity.html</loc>
-    <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   <url>
     <loc>https://www.kinetixkw.com/services/ai-automation.html</loc>
     <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.kinetixkw.com/services/brand-identity.html</loc>
+    <lastmod>2026-11-18</lastmod>
     <priority>0.8</priority>
   </url>
-
-  <!-- Articles -->
-  <url>
-    <loc>https://www.kinetixkw.com/articles/chatgpt-ads-2026.html</loc>
-    <lastmod>2026-06-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/gcc-ad-budget-allocation-2026.html</loc>
-    <lastmod>2026-07-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/paid-advertising-kuwait.html</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/local-seo-kuwait.html</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/social-media-marketing-kuwait.html</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/brand-identity-kuwait.html</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/ai-automation-kuwait-business.html</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/claude-adobe-creative-cloud.html</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/meta-vs-google-ads-kuwait.html</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/website-cost-kuwait.html</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/instagram-plus-2026.html</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.kinetixkw.com/articles/n8n-vs-agentic-ai.html</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   <url>
     <loc>https://www.kinetixkw.com/about.html</loc>
     <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://www.kinetixkw.com/articles/how-to-choose-marketing-agency-kuwait.html</loc>
-    <lastmod>2026-06-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.kinetixkw.com/portfolio/</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://www.kinetixkw.com/articles/professional-photography-kuwait.html</loc>
-    <lastmod>2026-06-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.kinetixkw.com/portfolio/aljadad.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://www.kinetixkw.com/portfolio/roselle.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.kinetixkw.com/articles/</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.kinetixkw.com/articles/website-cost-kuwait.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.kinetixkw.com/articles/web-design-kuwait-that-converts.html</loc>
-    <lastmod>2026-06-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://www.kinetixkw.com/articles/google-business-profile-kuwait.html</loc>
-    <lastmod>2026-06-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.kinetixkw.com/articles/ai-automation-kuwait-business.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://www.kinetixkw.com/articles/n8n-vs-agentic-ai.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.kinetixkw.com/articles/brand-identity-kuwait.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.kinetixkw.com/join</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kinetixkw.com/join"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.kinetixkw.com/ar/join"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kinetixkw.com/join"/>
+  </url>
+  <url>
+    <loc>https://www.kinetixkw.com/ar/join</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kinetixkw.com/join"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.kinetixkw.com/ar/join"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kinetixkw.com/join"/>
+  </url>
 </urlset>

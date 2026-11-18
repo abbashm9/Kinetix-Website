@@ -59,6 +59,121 @@
       "source": "/services/cyber-security",
       "destination": "/services/web-development.html",
       "permanent": true
+    },
+    {
+      "source": "/articles/chatgpt-ads-2026.html",
+      "destination": "/services/ai-automation.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/chatgpt-ads-2026",
+      "destination": "/services/ai-automation.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/gcc-ad-budget-allocation-2026.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/gcc-ad-budget-allocation-2026",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/paid-advertising-kuwait.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/paid-advertising-kuwait",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/meta-vs-google-ads-kuwait.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/meta-vs-google-ads-kuwait",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/social-media-marketing-kuwait.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/social-media-marketing-kuwait",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/instagram-plus-2026.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/instagram-plus-2026",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/articles/local-seo-kuwait.html",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/local-seo-kuwait",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/google-business-profile-kuwait.html",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/google-business-profile-kuwait",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/professional-photography-kuwait.html",
+      "destination": "/services/brand-identity.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/professional-photography-kuwait",
+      "destination": "/services/brand-identity.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/how-to-choose-marketing-agency-kuwait.html",
+      "destination": "/articles/web-design-kuwait-that-converts.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/how-to-choose-marketing-agency-kuwait",
+      "destination": "/articles/web-design-kuwait-that-converts.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/claude-adobe-creative-cloud.html",
+      "destination": "/articles/n8n-vs-agentic-ai.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/claude-adobe-creative-cloud",
+      "destination": "/articles/n8n-vs-agentic-ai.html",
+      "permanent": true
+    },
+    {
+      "source": "/articles/kinetix-gcc-ad-budget-allocation-v2.pdf",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "headers": [

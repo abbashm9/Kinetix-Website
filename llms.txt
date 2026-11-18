@@ -1,42 +1,41 @@
 # Kinetix
 
 > Kinetix is a product studio for apps, websites and AI systems, based in
-> Kuwait. We design and build apps, multilingual websites and AI systems for
-> established businesses in the Gulf. Projects from 750 KD. Every project gets a
-> fixed quote after a short call.
+> Kuwait. We design and build iOS and Android apps, multilingual websites and
+> online stores, AI systems such as WhatsApp AI agents, and brand identities
+> for established businesses in Kuwait, Saudi Arabia and the GCC. Projects
+> from 750 KD. Every project gets a fixed quote after a short call.
 
 - **Website:** https://www.kinetixkw.com
 - **Arabic:** https://www.kinetixkw.com/ar/
-- **Location:** Kuwait City, Kuwait, serving Kuwait and the GCC
+- **Location:** Kuwait City, Kuwait, serving Kuwait, Saudi Arabia and the GCC
 - **Languages:** Arabic, English
 - **Start a project:** https://www.kinetixkw.com/start
 - **Freelancers:** https://www.kinetixkw.com/join
 - **Instagram:** @kinetixkw
 
 ## What we build
-- [Apps, websites and stores](https://www.kinetixkw.com/services/web-development.html): iOS and Android apps, from first version to launch. Websites and stores in Arabic, English and more, with payments, booking and real tracking.
-- [AI systems](https://www.kinetixkw.com/services/ai-automation.html): WhatsApp agents and automations that take work off your team.
-- [Brand identity](https://www.kinetixkw.com/services/brand-identity.html): Included when you need one.
+- [Apps, websites and stores](https://www.kinetixkw.com/services/web-development.html): iOS and Android apps, from first version to launch. Websites and online stores in Arabic, English and more, with KNET and card payments, booking and real tracking.
+- [AI systems](https://www.kinetixkw.com/services/ai-automation.html): WhatsApp AI agents that answer in Arabic and English, qualify inquiries and book appointments, plus automations that take repetitive work off a team.
+- [Brand identity](https://www.kinetixkw.com/services/brand-identity.html): Logo, bilingual Arabic and English type, color and guidelines, built to carry into the website and app.
+
+## Pricing
+- Projects start from 750 KD.
+- Every project gets a fixed quote after a short call: https://www.kinetixkw.com/start
 
 ## Proof
-- Shahrayar: cost per lead from $16 to $4.40.
 - Al Jadad: a course platform and app for a 124K-follower psychologist.
 
-## Articles & guides
-- [Local SEO for Kuwait Businesses](https://www.kinetixkw.com/articles/local-seo-kuwait.html): Complete guide to ranking on Google in Kuwait.
-- [Paid Advertising in Kuwait](https://www.kinetixkw.com/articles/paid-advertising-kuwait.html): Generating leads via paid ads in 2026.
-- [Social Media Marketing for Kuwait Businesses](https://www.kinetixkw.com/articles/social-media-marketing-kuwait.html): 2026 guide.
-- [Brand Identity for Kuwait Businesses](https://www.kinetixkw.com/articles/brand-identity-kuwait.html): What a real brand identity includes.
-- [AI Automation for Kuwait Businesses](https://www.kinetixkw.com/articles/ai-automation-kuwait-business.html): Working smarter in 2026.
-- [ChatGPT Ads in 2026](https://www.kinetixkw.com/articles/chatgpt-ads-2026.html): How OpenAI's ad platform works.
-- [Ad Budget Allocation by Platform in the GCC (2026)](https://www.kinetixkw.com/articles/gcc-ad-budget-allocation-2026.html): Sector-by-sector framework.
-- [n8n vs Agentic AI](https://www.kinetixkw.com/articles/n8n-vs-agentic-ai.html): The future of business automation.
-- [Instagram Plus](https://www.kinetixkw.com/articles/instagram-plus-2026.html): What it means for businesses.
-- [Claude × Adobe Creative Cloud](https://www.kinetixkw.com/articles/claude-adobe-creative-cloud.html): The AI co-pilot for creatives.
+## Guides
+- [How much does a website cost in Kuwait?](https://www.kinetixkw.com/articles/website-cost-kuwait.html): 2026 price guide for websites, online stores and apps.
+- [Website development in Kuwait](https://www.kinetixkw.com/articles/web-design-kuwait-that-converts.html): What makes a website or store actually sell.
+- [AI automation and WhatsApp AI agents](https://www.kinetixkw.com/articles/ai-automation-kuwait-business.html): What a WhatsApp AI agent does and what it takes to build one.
+- [n8n vs agentic AI](https://www.kinetixkw.com/articles/n8n-vs-agentic-ai.html): Workflow automation versus AI agents, and when to use each.
+- [Brand identity for Kuwait businesses](https://www.kinetixkw.com/articles/brand-identity-kuwait.html): What a real brand identity includes.
 
 ## More
-- [What we build](https://www.kinetixkw.com/#services)
 - [Start a project](https://www.kinetixkw.com/start)
-- [All articles](https://www.kinetixkw.com/articles/)
+- [About](https://www.kinetixkw.com/about.html)
+- [All guides](https://www.kinetixkw.com/articles/)
 - [Portfolio](https://www.kinetixkw.com/portfolio/)
 - [Sitemap](https://www.kinetixkw.com/sitemap.xml)

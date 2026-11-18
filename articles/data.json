@@ -1,163 +1,53 @@
 {
   "articles": [
     {
-      "id": "meta-vs-google-ads-kuwait",
-      "slug": "meta-vs-google-ads-kuwait",
-      "title": "Meta vs Google Ads in Kuwait: Which Should You Start With?",
-      "category": "Paid Advertising",
-      "date": "July 2026",
-      "readTime": "8 min read",
-      "excerpt": "Meta or Google Ads first? They do two different jobs — one captures demand that already exists, the other creates it. Here's how to tell which fits your business, when each one wins in Kuwait, and how to split your first budget without wasting spend.",
-      "featured": true
-    },
-    {
       "id": "website-cost-kuwait",
       "slug": "website-cost-kuwait",
       "title": "How Much Does a Website Cost in Kuwait? (2026 Price Guide)",
       "category": "Web & Apps",
-      "date": "June 2026",
+      "date": "November 2026",
       "readTime": "8 min read",
-      "excerpt": "A website in Kuwait can cost KWD 150 or KWD 15,000 — and both can be right. Here are the honest 2026 price ranges, what actually drives the cost, and how to make sure you're paying for the right thing, not just the cheapest.",
+      "excerpt": "A template site, a custom bilingual website, an online store with KNET and a mobile app are four different products. Honest 2026 ranges, what drives the price, and how to compare quotes.",
       "featured": true
-    },
-    {
-      "id": "instagram-plus-2026",
-      "slug": "instagram-plus-2026",
-      "title": "Instagram Plus Is Here: What It Means for Your Business",
-      "category": "Social Media",
-      "date": "June 2026",
-      "readTime": "7 min read",
-      "excerpt": "Meta launched Instagram Plus on June 4, 2026 — $3.99/month for consumers, up to $49.99/month for businesses. From anonymous story viewing to links in organic posts, here's every feature and which plan GCC businesses should actually care about.",
-      "featured": true
-    },
-    {
-      "id": "how-to-choose-marketing-agency-kuwait",
-      "slug": "how-to-choose-marketing-agency-kuwait",
-      "title": "How to Choose a Digital Marketing Agency in Kuwait",
-      "category": "Strategy",
-      "date": "June 2026",
-      "readTime": "7 min read",
-      "excerpt": "The right agency compounds your growth; the wrong one drains your budget. A practical guide to choosing the right digital marketing agency in Kuwait — what to look for, the red flags to avoid, and the questions to ask before you sign.",
-      "featured": false
-    },
-    {
-      "id": "professional-photography-kuwait",
-      "slug": "professional-photography-kuwait",
-      "title": "Architectural Photography That Does Your Best Work Justice",
-      "category": "Branding",
-      "date": "June 2026",
-      "readTime": "6 min read",
-      "excerpt": "Your portfolio is your reputation. For developers, interior designers, and architects in Kuwait, professional architectural photography is what makes your best work look as good on screen as it does in person.",
-      "featured": false
     },
     {
       "id": "web-design-kuwait-that-converts",
       "slug": "web-design-kuwait-that-converts",
-      "title": "Why Your Kuwait Business Website Isn't Bringing You Customers",
+      "title": "Website Development in Kuwait: What Makes a Site Actually Sell",
       "category": "Web & Apps",
-      "date": "June 2026",
+      "date": "November 2026",
       "readTime": "6 min read",
-      "excerpt": "Most Kuwait business websites look fine but don't sell. Here's what actually makes a website convert visitors into customers — backed by Google's own page-speed and mobile research — and how to fix yours.",
-      "featured": false
-    },
-    {
-      "id": "google-business-profile-kuwait",
-      "slug": "google-business-profile-kuwait",
-      "title": "How to Set Up and Optimize Your Google Business Profile in Kuwait",
-      "category": "SEO",
-      "date": "June 2026",
-      "readTime": "7 min read",
-      "excerpt": "Nearly half of all Google searches are local. This step-by-step guide shows Kuwait businesses how to set up and optimize their Google Business Profile to show up on Maps and win customers.",
-      "featured": false
-    },
-    {
-      "id": "n8n-vs-agentic-ai",
-      "slug": "n8n-vs-agentic-ai",
-      "title": "n8n vs Agentic AI: The Future of Business Automation",
-      "category": "AI & Automation",
-      "date": "June 2026",
-      "readTime": "8 min read",
-      "excerpt": "Workflow tools like n8n follow fixed rules. Agentic AI reasons, adapts, and decides. Here's how the two automation paradigms compare, when each is the right tool, and how the most powerful stacks in 2026 combine both.",
-      "featured": true
-    },
-    {
-      "id": "chatgpt-ads-2026",
-      "slug": "chatgpt-ads-2026",
-      "title": "ChatGPT Ads in 2026: How OpenAI's New Ad Platform Works",
-      "category": "Paid Advertising",
-      "date": "June 2026",
-      "readTime": "7 min read",
-      "excerpt": "OpenAI started showing ads inside ChatGPT in 2026 — sponsored cards below the AI's answer, reaching 800M+ weekly users on the free tier. Here's how the ad platform works, what it costs, and what it means for businesses in Kuwait and the GCC.",
-      "featured": true
-    },
-    {
-      "id": "claude-adobe-creative-cloud",
-      "slug": "claude-adobe-creative-cloud",
-      "title": "Claude × Adobe: The Creative Cloud Just Got an AI Co-Pilot",
-      "category": "AI & Automation",
-      "date": "April 2026",
-      "readTime": "4 min read",
-      "excerpt": "Anthropic and Adobe launched the 'Adobe for creativity' connector — bringing 50+ Creative Cloud tools directly into Claude. Here's what it does, who benefits, and how to try it.",
-      "featured": true
-    },
-    {
-      "id": "gcc-ad-budget-allocation-2026",
-      "slug": "gcc-ad-budget-allocation-2026",
-      "title": "Ad Budget Allocation by Platform in the GCC in 2026",
-      "category": "Paid Advertising",
-      "date": "April 2026",
-      "readTime": "8 min read",
-      "excerpt": "A sector-by-sector framework for splitting ad spend across Meta, Google, Snapchat, and TikTok — built for the GCC market. Covers e-commerce, real estate, food & beverage, healthcare, education, and fashion.",
-      "featured": false
-    },
-    {
-      "id": "paid-advertising-kuwait",
-      "slug": "paid-advertising-kuwait",
-      "title": "How Kuwait Businesses Can Use Paid Advertising to Generate More Leads in 2026",
-      "category": "Paid Advertising",
-      "date": "March 2025",
-      "readTime": "8 min read",
-      "excerpt": "Meta, Google, TikTok, and Snapchat are crowded — but businesses that structure their campaigns correctly are still generating cost-effective leads at scale. Here's what the Kinetix approach looks like from strategy to optimization.",
-      "featured": true
-    },
-    {
-      "id": "local-seo-kuwait",
-      "slug": "local-seo-kuwait",
-      "title": "Local SEO for Kuwait Businesses: A Complete Guide to Ranking on Google",
-      "category": "SEO",
-      "date": "February 2025",
-      "readTime": "10 min read",
-      "excerpt": "Most Kuwait businesses are invisible on Google. Local SEO fixes that — and it compounds over time. This guide covers everything from Google Business to keyword strategy.",
-      "featured": false
-    },
-    {
-      "id": "social-media-marketing-kuwait",
-      "slug": "social-media-marketing-kuwait",
-      "title": "The Complete Guide to Social Media Marketing for Kuwait Businesses in 2026",
-      "category": "Social Media",
-      "date": "January 2025",
-      "readTime": "12 min read",
-      "excerpt": "Instagram, TikTok, Snapchat — Kuwait's social media landscape is unique. Here's how to build a presence that actually drives business results, not just follower counts.",
-      "featured": false
-    },
-    {
-      "id": "brand-identity-kuwait",
-      "slug": "brand-identity-kuwait",
-      "title": "Why Your Kuwait Business Needs a Professional Brand Identity (And What It Actually Includes)",
-      "category": "Branding",
-      "date": "December 2024",
-      "readTime": "7 min read",
-      "excerpt": "A logo is not a brand identity. Most Kuwait businesses confuse the two — and it costs them in every customer interaction. Here's what a proper brand identity delivers and why it matters.",
+      "excerpt": "Speed on a phone, a clear offer, Arabic built properly, KNET that works and leads you can track. The seven things that separate a site that launches from a site that sells.",
       "featured": false
     },
     {
       "id": "ai-automation-kuwait-business",
       "slug": "ai-automation-kuwait-business",
-      "title": "How AI Automation is Helping Kuwait Businesses Work Smarter in 2026",
+      "title": "AI Automation and WhatsApp AI Agents for GCC Businesses (2026)",
       "category": "AI & Automation",
-      "date": "November 2024",
-      "readTime": "9 min read",
-      "excerpt": "From lead qualification to follow-up workflows, AI automation is no longer reserved for large enterprises. Here's how small and mid-sized Kuwait businesses are using it to scale without adding headcount.",
+      "date": "November 2026",
+      "readTime": "7 min read",
+      "excerpt": "What a WhatsApp AI agent does, which automations are worth building first, what it takes to build one properly, and what to expect once it is live.",
+      "featured": true
+    },
+    {
+      "id": "n8n-vs-agentic-ai",
+      "slug": "n8n-vs-agentic-ai",
+      "title": "n8n vs Agentic AI: Workflow Automation or AI Agents?",
+      "category": "AI & Automation",
+      "date": "November 2026",
+      "readTime": "8 min read",
+      "excerpt": "n8n follows fixed rules. Agentic AI reasons and decides. How the two compare, when to use each, and how GCC businesses combine them.",
+      "featured": false
+    },
+    {
+      "id": "brand-identity-kuwait",
+      "slug": "brand-identity-kuwait",
+      "title": "Brand Identity for Kuwait Businesses: What It Really Includes",
+      "category": "Branding",
+      "date": "November 2026",
+      "readTime": "6 min read",
+      "excerpt": "A logo is not a brand identity. What a professional bilingual identity includes, how it carries into your website, app and store, and when a refresh beats a rebrand.",
       "featured": false
     }
   ]
