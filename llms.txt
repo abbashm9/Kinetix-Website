@@ -1,26 +1,26 @@
 # Kinetix
 
-> Kinetix is Kuwait's precision-led, bilingual (Arabic + English) digital
-> marketing agency. We help brands in Kuwait and the wider GCC grow through
-> brand strategy, paid advertising, social media, web & app development, SEO,
-> and AI automation. Our mission: help the Middle East produce and compete
-> globally through world-class marketing.
+> Kinetix is a product studio for apps, websites and AI systems, based in
+> Kuwait. We design and build apps, multilingual websites and AI systems for
+> established businesses in the Gulf. Projects from 750 KD. Every project gets a
+> fixed quote after a short call.
 
 - **Website:** https://www.kinetixkw.com
-- **Location:** Kuwait City, Kuwait — serving Kuwait and the GCC
+- **Arabic:** https://www.kinetixkw.com/ar/
+- **Location:** Kuwait City, Kuwait, serving Kuwait and the GCC
 - **Languages:** Arabic, English
-- **Contact:** +965 9227 4600 · WhatsApp https://wa.me/96592274600 · Instagram @kinetixkw
+- **Start a project:** https://www.kinetixkw.com/start
+- **Freelancers:** https://www.kinetixkw.com/join
+- **Instagram:** @kinetixkw
 
-## Services
-- [Paid Advertising in Kuwait](https://www.kinetixkw.com/services/paid-advertising.html): Performance campaigns across Meta, Google, TikTok, Snapchat, LinkedIn, X, and ChatGPT/OpenAI ads.
-- [Social Media Management](https://www.kinetixkw.com/services/social-media.html): Strategy, content, community and growth in Arabic and English.
-- [Brand Identity](https://www.kinetixkw.com/services/brand-identity.html): Logo, visual identity, style guides, and complete brand systems.
-- [Web & App Development](https://www.kinetixkw.com/services/web-development.html): Websites, landing pages, dashboards, and apps built to convert.
-- [SEO & Search Visibility](https://www.kinetixkw.com/services/seo.html): On-page SEO, local SEO, and content strategy for Kuwait and the GCC.
-- [Google Business & Analytics](https://www.kinetixkw.com/services/google-business.html): Google Business Profile optimization and GA4 setup.
-- [AI Automation](https://www.kinetixkw.com/services/ai-automation.html): Lead-qualification flows, follow-up workflows, and operational automation.
-- [Architectural Photography](https://www.kinetixkw.com/services/photography.html): Exterior, interior, and commercial property photography.
-- [Cyber Security](https://www.kinetixkw.com/services/cyber-security.html): Security reviews, platform hardening, and risk assessment.
+## What we build
+- [Apps, websites and stores](https://www.kinetixkw.com/services/web-development.html): iOS and Android apps, from first version to launch. Websites and stores in Arabic, English and more, with payments, booking and real tracking.
+- [AI systems](https://www.kinetixkw.com/services/ai-automation.html): WhatsApp agents and automations that take work off your team.
+- [Brand identity](https://www.kinetixkw.com/services/brand-identity.html): Included when you need one.
+
+## Proof
+- Shahrayar: cost per lead from $16 to $4.40.
+- Al Jadad: a course platform and app for a 124K-follower psychologist.
 
 ## Articles & guides
 - [Local SEO for Kuwait Businesses](https://www.kinetixkw.com/articles/local-seo-kuwait.html): Complete guide to ranking on Google in Kuwait.
@@ -35,7 +35,8 @@
 - [Claude × Adobe Creative Cloud](https://www.kinetixkw.com/articles/claude-adobe-creative-cloud.html): The AI co-pilot for creatives.
 
 ## More
-- [All services](https://www.kinetixkw.com/#services)
+- [What we build](https://www.kinetixkw.com/#services)
+- [Start a project](https://www.kinetixkw.com/start)
 - [All articles](https://www.kinetixkw.com/articles/)
 - [Portfolio](https://www.kinetixkw.com/portfolio/)
 - [Sitemap](https://www.kinetixkw.com/sitemap.xml)

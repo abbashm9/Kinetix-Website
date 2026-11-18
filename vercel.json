@@ -1,16 +1,106 @@
 {
+  "redirects": [
+    {
+      "source": "/services/social-media.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/services/social-media",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/services/paid-advertising.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/services/paid-advertising",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/services/photography.html",
+      "destination": "/services/brand-identity.html",
+      "permanent": true
+    },
+    {
+      "source": "/services/photography",
+      "destination": "/services/brand-identity.html",
+      "permanent": true
+    },
+    {
+      "source": "/services/google-business.html",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/services/google-business",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/services/seo.html",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/services/seo",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/services/cyber-security.html",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    },
+    {
+      "source": "/services/cyber-security",
+      "destination": "/services/web-development.html",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/ar-demo/model-viewer.min.js",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/ar-demo/models/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/start",
+      "destination": "/start/index.html"
+    },
+    {
+      "source": "/join",
+      "destination": "/join/index.html"
+    },
+    {
+      "source": "/ar/start",
+      "destination": "/ar/start/index.html"
+    },
+    {
+      "source": "/ar/join",
+      "destination": "/ar/join/index.html"
+    },
+    {
+      "source": "/ar",
+      "destination": "/ar/index.html"
     }
   ]
 }

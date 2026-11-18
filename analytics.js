@@ -29,13 +29,13 @@
   gtag('config', GA4_MEASUREMENT_ID, { anonymize_ip: true });
 
   // ── Conversion events (fire on key actions) ──────────────────
-  // WhatsApp / phone / Instagram clicks = lead intent. Wired by data-attr.
+  // Start-a-project / phone / Instagram clicks = lead intent.
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a');
     if (!a) return;
     var href = a.getAttribute('href') || '';
-    if (href.indexOf('wa.me') > -1 || href.indexOf('whatsapp') > -1) {
-      gtag('event', 'contact_whatsapp', { transport_type: 'beacon' });
+    if (href === '/start' || href === '/ar/start' || href.indexOf('/start/') > -1) {
+      gtag('event', 'start_project_click', { transport_type: 'beacon' });
     } else if (href.indexOf('tel:') === 0) {
       gtag('event', 'contact_call', { transport_type: 'beacon' });
     } else if (href.indexOf('instagram.com') > -1) {
